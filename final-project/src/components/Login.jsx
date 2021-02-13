@@ -10,9 +10,7 @@ import FormControl from 'react-bootstrap/FormControl';
 function Login() {
   return (
     <div>
-      <>
-       
-      </>
+
     </div>
   )
 }

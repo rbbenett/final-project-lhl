@@ -7,10 +7,6 @@ import "./Navbar.css"
 
 function Navbar() {
   return (
-<<<<<<< HEAD
-    <div>
-      
-=======
     <div className="navbar">
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
@@ -21,10 +17,9 @@ function Navbar() {
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
+          <Button variant="outline-info">Register</Button>
         </Form>
       </Navbar>
->>>>>>> dc4ee8748d106fe16150e4c43f5d3113a93ccaed
     </div>
   )
 }
