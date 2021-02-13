@@ -1,5 +1,5 @@
 INSERT INTO themes (name)
 VALUES
-('No Theme')
+('No Theme'),
 ('Harry Potter'),
 ('Star Wars')
