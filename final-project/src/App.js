@@ -7,7 +7,7 @@ import Leaderboard from "./components/Leaderboard.jsx";
 import Profile from "./components/Profile.jsx";
 import Welcomepage from "./components/WelcomePage.jsx";
 import GameConsole from "./components/GameConsole.jsx";
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavLink } from 'react-bootstrap';
 
 class App extends Component{
   constructor(props){
@@ -16,11 +16,13 @@ class App extends Component{
     // Here we initialize our components state
     this.state = {
         showLoginForm: false,
-        showRegisterForm: false
+        showRegisterForm: false,
+        showProfile: false
     };
 
     this.onLoginClick = this.onLoginClick.bind(this);
     this.onRegisterClick = this.onRegisterClick.bind(this);
+    this.onProfileClick = this.onProfileClick.bind(this);
 }
 
 onLoginClick () {
@@ -31,6 +33,10 @@ onLoginClick () {
 onRegisterClick () {
   // On click we change our state – this will trigger our `render` method
   this.setState({ showRegisterForm: !this.state.showRegisterForm });
+}
+
+onProfileClick () {
+  this.setState({ showProfile: !this.state.showProfile });
 }
 
 renderLoginForm () {
@@ -45,14 +51,21 @@ renderRegisterForm () {
   );
 }
 
+renderProfile () {
+  return (
+    <Profile />
+  );
+}
+
   
   render(){
-    const { showLoginForm, showRegisterForm } = this.state;
+    const { showLoginForm, showRegisterForm, showProfile } = this.state;
   return (
     <div className="app">
       {/* if not loggin in */}
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
+        <Nav.Link onClick={ this.onProfileClick }>Profile</Nav.Link>
           <Nav className="mr-auto">
           </Nav>
           <Nav>
@@ -62,6 +75,7 @@ renderRegisterForm () {
       </Navbar>
       {showLoginForm && this.renderLoginForm()}
       {showRegisterForm && this.renderRegisterForm()}
+      {showProfile && this.renderProfile()}
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
