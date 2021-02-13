@@ -5,8 +5,9 @@ import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
 import Leaderboard from "./components/Leaderboard.jsx";
 import Profile from "./components/Profile.jsx";
-import {Navbar, Nav} from 'react-bootstrap';
 import Welcomepage from "./components/WelcomePage.jsx";
+import GameConsole from "./components/GameConsole.jsx";
+import { Navbar, Nav } from 'react-bootstrap';
 
 function App() {
   return (
@@ -34,10 +35,11 @@ function App() {
       </Navbar> */}
       {/* <Login />
       <Register /> */}
-      {/* <Profile /> */}
+      <Profile />
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
-      <Welcomepage/>
+      {/* <Welcomepage /> */}
+      {/* <GameConsole /> */}
     </div>
   );
 }
