@@ -1,0 +1,14 @@
+Form.register-form {
+  margin: 1rem 15rem 1rem 15rem;
+  border: solid black;
+  border-radius: 25px;
+}
+button {
+  padding-left: 15rem
+}
+h3 {
+  text-align: center;
+}
+div.form-group {
+  margin: 1rem
+}
