@@ -4,5 +4,9 @@ VALUES
 ('ChuckNorr', 'Chuck', 'Norris', 'ChuckNorris@hotmail.com', 'redhead', null, 'Los Angeles', 'USA', 43.42, 3),
 ('Tfey', 'Tina', 'Fey', 'TinaFey@gmail.com', '30rock', null, 'New York City', 'USA', 12, 0),
 ('CChanning', 'Carol', 'Channing', 'carol@channing.ca', 'outofmymind', null, 'Montreal', 'Canada', 39.85, 3),
+<<<<<<< HEAD
 ('Cdion', 'Celine' , 'Dion', 'Celine@dion.ca', 'Myheartwill', null, 'Montreal', 'Canada', 102.90, 10),
+=======
+('Cdion', 'Celine', 'Dion', 'Celine@dion.ca', 'Myheartwill', null, 'Montreal', 'Canada', 102.90, 10),
+>>>>>>> fa6217cd362d8978069e88db644af3ded2dab361
 ('Tfox', 'Terry', 'Fox', 'terry@fox.com', 'sweetcharity', null, 'Toronto', 'Canada', 0, 0)
