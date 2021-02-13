@@ -21,6 +21,8 @@ function App() {
       {/* if not loggin in */}
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
+        <Nav.Link onClick={ this.onProfileClick }>Profile</Nav.Link>
+        <Nav.Link onClick={ this.onLeaderboardClick }>Leaderboard</Nav.Link>
           <Nav className="mr-auto">
           </Nav>
           <Nav>
@@ -56,7 +58,6 @@ function App() {
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
       </Navbar>
-      <Profile />
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
       {/* <Welcomepage /> */}
