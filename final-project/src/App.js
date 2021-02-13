@@ -20,7 +20,7 @@ function App() {
           </Nav>
       </Navbar>
       {/* Once logged in */}
-      <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
           <Nav className="mr-auto">
           </Nav>
@@ -29,7 +29,7 @@ function App() {
             <Nav.Link href="#id">View profile</Nav.Link>
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
-      </Navbar>
+      </Navbar> */}
       {/* <Login />
       <Register /> */}
       <Profile />
