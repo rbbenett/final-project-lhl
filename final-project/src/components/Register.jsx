@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import "./Register.css"
 
+import "nes.css/css/nes.min.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PageHeader } from 'react-bootstrap';
 
