@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar"
 function Main() {
   return (
     <div>
-      <Navbar className="custom" />
+      {/* <Navbar /> */}
       <Register />
       <Footer />
     </div>

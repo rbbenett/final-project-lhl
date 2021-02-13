@@ -1,17 +1,36 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import FormControl from 'react-bootstrap/FormControl'
 import "./Register.css"
 
-import "nes.css/css/nes.min.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { PageHeader } from 'react-bootstrap';
 
 function Register() {
   return (
     <div className="register">
-      <Form>
+      <Container>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#features">Features</Nav.Link>
+          <Nav.Link href="#pricing">Pricing</Nav.Link>
+        </Nav>
+        <Form class="search" inline>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          <Button variant="outline-info">Search</Button>
+        </Form>
+      </Navbar>
+      </Container>
+      <Form className="register-form">
+        <Form.Group controlId="formHeader">
         <h3>Register</h3>
+        </Form.Group>
+        
         <Form.Group controlId="formBasicName">
           <Form.Label>Name</Form.Label>
           <Form.Control type="name" placeholder="Enter Name" />
@@ -27,6 +46,7 @@ function Register() {
           <Form.Control type="email" placeholder="Enter Email" />
         </Form.Group>
 
+        <Form.Group controlId="formBasicPassword">
         <Form.Label htmlFor="inputPassword5">Password</Form.Label>
         <Form.Control
           type="password"
@@ -38,6 +58,7 @@ function Register() {
           Your password must be 8-30 characters long, contain letters and numbers, and
           must not contain spaces, special characters, or emoji.
         </Form.Text>
+        </Form.Group>
 
         <Form.Group controlId="formBasicPasswordConfirmation">
           <Form.Label>Re-Enter Password</Form.Label>
@@ -52,9 +73,11 @@ function Register() {
           <Form.Check type="checkbox" label="Accept terms & conditions" />
         </Form.Group>
 
+        <Form.Group controlId="formSubmitButton">
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        </Form.Group>
       </Form>
     </div>
   )
