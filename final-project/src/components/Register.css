@@ -1,9 +1,14 @@
-Form {
-  margin: 0px 15rem 0px 15rem;
+Form.register-form {
+  margin: 1rem 15rem 0rem 15rem;
+  border: solid black;
+  border-radius: 25px;
 }
 button {
   padding-left: 15rem
 }
 h4 {
   text-align: center;
+}
+div.form-group {
+  margin: 1rem
 }
