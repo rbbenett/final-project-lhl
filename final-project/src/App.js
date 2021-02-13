@@ -24,12 +24,12 @@ class App extends Component{
 
 onLoginClick () {
     // On click we change our state – this will trigger our `render` method
-    this.setState({ showLoginForm: true });
+    this.setState({ showLoginForm: !this.state.showLoginForm });
 }
 
 onRegisterClick () {
   // On click we change our state – this will trigger our `render` method
-  this.setState({ showRegisterForm: true });
+  this.setState({ showRegisterForm: this.state.showRegisterForm });
 }
 
 renderLoginForm () {
