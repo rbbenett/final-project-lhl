@@ -12,9 +12,13 @@ import { Navbar, Nav, Modal, Button } from 'react-bootstrap';
 
 function App() {
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showLogin, setShowLogin] = useState(false);
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
+
+  const [showRegister, setShowRegister] = useState(false);
+  const handleCloseRegister = () => setShowRegister(false);
+  const handleShowRegister = () => setShowRegister(true);
 
   return (
     <div className="app">
@@ -24,11 +28,13 @@ function App() {
           <Nav className="mr-auto">
           </Nav>
           <Nav>
-          <Nav.Link onClick={handleShow}>Login</Nav.Link>
-          <Nav.Link onClick={handleShow}>Register</Nav.Link>
+          <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
+          <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
           </Nav>
       </Navbar>
-      <Modal show={show} onHide={handleClose}>
+
+      {/* Modal for Login Form */}
+      <Modal show={showLogin} onHide={handleCloseLogin}>
         <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
         </Modal.Header>
@@ -36,11 +42,38 @@ function App() {
           <Login />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleCloseLogin}>
             Forgot Username or Password
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Modal for Register Form */}
+      <Modal show={showRegister} onHide={handleCloseRegister}>
+        <Modal.Header closeButton>
+          <Modal.Title>Register</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Register />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+
+
+
+
+
+
+
+
+
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
