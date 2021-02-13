@@ -1,14 +1,20 @@
 import React from 'react'
-import "nes.css/css/nes.min.css";
+import Nav from "react-bootstrap/Nav"
 import "./Navbar.css"
 
 function Navbar() {
   return (
-    <div className="navbar">
-      <button type="button" class="nes-btn is-primary">Primary</button>
-      <button type="button" class="nes-btn is-primary">Primary</button>
-      <button type="button" class="nes-btn is-primary">Primary</button>
-    </div>
+    <Nav defaultActiveKey="/home" as="ul">
+      <Nav.Item as="li">
+        <Nav.Link href="/home">Active</Nav.Link>
+      </Nav.Item>
+      <Nav.Item as="li">
+        <Nav.Link eventKey="link-1">Link</Nav.Link>
+      </Nav.Item>
+      <Nav.Item as="li">
+        <Nav.Link eventKey="link-2">Link</Nav.Link>
+      </Nav.Item>
+    </Nav>
   )
 }
 

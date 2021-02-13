@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PageHeader } from 'react-bootstrap';
@@ -8,8 +9,8 @@ import { PageHeader } from 'react-bootstrap';
 function Register() {
   return (
     <div className="register">
-      <h4 class="nes-container with-title is-centered">Register Thyself!!!</h4>
       <Form>
+        <h3>Register</h3>
         <Form.Group controlId="formBasicName">
           <Form.Label>Name</Form.Label>
           <Form.Control type="name" placeholder="Enter Name" />
@@ -50,10 +51,9 @@ function Register() {
           <Form.Check type="checkbox" label="Accept terms & conditions" />
         </Form.Group>
 
-        {/* <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit">
           Submit
-        </Button> */}
-        <button type="button" class="nes-btn is-primary">Submit</button>
+        </Button>
       </Form>
     </div>
   )
