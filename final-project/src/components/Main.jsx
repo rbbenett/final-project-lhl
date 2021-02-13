@@ -1,13 +1,13 @@
 import React from 'react'
+import Register from "./components/Register"
+import Footer from "./components/Footer"
+import Navbar from "./components/Navbar"
 import "nes.css/css/nes.min.css";
-import Register from "./Register"
-import Footer from "./Footer"
-import Navbar from "./Navbar"
 
 function Main() {
   return (
     <div>
-      <Navbar />
+      <Navbar className="custom" />
       <Register />
       <Footer />
     </div>
