@@ -6,6 +6,7 @@ import Login from "./components/Login.jsx";
 import Leaderboard from "./components/Leaderboard.jsx";
 import Profile from "./components/Profile.jsx";
 import {Navbar, Nav} from 'react-bootstrap';
+import Welcomepage from "./components/WelcomePage.jsx";
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
       <Register /> */}
       {/* <Profile /> */}
       {/* <Footer /> */}
-      <Leaderboard/>
+      {/* <Leaderboard/> */}
+      <Welcomepage/>
     </div>
   );
 }
