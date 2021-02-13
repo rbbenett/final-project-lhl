@@ -1,4 +1,4 @@
-INSERT INTO levels (number_of_wordscontent)
+INSERT INTO levels (number_of_words)
 VALUES
 (10),
 (15),

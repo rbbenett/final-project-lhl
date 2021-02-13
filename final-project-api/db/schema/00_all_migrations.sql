@@ -33,8 +33,8 @@ CREATE TABLE themes (
 
 CREATE TABLE contents (
   id SERIAL PRIMARY KEY NOT NULL,
-  level_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  theme_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  level_id INTEGER REFERENCES levels(id) ON DELETE CASCADE,
+  theme_id INTEGER REFERENCES themes(id) ON DELETE CASCADE,
   content TEXT NOT NULL,
   time_added TIMESTAMP DEFAULT NOW()
 );
@@ -42,7 +42,7 @@ CREATE TABLE contents (
 CREATE TABLE attempts (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  level_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  level_id INTEGER REFERENCES levels(id) ON DELETE CASCADE,
   words_completed INTEGER NOT NULL,
   time_taken NUMERIC NOT NULL,
   passed BOOLEAN,
