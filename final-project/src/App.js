@@ -3,13 +3,14 @@ import './App.css';
 import Register from "./components/Register.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
-import {Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import Profile from "./components/Profile.jsx";
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="app">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home">TypeCraft</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -31,9 +32,10 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Login />
-      <Register />
-      <Footer />
+      {/* <Login />
+      <Register /> */}
+      <Profile />
+      {/* <Footer /> */}
     </div>
   );
 }
