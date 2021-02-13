@@ -12,43 +12,42 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Register() {
   return (
     <div className="register">
-      <Form className="register-form">
-        <Form.Group controlId="formHeader">
-          <h3>Register</h3>
+      <Form>
+        <Form.Group controlId="formBasicFirstName">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control type="fName" placeholder="Enter first name" />
         </Form.Group>
 
-        <Form.Group controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="name" placeholder="Enter Name" />
+        <Form.Group controlId="formBasicLastName">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control type="lName" placeholder="Enter last name" />
         </Form.Group>
 
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="username" placeholder="Enter Username" />
+          <Form.Control type="Username" placeholder="Enter username" />
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter Email" />
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label htmlFor="inputPassword5">Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="inputPassword5"
-            aria-describedby="passwordHelpBlock"
-            placeholder="Enter Password"
-          />
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
           <Form.Text id="passwordHelpBlock" muted>
             Your password must be 8-30 characters long, contain letters and numbers, and
             must not contain spaces, special characters, or emoji.
-        </Form.Text>
+          </Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPasswordConfirmation">
-          <Form.Label>Re-Enter Password</Form.Label>
-          <Form.Control type="password" placeholder="Re-Enter Password" />
+        <Form.Group controlId="formBasicConfirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="confirmpassword" placeholder="Confirm Password" />
         </Form.Group>
 
         <Form.Group>
@@ -59,11 +58,9 @@ function Register() {
           <Form.Check type="checkbox" label="Accept terms & conditions" />
         </Form.Group>
 
-        <Form.Group controlId="formSubmitButton">
-          <Button variant="primary" type="submit">
-            Submit
+        <Button variant="primary" type="submit">
+          Submit
         </Button>
-        </Form.Group>
       </Form>
     </div>
   )
