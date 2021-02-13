@@ -29,7 +29,7 @@ onLoginClick () {
 
 onRegisterClick () {
   // On click we change our state – this will trigger our `render` method
-  this.setState({ showRegisterForm: this.state.showRegisterForm });
+  this.setState({ showRegisterForm: !this.state.showRegisterForm });
 }
 
 renderLoginForm () {
