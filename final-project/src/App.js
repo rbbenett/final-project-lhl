@@ -14,7 +14,8 @@ class App extends Component{
 
     // Here we initialize our components state
     this.state = {
-        showForm: false
+        showLoginForm: false,
+        showRegisterForm: false
     };
 
     this.onLoginClick = this.onLoginClick.bind(this);
@@ -23,12 +24,12 @@ class App extends Component{
 
 onLoginClick () {
     // On click we change our state – this will trigger our `render` method
-    this.setState({ showForm: true });
+    this.setState({ showLoginForm: true });
 }
 
 onRegisterClick () {
   // On click we change our state – this will trigger our `render` method
-  this.setState({ showForm: true });
+  this.setState({ showRegisterForm: true });
 }
 
 renderLoginForm () {
@@ -45,7 +46,7 @@ renderRegisterForm () {
 
   
   render(){
-    const { showForm } = this.state;
+    const { showLoginForm, showRegisterForm } = this.state;
   return (
     <div className="app">
       {/* if not loggin in */}
@@ -69,7 +70,8 @@ renderRegisterForm () {
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
       </Navbar>
-      {showForm && this.renderLoginForm() || this.renderRegisterForm()}
+      {showLoginForm && this.renderLoginForm()}
+      {showRegisterForm && this.renderRegisterForm()}
       <Profile />
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
