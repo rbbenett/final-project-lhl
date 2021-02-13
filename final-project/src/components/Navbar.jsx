@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function Navbar() {
   return (
     <div>
-
+      
     </div>
   )
 }
