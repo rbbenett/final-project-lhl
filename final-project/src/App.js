@@ -33,8 +33,9 @@ function App() {
       </Navbar>
       {/* <Login />
       <Register /> */}
-      <Profile />
+      {/* <Profile /> */}
       {/* <Footer /> */}
+      <Leaderboard/>
     </div>
   );
 }
