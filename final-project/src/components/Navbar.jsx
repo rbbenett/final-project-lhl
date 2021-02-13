@@ -1,12 +1,13 @@
 import React from 'react'
+import "nes.css/css/nes.min.css";
+import "./Navbar.css"
 
 function Navbar() {
   return (
     <div className="navbar">
-      <div class="nes-container with-title is-centered">
-        <p class="title"></p>
-        <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
-      </div>
+      <button type="button" class="nes-btn is-primary">Primary</button>
+      <button type="button" class="nes-btn is-primary">Primary</button>
+      <button type="button" class="nes-btn is-primary">Primary</button>
     </div>
   )
 }

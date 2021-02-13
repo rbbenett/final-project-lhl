@@ -1,11 +1,17 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Main from './components/Main.jsx'
 
+import Register from "./components/Register.jsx";
+import Footer from "./components/Footer.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
   return (
-    <Main />
+    <div className="app">
+      <Navbar />
+      <Register />
+      <Footer />
+    </div>
   );
 }
 
