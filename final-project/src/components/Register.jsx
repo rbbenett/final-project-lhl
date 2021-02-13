@@ -2,6 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+import "nes.css/css/nes.min.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Register() {
@@ -28,9 +29,10 @@ function Register() {
         <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        {/* <Button variant="primary" type="submit">
           Submit
-        </Button>
+        </Button> */}
+        <button type="submit" className="nes-btn is-primary">Primary</button>
       </Form>
     </div>
   )
