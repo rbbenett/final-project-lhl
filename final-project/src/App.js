@@ -43,7 +43,7 @@ function App() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleCloseLogin}>
-            Forgot Username or Password
+            Forgot Username or Password?
           </Button>
         </Modal.Footer>
       </Modal>
@@ -56,23 +56,7 @@ function App() {
         <Modal.Body>
           <Register />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
-
-
-
-
-
-
-
-
 
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
