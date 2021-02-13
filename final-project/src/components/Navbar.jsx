@@ -3,6 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from "react-bootstrap/NavDropdown"
 import "./Navbar.css"
 
 function Navbar() {
@@ -27,7 +29,7 @@ function Navbar() {
             <Nav.Link href="#deets">More deets</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
               Dank memes
-      </Nav.Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
