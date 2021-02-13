@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Register from "./components/Register.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
@@ -7,71 +7,15 @@ import Leaderboard from "./components/Leaderboard.jsx";
 import Profile from "./components/Profile.jsx";
 import Welcomepage from "./components/WelcomePage.jsx";
 import GameConsole from "./components/GameConsole.jsx";
-import { Navbar, Nav, NavLink } from 'react-bootstrap';
 
-class App extends Component{
-  constructor(props){
-    super(props);
+import { Navbar, Nav, Modal, Button } from 'react-bootstrap';
 
-    // Here we initialize our components state
-    this.state = {
-        showLoginForm: false,
-        showRegisterForm: false,
-        showProfile: false,
-        showLeaderboard: false
-    };
+function App() {
 
-    this.onLoginClick = this.onLoginClick.bind(this);
-    this.onRegisterClick = this.onRegisterClick.bind(this);
-    this.onProfileClick = this.onProfileClick.bind(this);
-    this.onLeaderboardClick = this.onLeaderboardClick.bind(this);
-}
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-onLoginClick () {
-    // On click we change our state – this will trigger our `render` method
-    this.setState({ showLoginForm: !this.state.showLoginForm });
-}
-
-onRegisterClick () {
-  // On click we change our state – this will trigger our `render` method
-  this.setState({ showRegisterForm: !this.state.showRegisterForm });
-}
-
-onProfileClick () {
-  this.setState({ showProfile: !this.state.showProfile });
-}
-
-onLeaderboardClick () {
-  this.setState({ showLeaderboard: !this.state.showLeaderboard});
-}
-
-renderLoginForm () {
-   return (
-       <Login />
-   );
-}
-
-renderRegisterForm () {
-  return (
-      <Register />
-  );
-}
-
-renderProfile () {
-  return (
-    <Profile />
-  );
-}
-
-renderLeaderboard () {
-  return (
-    <Leaderboard />
-  );
-}
-
-  
-  render(){
-    const { showLoginForm, showRegisterForm, showProfile, showLeaderboard } = this.state;
   return (
     <div className="app">
       {/* if not loggin in */}
@@ -82,14 +26,27 @@ renderLeaderboard () {
           <Nav className="mr-auto">
           </Nav>
           <Nav>
-          <Nav.Link onClick={ this.onLoginClick }>Login</Nav.Link>
-          <Nav.Link onClick={ this.onRegisterClick }>Register</Nav.Link>
+          <Nav.Link onClick={handleShow}>Login</Nav.Link>
+          <Nav.Link onClick={handleShow}>Register</Nav.Link>
           </Nav>
       </Navbar>
-      {showLoginForm && this.renderLoginForm()}
-      {showRegisterForm && this.renderRegisterForm()}
-      {showProfile && this.renderProfile()}
-      {showLeaderboard && this.renderLeaderboard()}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
+        <Modal.Body>
+          <Login />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
@@ -104,10 +61,9 @@ renderLeaderboard () {
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
       {/* <Welcomepage /> */}
-      <GameConsole />
+      {/* <GameConsole /> */}
     </div>
   );
-}
 }
 
 export default App;
