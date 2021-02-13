@@ -30,8 +30,8 @@ function App() {
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
       </Navbar>
-      {/* <Login />
-      <Register /> */}
+      <Login />
+      <Register />
       <Profile />
       {/* <Footer /> */}
     </div>
