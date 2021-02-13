@@ -21,8 +21,6 @@ function App() {
       {/* if not loggin in */}
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
-        <Nav.Link onClick={ this.onProfileClick }>Profile</Nav.Link>
-        <Nav.Link onClick={ this.onLeaderboardClick }>Leaderboard</Nav.Link>
           <Nav className="mr-auto">
           </Nav>
           <Nav>
@@ -32,20 +30,16 @@ function App() {
       </Navbar>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+        <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
         <Modal.Body>
           <Login />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+        <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Forgot Username or Password
           </Button>
-        </Modal.Footer> */}
+        </Modal.Footer>
       </Modal>
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
