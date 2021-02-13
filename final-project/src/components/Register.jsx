@@ -1,10 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import FormControl from 'react-bootstrap/FormControl'
 import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,9 +10,9 @@ function Register() {
     <div className="register">
       <Form className="register-form">
         <Form.Group controlId="formHeader">
-        <h3>Register</h3>
+          <h3>Register</h3>
         </Form.Group>
-        
+
         <Form.Group controlId="formBasicName">
           <Form.Label>Name</Form.Label>
           <Form.Control type="name" placeholder="Enter Name" />
@@ -33,16 +29,16 @@ function Register() {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-        <Form.Label htmlFor="inputPassword5">Password</Form.Label>
-        <Form.Control
-          type="password"
-          id="inputPassword5"
-          aria-describedby="passwordHelpBlock"
-          placeholder="Enter Password"
-        />
-        <Form.Text id="passwordHelpBlock" muted>
-          Your password must be 8-30 characters long, contain letters and numbers, and
-          must not contain spaces, special characters, or emoji.
+          <Form.Label htmlFor="inputPassword5">Password</Form.Label>
+          <Form.Control
+            type="password"
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
+            placeholder="Enter Password"
+          />
+          <Form.Text id="passwordHelpBlock" muted>
+            Your password must be 8-30 characters long, contain letters and numbers, and
+            must not contain spaces, special characters, or emoji.
         </Form.Text>
         </Form.Group>
 
@@ -60,8 +56,8 @@ function Register() {
         </Form.Group>
 
         <Form.Group controlId="formSubmitButton">
-        <Button variant="primary" type="submit">
-          Submit
+          <Button variant="primary" type="submit">
+            Submit
         </Button>
         </Form.Group>
       </Form>
