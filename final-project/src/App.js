@@ -3,6 +3,7 @@ import './App.css';
 import Register from "./components/Register.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
+import Leaderboard from "./components/Leaderboard.jsx";
 import {Navbar, Nav} from 'react-bootstrap';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
       </Navbar>
+      <Leaderboard/>
       <Login />
       <Register />
       <Footer />
