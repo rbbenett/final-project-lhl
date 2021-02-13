@@ -60,7 +60,7 @@ renderRegisterForm () {
           </Nav>
       </Navbar>
       {/* Once logged in */}
-      <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
           <Nav className="mr-auto">
           </Nav>
