@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import FormControl from 'react-bootstrap/FormControl'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,25 +12,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Register() {
   return (
     <div className="register">
-      <Container>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav>
-        <Form class="search" inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
-      </Navbar>
-      </Container>
       <Form className="register-form">
         <Form.Group controlId="formHeader">
-        <h3>Register</h3>
+          <h3>Register</h3>
         </Form.Group>
-        
+
         <Form.Group controlId="formBasicName">
           <Form.Label>Name</Form.Label>
           <Form.Control type="name" placeholder="Enter Name" />
@@ -47,16 +33,16 @@ function Register() {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-        <Form.Label htmlFor="inputPassword5">Password</Form.Label>
-        <Form.Control
-          type="password"
-          id="inputPassword5"
-          aria-describedby="passwordHelpBlock"
-          placeholder="Enter Password"
-        />
-        <Form.Text id="passwordHelpBlock" muted>
-          Your password must be 8-30 characters long, contain letters and numbers, and
-          must not contain spaces, special characters, or emoji.
+          <Form.Label htmlFor="inputPassword5">Password</Form.Label>
+          <Form.Control
+            type="password"
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
+            placeholder="Enter Password"
+          />
+          <Form.Text id="passwordHelpBlock" muted>
+            Your password must be 8-30 characters long, contain letters and numbers, and
+            must not contain spaces, special characters, or emoji.
         </Form.Text>
         </Form.Group>
 
@@ -74,8 +60,8 @@ function Register() {
         </Form.Group>
 
         <Form.Group controlId="formSubmitButton">
-        <Button variant="primary" type="submit">
-          Submit
+          <Button variant="primary" type="submit">
+            Submit
         </Button>
         </Form.Group>
       </Form>
