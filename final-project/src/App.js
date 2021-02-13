@@ -59,6 +59,8 @@ renderRegisterForm () {
           <Nav.Link onClick={ this.onRegisterClick }>Register</Nav.Link>
           </Nav>
       </Navbar>
+      {showLoginForm && this.renderLoginForm()}
+      {showRegisterForm && this.renderRegisterForm()}
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
@@ -70,8 +72,6 @@ renderRegisterForm () {
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
       </Navbar>
-      {showLoginForm && this.renderLoginForm()}
-      {showRegisterForm && this.renderRegisterForm()}
       <Profile />
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
