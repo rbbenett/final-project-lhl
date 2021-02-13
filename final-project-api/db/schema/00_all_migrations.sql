@@ -29,7 +29,7 @@ CREATE TABLE contents (
   id SERIAL PRIMARY KEY NOT NULL,
   level_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   theme_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  content TEXT NOT NULL
+  content TEXT NOT NULL,
   time_added TIMESTAMP DEFAULT NOW()
 )
 
