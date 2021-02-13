@@ -77,7 +77,7 @@ renderRegisterForm () {
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
       {/* <Welcomepage /> */}
-      {/* <GameConsole /> */}
+      <GameConsole />
     </div>
   );
 }
