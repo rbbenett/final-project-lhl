@@ -17,12 +17,14 @@ class App extends Component{
     this.state = {
         showLoginForm: false,
         showRegisterForm: false,
-        showProfile: false
+        showProfile: false,
+        showLeaderboard: false
     };
 
     this.onLoginClick = this.onLoginClick.bind(this);
     this.onRegisterClick = this.onRegisterClick.bind(this);
     this.onProfileClick = this.onProfileClick.bind(this);
+    this.onLeaderboardClick = this.onLeaderboardClick.bind(this);
 }
 
 onLoginClick () {
@@ -37,6 +39,10 @@ onRegisterClick () {
 
 onProfileClick () {
   this.setState({ showProfile: !this.state.showProfile });
+}
+
+onLeaderboardClick () {
+  this.setState({ showLeaderboard: !this.state.showLeaderboard});
 }
 
 renderLoginForm () {
@@ -57,15 +63,22 @@ renderProfile () {
   );
 }
 
+renderLeaderboard () {
+  return (
+    <Leaderboard />
+  );
+}
+
   
   render(){
-    const { showLoginForm, showRegisterForm, showProfile } = this.state;
+    const { showLoginForm, showRegisterForm, showProfile, showLeaderboard } = this.state;
   return (
     <div className="app">
       {/* if not loggin in */}
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
         <Nav.Link onClick={ this.onProfileClick }>Profile</Nav.Link>
+        <Nav.Link onClick={ this.onLeaderboardClick }>Leaderboard</Nav.Link>
           <Nav className="mr-auto">
           </Nav>
           <Nav>
@@ -76,6 +89,7 @@ renderProfile () {
       {showLoginForm && this.renderLoginForm()}
       {showRegisterForm && this.renderRegisterForm()}
       {showProfile && this.renderProfile()}
+      {showLeaderboard && this.renderLeaderboard()}
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
@@ -87,7 +101,6 @@ renderProfile () {
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
           </Nav>
       </Navbar>
-      <Profile />
       {/* <Footer /> */}
       {/* <Leaderboard/> */}
       {/* <Welcomepage /> */}
