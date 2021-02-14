@@ -11,7 +11,7 @@ import Welcomepage from "./components/WelcomePage.jsx";
 import GameConsole from "./components/GameConsole.jsx";
 
 // Import Bootstrap Components
-import { Navbar, Nav, Modal, Button, Image } from 'react-bootstrap';
+import { Navbar, Nav, Modal, Button, Image, Dropdown, DropdownButton } from 'react-bootstrap';
 
 // Import stylesheets
 import './App.css';
@@ -34,15 +34,15 @@ function App() {
             <Image href="/" src="images/typing-icon.png" className="typecraft-logo" />
           </Link>
           <Navbar.Brand href="/">Typecraft</Navbar.Brand>
-            <Nav className="mr-auto">
-            </Nav>
-            <Nav>
-              <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
-              <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
-              <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
-              <Nav.Link href="/profile">View profile</Nav.Link>
-              <Nav.Link eventKey={2} href="/">Logout</Nav.Link>
-              <div class="collapse navbar-collapse" id="navbar-list-4">
+          <Nav className="mr-auto">
+          </Nav>
+          <Nav>
+            <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
+            <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
+            <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
+            <Nav.Link href="/profile">View profile</Nav.Link>
+            <Nav.Link eventKey={2} href="/">Logout</Nav.Link>
+            <div class="collapse navbar-collapse" id="navbar-list-4">
                 <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,15 @@ function App() {
                   </li>
                 </ul>
               </div>
-            </Nav>
+            <div>
+              <DropdownButton id="dropdown-item-button" title="Dropdown button">
+                <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
+                <Dropdown.Item as="button">Action</Dropdown.Item>
+                <Dropdown.Item as="button">Another action</Dropdown.Item>
+                <Dropdown.Item as="button">Something else</Dropdown.Item>
+              </DropdownButton>
+            </div>
+          </Nav>
         </Navbar>
 
         {/* Modal for Login Form */}
@@ -73,7 +81,7 @@ function App() {
             </Button>
           </Modal.Footer>
         </Modal>
-        
+
         {/* Modal for Register Form */}
         <Modal show={showRegister} onHide={handleCloseRegister}>
           <Modal.Header closeButton>
