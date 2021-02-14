@@ -3,10 +3,10 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT * FROM attempts;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const attempts = data.rows;
+        res.json({ attempts });
       })
       .catch(err => {
         res
