@@ -42,28 +42,16 @@ function App() {
             <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
             <Nav.Link href="/profile">View profile</Nav.Link>
             <Nav.Link eventKey={2} href="/">Logout</Nav.Link>
-            <div class="collapse navbar-collapse" id="navbar-list-4">
-                <ul class="navbar-nav">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="25" height="25" class="rounded-circle" />
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Dashboard</a>
-                      <a class="dropdown-item" href="#">Edit Profile</a>
-                      <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            <div>
-              <DropdownButton id="dropdown-item-button" title="Dropdown button">
-                <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText>
-                <Dropdown.Item as="button">Action</Dropdown.Item>
-                <Dropdown.Item as="button">Another action</Dropdown.Item>
-                <Dropdown.Item as="button">Something else</Dropdown.Item>
-              </DropdownButton>
-            </div>
+            <Dropdown>
+              <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
+                <Image src="images/fox.jpg" className="navbar-avatar" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="dropdown-menu-container">
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
         </Navbar>
 
