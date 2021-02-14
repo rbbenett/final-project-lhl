@@ -70,7 +70,7 @@ app.use(morgan('dev'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/users");
 const indexRoutes = require("./routes/index");
 // const loginRoutes = require("./routes/login");
 // const logoutRoutes = require("./routes/logout");
@@ -87,7 +87,7 @@ const indexRoutes = require("./routes/index");
 
 // Mount all resource routes
 
-// app.use("/api/users", usersRoutes(db));
+app.use("/api/users", usersRoutes(db));
 app.use("/", indexRoutes(db));
 // app.use("/api/postings", postingsRoutes(db));
 // app.use("/api/conversations", conversationsRoutes(db));
