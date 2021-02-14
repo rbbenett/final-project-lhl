@@ -1,3 +1,8 @@
+.typecraft-logo {
+  width: 2rem;
+  margin-right: 1rem;
+}
+
 div.navbar-collapse {
   flex-grow: 0;
 }
