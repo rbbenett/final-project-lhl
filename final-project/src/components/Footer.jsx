@@ -1,20 +1,28 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React from 'react'
+import { Card, Button, Image } from "react-bootstrap";
+import "./Footer.css"
 
 function Footer() {
   return (
     <div className="footer">
-      <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
+      <Card bg={'dark'} text={'white'} className="text-center mb-2">
         <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
+          <Image src="images/typing-icon.png" className="typecraft-logo-footer" />
+          <Card.Title>Typecraft Inc.</Card.Title>
           <Card.Text>
-            With supporting text below as a natural lead-in to additional content.
+            <Card.Link href="#">Careers</Card.Link>
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Text>
+            <Card.Link href="#">Terms of Use</Card.Link>
+          </Card.Text>
+          <Card.Text>
+            <Card.Link href="#">Privacy Policy</Card.Link>
+          </Card.Text>
+          <Button variant="primary"><i class="fab fa-facebook fa-lg"></i></Button>
+          <Button variant="info"><i class="fab fa-twitter fa-lg"></i></Button>
+          <Button variant="danger"><i class="fab fa-tiktok fa-lg"></i></Button>
         </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
+        <Card.Footer className="text-muted">© 2021 Copyright. TypeCraft. All rights reserved.</Card.Footer>
       </Card>
     </div>
   )
