@@ -1,5 +1,6 @@
 // load .env data into process.env
 require('dotenv').config();
+
 // Web server config
 const PORT       = process.env.PORT || 3004;
 const ENV        = process.env.ENV || "development";
@@ -46,15 +47,16 @@ const themesRoutes = require("./routes/themes");
 const levelsRoutes = require("./routes/levels");
 const contentsRoutes = require("./routes/contents");
 const attemptsRoutes = require("./routes/attempts");
+const registerRoutes = require("./routes/register");
 
 // Mount all resource routes
-
 app.use("/", indexRoutes(db));
 app.use("/api/users", usersRoutes(db));
 app.use("/api/themes", themesRoutes(db));
 app.use("/api/levels", levelsRoutes(db));
 app.use("/api/contents", contentsRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
+app.use("/register", registerRoutes(db));
 
 
 app.listen(PORT, () => {

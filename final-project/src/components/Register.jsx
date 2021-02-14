@@ -1,34 +1,30 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import Col from 'react-bootstrap/Col'
 import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Register() {
+function RegistrationForm() {
   return (
     <div className="register">
-      <Form>
+      <Form method="POST" action="/register">
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFirstName">
             <Form.Label>First Name</Form.Label>
-            <Form.Control type="firstname" placeholder="Enter First Name" />
+            <Form.Control type="firstName" placeholder="Enter First Name" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control type="lastname" placeholder="Enter Last Name" />
+            <Form.Control type="lastName" placeholder="Enter Last Name" />
           </Form.Group>
         </Form.Row>
 
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="Username" placeholder="Enter Username" />
+          <Form.Control type="userName" placeholder="Enter Username" />
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
@@ -50,11 +46,11 @@ function Register() {
 
         <Form.Group controlId="formBasicConfirmPassword">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="confirmpassword" placeholder="Confirm Password" />
+          <Form.Control type="confirmPassword" placeholder="Confirm Password" />
         </Form.Group>
 
         <Form.Group>
-          <Form.File id="exampleFormControlFile1" label="Avatar" />
+          <Form.File id="exampleFormControlFile1" label="avatar" />
         </Form.Group>
 
         <Form.Group controlId="formBasicCheckbox">
@@ -69,4 +65,4 @@ function Register() {
   )
 }
 
-export default Register
+export default RegistrationForm
