@@ -30,7 +30,9 @@ function App() {
     <Router>
       <div className="app">
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Image src="images/typing-icon.png" className="typecraft-logo" />
+          <Link to="/">
+            <Image href="/" src="images/typing-icon.png" className="typecraft-logo" />
+          </Link>
           <Navbar.Brand href="/">Typecraft</Navbar.Brand>
             <Nav className="mr-auto">
             </Nav>
