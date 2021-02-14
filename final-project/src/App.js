@@ -25,18 +25,18 @@ function App() {
       {/* if not loggin in */}
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
-          <Nav className="mr-auto">
-          </Nav>
-          <Nav>
+        <Nav className="mr-auto">
+        </Nav>
+        <Nav>
           <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
           <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
-          </Nav>
+        </Nav>
       </Navbar>
 
       {/* Modal for Login Form */}
       <Modal show={showLogin} onHide={handleCloseLogin}>
         <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
+          <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Login />
@@ -67,6 +67,20 @@ function App() {
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
             <Nav.Link href="#id">View profile</Nav.Link>
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
+            <div class="collapse navbar-collapse" id="navbar-list-4">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle" />
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Dashboard</a>
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="#">Log Out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
           </Nav>
       </Navbar>
       {/* <Footer /> */}
