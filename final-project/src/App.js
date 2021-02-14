@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useApplicationData from "./hooks/useApplicationData"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // Import Components
@@ -17,6 +18,9 @@ import { Navbar, Nav, Modal, Button, Image, Dropdown, DropdownButton } from 'rea
 import './App.css';
 
 function App() {
+
+  const { state } = useApplicationData();
+  console.log("THE STATE IS>>>", state);
 
   const [showLogin, setShowLogin] = useState(false);
   const handleCloseLogin = () => setShowLogin(false);
