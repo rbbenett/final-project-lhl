@@ -9,3 +9,6 @@
   border-radius: 50%;
 }
 
+div.dropdown-menu-container {
+  left: -100%
+}
