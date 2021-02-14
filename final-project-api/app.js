@@ -1,33 +1,3 @@
-// var express = require('express');
-// var path = require('path');
-// var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
-
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-
-// var app = express();
-
-// app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-
-
-// // const userRoutes = require("./routes/users");
-
-// // app.use('/api/users', userRoutes(db));
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
-// module.exports = app;
-
-
-
-
-
-
 // load .env data into process.env
 require('dotenv').config();
 // Web server config
@@ -70,40 +40,23 @@ app.use(morgan('dev'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
 const indexRoutes = require("./routes/index");
-// const loginRoutes = require("./routes/login");
-// const logoutRoutes = require("./routes/logout");
-// const registerRoutes = require("./routes/register");
-// const postingsRoutes = require("./routes/postings");
-// const markItemRoutes = require("./routes/markItems");
-// const newConversationRoutes = require("./routes/newConversation");
-// const conversationsRoutes = require("./routes/conversations");
-// const favoritesRoutes = require("./routes/favorites");
-// const messagesRoutes = require("./routes/messages");
-// const createRoutes = require("./routes/create");
-// const deleteItemRoutes = require("./routes/deleteItems");
-// const poolFactory = require('pg/lib/pool-factory');
+const usersRoutes = require("./routes/users");
+const themesRoutes = require("./routes/themes");
+const levelsRoutes = require("./routes/levels");
+const contentsRoutes = require("./routes/contents");
+const attemptsRoutes = require("./routes/attempts");
 
 // Mount all resource routes
 
-app.use("/api/users", usersRoutes(db));
 app.use("/", indexRoutes(db));
-// app.use("/api/postings", postingsRoutes(db));
-// app.use("/api/conversations", conversationsRoutes(db));
-// app.use("/api/favorites", favoritesRoutes(db));
-// app.use("/api/messages", messagesRoutes(db));
-// app.use("/postings", postingsRoutes(db));
-// app.use("/conversations", conversationsRoutes(db));
-// app.use("/favorites", favoritesRoutes(db));
-// app.use("/login", loginRoutes(db));
-// app.use("/logout", logoutRoutes(db));
-// app.use("/register", registerRoutes(db));
-// app.use("/create", createRoutes(db));
-// app.use("/markItems", markItemRoutes(db));
-// app.use("/newConversation", newConversationRoutes(db));
-// app.use("/deleteItems", deleteItemRoutes(db));
+app.use("/api/users", usersRoutes(db));
+app.use("/api/themes", themesRoutes(db));
+app.use("/api/levels", levelsRoutes(db));
+app.use("/api/contents", contentsRoutes(db));
+app.use("/api/attempts", attemptsRoutes(db));
+
 
 app.listen(PORT, () => {
-  console.log(`Typecraft listening on port ${PORT}`);
+  console.log(`Lighthouse Marketplace listening on port ${PORT}`);
 });
