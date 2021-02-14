@@ -40,16 +40,14 @@ function App() {
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
             <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
-            <Nav.Link href="/profile">View profile</Nav.Link>
-            <Nav.Link eventKey={2} href="/">Logout</Nav.Link>
             <Dropdown>
               <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
                 <Image src="images/fox.jpg" className="navbar-avatar" />
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-container">
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item href="/profile">View Profile</Dropdown.Item>
+                <Dropdown.Item href="/leaderboard">View Leaderboard</Dropdown.Item>
+                <Dropdown.Item href="/">Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
