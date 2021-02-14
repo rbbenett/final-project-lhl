@@ -1,5 +1,7 @@
-import './App.css';
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Import Components
 import Register from "./components/Register.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
@@ -8,7 +10,11 @@ import Profile from "./components/Profile.jsx";
 import Welcomepage from "./components/WelcomePage.jsx";
 import GameConsole from "./components/GameConsole.jsx";
 
+// Import Bootstrap Components
 import { Navbar, Nav, Modal, Button } from 'react-bootstrap';
+
+// Import stylesheets
+import './App.css';
 
 function App() {
 
@@ -21,10 +27,11 @@ function App() {
   const handleShowRegister = () => setShowRegister(true);
 
   return (
+
+    <Router>
     <div className="app">
-      {/* if not loggin in */}
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
+        <Navbar.Brand href="/">Typecraft</Navbar.Brand>
           <Nav className="mr-auto">
           </Nav>
           <Nav>
@@ -50,7 +57,7 @@ function App() {
           </Button>
         </Modal.Footer> */}
       </Modal>
-
+      
       {/* Modal for Register Form */}
       <Modal show={showRegister} onHide={handleCloseRegister}>
         <Modal.Header closeButton>
@@ -70,12 +77,20 @@ function App() {
       </Modal>
 
 
-
-
-
-
-
-
+      <Switch>
+        <Route path="/leaderboard">
+          <Leaderboard />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/play">
+          <GameConsole />
+        </Route>
+        <Route path="/">
+          <Welcomepage />
+        </Route>
+      </Switch>
 
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -93,6 +108,7 @@ function App() {
       {/* <Welcomepage /> */}
       {/* <GameConsole /> */}
     </div>
+    </Router>
   );
 }
 
