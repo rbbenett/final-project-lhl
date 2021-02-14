@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import Col from 'react-bootstrap/Col'
 import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,24 +14,26 @@ function Register() {
   return (
     <div className="register">
       <Form>
-        <Form.Group controlId="formBasicFirstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control type="fName" placeholder="Enter first name" />
-        </Form.Group>
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridFirstName">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type="firstname" placeholder="Enter First Name" />
+          </Form.Group>
 
-        <Form.Group controlId="formBasicLastName">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control type="lName" placeholder="Enter last name" />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type="lastname" placeholder="Enter Last Name" />
+          </Form.Group>
+        </Form.Row>
 
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="Username" placeholder="Enter username" />
+          <Form.Control type="Username" placeholder="Enter Username" />
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control type="email" placeholder="Enter Email" />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
