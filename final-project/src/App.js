@@ -99,6 +99,7 @@ function App() {
             <Welcomepage />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
