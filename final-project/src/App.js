@@ -31,13 +31,20 @@ function App() {
     <Router>
     <div className="app">
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+<<<<<<< HEAD
         <Navbar.Brand href="/">Typecraft</Navbar.Brand>
           <Nav className="mr-auto">
           </Nav>
           <Nav>
+=======
+        <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
+        <Nav className="mr-auto">
+        </Nav>
+        <Nav>
+>>>>>>> 40c3e1b2ab7816ca940c445dfb6d7aec1584305e
           <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
           <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
-          </Nav>
+        </Nav>
       </Navbar>
 
       {/* Modal for Login Form */}
@@ -48,14 +55,11 @@ function App() {
         <Modal.Body>
           <Login />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseLogin}>
+            Forgot Username or Password?
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
+        </Modal.Footer>
       </Modal>
       
       {/* Modal for Register Form */}
@@ -66,16 +70,9 @@ function App() {
         <Modal.Body>
           <Register />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
 
+<<<<<<< HEAD
 
       <Switch>
         <Route path="/leaderboard">
@@ -92,6 +89,8 @@ function App() {
         </Route>
       </Switch>
 
+=======
+>>>>>>> 40c3e1b2ab7816ca940c445dfb6d7aec1584305e
       {/* Once logged in */}
       {/* <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Typecraft</Navbar.Brand>
@@ -101,6 +100,20 @@ function App() {
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
             <Nav.Link href="#id">View profile</Nav.Link>
             <Nav.Link eventKey={2} href="#logout">Logout</Nav.Link>
+            <div class="collapse navbar-collapse" id="navbar-list-4">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle" />
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Dashboard</a>
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="#">Log Out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
           </Nav>
       </Navbar>
       {/* <Footer /> */}
