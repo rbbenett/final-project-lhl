@@ -1,0 +1,14 @@
+.typecraft-logo {
+  width: 2rem;
+  margin-right: 1rem;
+}
+
+.navbar-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+div.dropdown-menu-container {
+  left: -120%
+}
