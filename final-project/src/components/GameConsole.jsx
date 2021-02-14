@@ -1,45 +1,66 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import "./GameConsole.css"
-import Countdown from "react-countdown";
+// import Countdown from "react-countdown";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl } from 'react-bootstrap';
 
 
 function GameConsole() {
 
+  const Timer = function() {
+    const [seconds, setSeconds ] =  useState(0);
+    useEffect(()=>{
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      } else if (seconds === 0) {
+        clearInterval(myInterval)
+        return Completionist
+      }  }, 1000)
+    });
+
+    return (
+    <div>
+      { seconds === 0 ? null : <h1> {seconds < 10 ?  `0${seconds}` : seconds}</h1> }
+    </div>
+  )
+}
   const Completionist = () => <span>GameOver</span>;
 
-// Renderer callback with condition
-const renderer = ({ seconds, completed }) => {
-  if (completed) {
-    postToAttempts(user_id, level_id, paragraph.length, 30, false)
-    // Render a complete state
-      .then( render (<Completionist />)
-        )
-    
-  } else {
-    // Render a countdown
-    return (
-      <span id="countdown">
-        {seconds}
-      </span>
-    );
-  }
-};
+  // Renderer callback with condition
+  const renderer = ({ seconds, completed }) => {
+    if (completed) {
+      postToAttempts(user_id, level_id, content.length, 30, false)
+    } else {
+      // Render a countdown
+      return (
+        <span id="countdown">
+          {seconds}
+        </span>
+      );
+    }
+  };
 
-ReactDOM.render(
-  <Countdown date={Date.now() + 30000} renderer={renderer} />,
-);
-
-  const checkingForMatch = function(textarea, paragraph) {
-  if (document.getElementById('textarea').value === paragraph){
-    stop()
+  const checkingForMatch = function(textarea, content) {
+  if (document.getElementById('textarea').value === content){
     const timerValue = document.getElementById('countdown').value
     .then(
-      postToAttempts(user_id, level_id, paragraph.length, timerValue, true)
+      postToAttempts(user_id, level_id, content.length, timerValue, true)
     )
     .then(//pull data from the database about what level you're on then render the gameplay
+      whatLevelWeAreOn(user_id)
       )
     }
+  }
+
+  const whatLevelWeAreOn = function(user_id){
+    return pool.query(`
+    SELECT * FROM attempts
+    WHERE user_id = $1 AND passed = true
+    ORDER BY level_id DESC, 
+    LIMIT 1
+    `, [user_id])
+  .then(res => res.rows[0]);
   }
 
   const postToAttempts = function(userId, levelId, wordsCompleted, secondsOnTimer, passOrFail){
