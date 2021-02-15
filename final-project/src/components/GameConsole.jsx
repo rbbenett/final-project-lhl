@@ -1,9 +1,58 @@
 import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
+import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
+
+  const [seconds, setSeconds ] =  useState(0);
+
+  // const startTimer = function() { 
+  //   useEffect(() => {
+  //     let myInterval = setInterval(() => {
+  //       if (seconds > 0) {
+  //         setSeconds(seconds - 1);
+  //       } else if (seconds === 0) {
+  //         clearInterval(myInterval)
+  //         return Completionist
+  //       }
+  //     }, 1000)
+  //   });
+  //   return (
+  //     <div>
+  //       { seconds === 0 ? null : <h1> {seconds < 10 ?  `0${seconds}` : seconds}</h1> }
+  //     </div>
+  //     )
+  // }
+
+  // const Completionist = () => <span>GameOver</span>;
+
+  const [typingIn, setTypingIn] = useState("");
+
+  const startGame = function() {
+    props.updateGameConsole()
+    // startTimer()
+  }
+
+  const checkingForMatch = function(event) {
+    setTypingIn(event.target.value)
+  }
+  //Post request to attempts if both the text areas are the same
+  useEffect(() => {
+    if(typingIn === props.gameConsole && typingIn !== ""){
+      axios.post('http://localhost:3004/api/attempts', {
+        user_id: "",
+        level_id: "",
+        words_completed: "",
+        time_taken: "",
+        passed: true
+    })
+      .then(res => {
+        console.log(res);
+      })
+    }
+  }, [typingIn]) 
 
   return (
     <div className="gameconsole">
@@ -46,12 +95,9 @@ function GameConsole(props) {
         <br />
         <InputGroup>
           <InputGroup.Prepend>
-            <InputGroup.Text>TYPE HERE:</InputGroup.Text>
+            <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" aria-label="With textarea"
-            value={props.userInput}
-            onChange={(e) => props.setUserInput(e.target.value)}
-          />
+          <FormControl as="textarea" onInput={(event) => checkingForMatch(event)} id="textarea"aria-label="With textarea" />
         </InputGroup>
         <br />
         <p>
@@ -60,7 +106,7 @@ function GameConsole(props) {
           </Button>
           <Button
             variant="primary"
-            onClick={props.updateGameConsole}
+            onClick={startGame}
           >
             Start Game!
           </Button>
