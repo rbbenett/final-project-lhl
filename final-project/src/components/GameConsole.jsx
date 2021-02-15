@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl } from 'react-bootstrap';
+import axios from 'axios';
+import useApplicationData from "../hooks/useApplicationData"
 
 
 function GameConsole() {
+  const state = useApplicationData();
+
   return (
     <div className="gameconsole">
       <Jumbotron>
@@ -30,7 +34,7 @@ function GameConsole() {
         <ProgressBar animated now={45} variant="success" />
         <br/>
         <p>
-        Wrinkles everywhere, who was that woman looking back at me from the bathroom mirror? Don’t recognise the face and I haven’t got grey hair, well except for maybe the odd one or two. Is that laughter lines or even more wrinkles? Oh look the start of a moustache, nah that’s got to be somebody else. I’m in the wrong bathroom!
+          {state.contents[0]}
         </p>
         <InputGroup>
           <InputGroup.Prepend>
@@ -40,8 +44,12 @@ function GameConsole() {
         </InputGroup>
         <br/>
         <p>
-          <Button variant="primary">Resume from Level X</Button>
-          <Button variant="primary">Start Game!</Button>
+          <Button 
+            variant="primary"
+            >Resume from Level X</Button>
+          <Button variant="primary"
+          onClick={() => console.log("state contents look like>>", state.contents["contents"][0].content)}
+          >Start Game!</Button>
         </p>
       </Jumbotron>
       
