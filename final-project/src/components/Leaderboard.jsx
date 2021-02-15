@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import {Container, Table} from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
+import "./Leaderboard.css"
 
 function Leaderboard(props) {
   
