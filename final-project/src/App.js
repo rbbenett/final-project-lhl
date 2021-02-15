@@ -30,7 +30,10 @@ function App() {
     handleShowRegister,
     contents, 
     setContents,
-    loadLevelOne
+    gameConsole,
+    updateGameConsole,
+    userInput,
+    setUserInput
   } = useApplicationData();
 
   return (
@@ -45,7 +48,6 @@ function App() {
           </Nav>
           <Nav>
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
-            <Nav.Link href="/play">Start Game</Nav.Link>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
             <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
             <Dropdown>
@@ -96,8 +98,10 @@ function App() {
           </Route>
           <Route path="/play">
             <GameConsole 
-              contents={contents}
-              loadLevelOne={loadLevelOne}
+              gameConsole={gameConsole}
+              updateGameConsole={updateGameConsole}
+              userInput={userInput}
+              setUserInput={setUserInput}
             />
           </Route>
           <Route path="/">
