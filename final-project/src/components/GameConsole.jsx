@@ -17,7 +17,7 @@ function GameConsole(props) {
   });
 
   const [typingIn, setTypingIn] = useState("");
-  const [currentLevel, setCurrentLevel] = useState(12);
+  const [currentLevel, setCurrentLevel] = useState(0);
 
   const startGame = function() {
     setCurrentLevel(currentLevel + 1);
