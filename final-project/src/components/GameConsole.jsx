@@ -6,12 +6,19 @@ import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
 
-  const [seconds, setSeconds ] =  useState(0);
+  const [gameConsole, setGameConsole] = useState('');
+  const [userInput, setUserInput] = useState('');
+  const updateGameConsole = () => {
+    console.log("YO")
+    setGameConsole(props.contents[0].content);
+  }
+
+  const [seconds, setSeconds] =  useState(0);
 
   const [typingIn, setTypingIn] = useState("");
 
   const startGame = function() {
-    props.updateGameConsole()
+    updateGameConsole()
     // startTimer()
   }
 
@@ -20,7 +27,7 @@ function GameConsole(props) {
   }
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
-    if(typingIn === props.gameConsole && typingIn !== "") {
+    if(typingIn === gameConsole && typingIn !== "") {
       console.log("MATCH")
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
@@ -65,7 +72,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p>
-                {props.gameConsole}
+                {gameConsole}
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>

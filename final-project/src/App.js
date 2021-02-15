@@ -98,10 +98,7 @@ function App() {
           </Route>
           <Route path="/play">
             <GameConsole 
-              gameConsole={gameConsole}
-              updateGameConsole={updateGameConsole}
-              userInput={userInput}
-              setUserInput={setUserInput}
+              contents={contents}
             />
           </Route>
           <Route path="/">
