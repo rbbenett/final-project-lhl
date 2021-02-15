@@ -5,6 +5,12 @@ import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
 
+  useEffect(() => {
+    if (props.gameConsole === props.userInput && props.userInput !== '') {
+      console.log("match!");
+    }
+  }, [props.userInput])
+
   return (
     <div className="gameconsole">
       <Jumbotron>
