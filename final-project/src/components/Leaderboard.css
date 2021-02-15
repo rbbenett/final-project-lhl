@@ -1,8 +1,7 @@
-.align-me {
-  display: flex;
-  align-items: center;
-}
-
 div.leadercontainer.container {
   margin-top: 1rem;
+}
+
+div.leaderboard {
+  text-align: center;
 }
