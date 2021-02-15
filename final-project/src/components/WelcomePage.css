@@ -7,3 +7,8 @@
   height: auto;
   margin-bottom: 1rem;
 }
+
+a.btn {
+  margin-top: 2rem;
+  width: 25%
+}
