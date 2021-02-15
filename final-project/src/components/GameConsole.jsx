@@ -1,7 +1,6 @@
 import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
-import axios from 'axios';
 import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
@@ -28,9 +27,9 @@ function GameConsole(props) {
           <Spinner animation="grow" variant="light" />
           <Spinner animation="grow" variant="dark" />
         </>
-        <br/><br/><br/>
+        <br /><br /><br />
         <ProgressBar animated now={45} variant="success" />
-        <br/>
+        <br />
         <Card>
           <Card.Header>Quote</Card.Header>
           <Card.Body>
@@ -44,7 +43,7 @@ function GameConsole(props) {
             </blockquote>
           </Card.Body>
         </Card>
-        <br/>
+        <br />
         <InputGroup>
           <InputGroup.Prepend>
             <InputGroup.Text>TYPE HERE:</InputGroup.Text>
@@ -54,12 +53,12 @@ function GameConsole(props) {
             onChange={(e) => props.setUserInput(e.target.value)}
           />
         </InputGroup>
-        <br/>
+        <br />
         <p>
           <Button variant="primary">
             Resume from Level X
           </Button>
-          <Button 
+          <Button
             variant="primary"
             onClick={props.updateGameConsole}
           >
@@ -67,7 +66,7 @@ function GameConsole(props) {
           </Button>
         </p>
       </Jumbotron>
-      
+
     </div>
   )
 }
