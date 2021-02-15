@@ -7,6 +7,8 @@ export default function useApplicationData() {
   // All States
   const [levels, setLevels] = useState([]);
   const [contents, setContents] = useState([]);
+  const [attempts, setAttempts] = useState([]);
+  const [users, setUsers] = useState([]);
   const [gameConsole, setGameConsole] = useState('');
   const [userInput, setUserInput] = useState('');
   const [newUserDetails, setNewUserDetails] = useState({
@@ -44,22 +46,28 @@ export default function useApplicationData() {
       })
   }
 
-  const updateGameConsole = () => {
-    console.log("YO")
-    setGameConsole(contents[0].content);
-  }
+  // const updateGameConsole = () => {
+  //   console.log("YO")
+  //   setGameConsole(contents[0].content);
+  // }
 
   // To update state from db on load
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:3004/api/contents"),
-      axios.get("http://localhost:3004/api/levels")
+      axios.get("http://localhost:3004/api/levels"),
+      axios.get( "http://localhost:3004/api/attempts"),
+      axios.get("http://localhost:3004/api/users"),
     ])
       .then(res => {
         let contentsArray = res[0].data["contents"];
         let levelsArray = res[1].data["levels"];
+        let attemptsArray = res[2].data["attempts"];
+        let usersArray = res[3].data["users"];
         setContents(contentsArray);
         setLevels(levelsArray);
+        setAttempts(attemptsArray);
+        setUsers(usersArray);
       })
       .catch((err) => console.log(err))
   }, [])
@@ -77,8 +85,10 @@ export default function useApplicationData() {
     setLevels,
     contents,
     setContents,
-    gameConsole,
-    updateGameConsole,
+    attempts,
+    setAttempts,
+    users,
+    setUsers,
     userInput,
     setUserInput,
     newUserDetails,
