@@ -2,11 +2,7 @@
   "name": "final-project",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
-  "proxy": "http://localhost:3004/",
-=======
   "proxy": "http://localhost:3004",
->>>>>>> b07246564b0df54284772b89578809db988eb7dd
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
