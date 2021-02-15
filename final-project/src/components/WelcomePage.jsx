@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Jumbotron, Image } from 'react-bootstrap';
+import { Container, Jumbotron, Image, Button } from 'react-bootstrap';
 import "./WelcomePage.css"
 
 function Welcomepage() {
@@ -27,6 +27,7 @@ function Welcomepage() {
           <ul>
             When you run out of time without having finished typing your paragraph, then Game Over
           </ul>
+          <Button variant="primary" size="lg" href="/play">Start Game</Button>
         </Container>
       </Jumbotron>
     </div>
