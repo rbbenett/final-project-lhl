@@ -4,14 +4,10 @@ import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card 
 import useApplicationData from "../hooks/useApplicationData"
 
 
-function GameConsole(props) {
+function GameConsole() {
 
-  const state = useApplicationData()
-  const [content, setContent] = useState("");
+  const { state, gameConsole, updateGameConsole } = useApplicationData()
 
-  function onClick() {
-    setContent(props.contents[0].content)
-  }
 
 
   return (
@@ -44,7 +40,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p>
-                {content}
+                {gameConsole}
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -66,7 +62,7 @@ function GameConsole(props) {
           </Button>
           <Button 
             variant="primary"
-            onClick={onClick}
+            onClick={updateGameConsole}
           >
             Start Game!
           </Button>

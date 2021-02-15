@@ -6,6 +6,7 @@ export default function useApplicationData() {
   // All States
   const [levels, setLevels] = useState([]);
   const [contents, setContents] = useState([]);
+  const [gameConsole, setGameConsole] = useState("");
   const [newUserDetails, setNewUserDetails] = useState({
     username: "", 
     first_name: "", 
@@ -43,6 +44,10 @@ export default function useApplicationData() {
     return contentsArray.content[0];
   }
 
+  const updateGameConsole = () => {
+    setGameConsole(contents[0].content)
+  }
+
   // To update state from db on load
   useEffect(() => {
     Promise.all([
@@ -71,6 +76,8 @@ export default function useApplicationData() {
     setLevels,
     contents,
     setContents,
+    gameConsole,
+    updateGameConsole,
     loadLevelOne,
     newUserDetails,
     setNewUserDetails,
