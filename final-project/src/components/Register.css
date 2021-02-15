@@ -12,3 +12,7 @@ h3 {
 div.form-group {
   margin: 1rem
 }
+
+div.form-row {
+  margin: -20px
+}
