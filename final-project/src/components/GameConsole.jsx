@@ -1,18 +1,18 @@
 import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
-import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl } from 'react-bootstrap';
-import axios from 'axios';
+import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
 
 
-function GameConsole() {
-  const state = useApplicationData();
+function GameConsole(props) {
 
-  function handleClick(){ 
-    setState({
-      gameContent: state.contents["contents"][0].content
-    }) 
-  } 
+  const state = useApplicationData()
+  const [content, setContent] = useState("");
+
+  function onClick() {
+    setContent(props.contents[0].content)
+  }
+
 
   return (
     <div className="gameconsole">
@@ -39,9 +39,20 @@ function GameConsole() {
         <br/><br/><br/>
         <ProgressBar animated now={45} variant="success" />
         <br/>
-        <p>
-          {state.gameContent}
-        </p>
+        <Card>
+          <Card.Header>Quote</Card.Header>
+          <Card.Body>
+            <blockquote className="blockquote mb-0">
+              <p>
+                {content}
+              </p>
+              <footer className="blockquote-footer">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </footer>
+            </blockquote>
+          </Card.Body>
+        </Card>
+        <br/>
         <InputGroup>
           <InputGroup.Prepend>
             <InputGroup.Text>TYPE HERE:</InputGroup.Text>
@@ -50,12 +61,15 @@ function GameConsole() {
         </InputGroup>
         <br/>
         <p>
+          <Button variant="primary">
+            Resume from Level X
+          </Button>
           <Button 
             variant="primary"
-            >Resume from Level X</Button>
-          <Button variant="primary"
-          onClick={handleClick}
-          >Start Game!</Button>
+            onClick={onClick}
+          >
+            Start Game!
+          </Button>
         </p>
       </Jumbotron>
       
