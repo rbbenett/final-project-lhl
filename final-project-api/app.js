@@ -1,5 +1,6 @@
 // load .env data into process.env
 require('dotenv').config();
+
 // Web server config
 const PORT       = process.env.PORT || 3004;
 const ENV        = process.env.ENV || "development";
@@ -8,6 +9,7 @@ const express    = require("express");
 // const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const cors = require("cors");
 // const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
@@ -19,6 +21,8 @@ db.connect();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
+app.use(cors());
+app.use(express.json());
 app.use(morgan('dev'));
 
 // app.set("view engine", "ejs");
@@ -46,15 +50,16 @@ const themesRoutes = require("./routes/themes");
 const levelsRoutes = require("./routes/levels");
 const contentsRoutes = require("./routes/contents");
 const attemptsRoutes = require("./routes/attempts");
+const registerRoutes = require("./routes/register");
 
 // Mount all resource routes
-
 app.use("/", indexRoutes(db));
 app.use("/api/users", usersRoutes(db));
 app.use("/api/themes", themesRoutes(db));
 app.use("/api/levels", levelsRoutes(db));
 app.use("/api/contents", contentsRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
+app.use("/register", registerRoutes(db));
 
 
 app.listen(PORT, () => {
