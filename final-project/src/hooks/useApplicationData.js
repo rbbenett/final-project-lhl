@@ -41,7 +41,7 @@ export default function useApplicationData() {
     })
   }
 
-   const loadLevelOne = () => {
+   const updateGameConsole = () => {
     setGameConsole(contents[0].content)
   }
 
@@ -74,7 +74,7 @@ export default function useApplicationData() {
     contents,
     setContents,
     gameConsole,
-    loadLevelOne,
+    updateGameConsole,
     newUserDetails,
     setNewUserDetails,
     registerUser
