@@ -89,8 +89,6 @@ export default function useApplicationData() {
     setAttempts,
     users,
     setUsers,
-    gameConsole,
-    updateGameConsole,
     userInput,
     setUserInput,
     newUserDetails,
