@@ -1,15 +1,39 @@
 import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
+import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
 
+  const [seconds, setSeconds ] =  useState(0);
+
+  const [typingIn, setTypingIn] = useState("");
+
+  const startGame = function() {
+    props.updateGameConsole()
+    // startTimer()
+  }
+
+  const checkingForMatch = function(event) {
+    setTypingIn(event.target.value)
+  }
+  //Post request to attempts if both the text areas are the same
   useEffect(() => {
-    if (props.gameConsole === props.userInput && props.userInput !== '') {
-      console.log("match!");
+    if(typingIn === props.gameConsole && typingIn !== "") {
+      console.log("MATCH")
+      axios.post('http://localhost:3004/api/attempts', {
+        user_id: "",
+        level_id: "",
+        words_completed: "",
+        time_taken: "",
+        passed: true
+    })
+      .then(res => {
+        console.log(res);
+      })
     }
-  }, [props.userInput])
+  }, [typingIn]) 
 
   return (
     <div className="gameconsole">
@@ -52,12 +76,9 @@ function GameConsole(props) {
         <br />
         <InputGroup>
           <InputGroup.Prepend>
-            <InputGroup.Text>TYPE HERE:</InputGroup.Text>
+            <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" aria-label="With textarea"
-            value={props.userInput}
-            onChange={(e) => props.setUserInput(e.target.value)}
-          />
+          <FormControl as="textarea" onInput={(event) => checkingForMatch(event)} id="textarea"aria-label="With textarea" />
         </InputGroup>
         <br />
         <p>
@@ -66,7 +87,7 @@ function GameConsole(props) {
           </Button>
           <Button
             variant="primary"
-            onClick={props.updateGameConsole}
+            onClick={startGame}
           >
             Start Game!
           </Button>
