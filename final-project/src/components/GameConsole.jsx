@@ -8,6 +8,12 @@ import useApplicationData from "../hooks/useApplicationData"
 function GameConsole() {
   const state = useApplicationData();
 
+  function handleClick(){ 
+    setState({
+      gameContent: state.contents["contents"][0].content
+    }) 
+  } 
+
   return (
     <div className="gameconsole">
       <Jumbotron>
@@ -34,7 +40,7 @@ function GameConsole() {
         <ProgressBar animated now={45} variant="success" />
         <br/>
         <p>
-          {state.contents[0]}
+          {state.gameContent}
         </p>
         <InputGroup>
           <InputGroup.Prepend>
@@ -48,7 +54,7 @@ function GameConsole() {
             variant="primary"
             >Resume from Level X</Button>
           <Button variant="primary"
-          onClick={() => console.log("state contents look like>>", state.contents["contents"][0].content)}
+          onClick={handleClick}
           >Start Game!</Button>
         </p>
       </Jumbotron>
