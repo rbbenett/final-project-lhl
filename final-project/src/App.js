@@ -30,7 +30,10 @@ function App() {
     handleShowRegister,
     contents, 
     setContents,
-    loadLevelOne
+    gameConsole,
+    updateGameConsole,
+    userInput,
+    setUserInput
   } = useApplicationData();
 
   return (
@@ -96,8 +99,10 @@ function App() {
           </Route>
           <Route path="/play">
             <GameConsole 
-              contents={contents}
-              loadLevelOne={loadLevelOne}
+              gameConsole={gameConsole}
+              updateGameConsole={updateGameConsole}
+              userInput={userInput}
+              setUserInput={setUserInput}
             />
           </Route>
           <Route path="/">

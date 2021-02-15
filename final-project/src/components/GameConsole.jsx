@@ -4,10 +4,7 @@ import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card 
 import axios from 'axios';
 import useApplicationData from "../hooks/useApplicationData"
 
-
 function GameConsole(props) {
-
-  console.log(props.contents[0]);
 
   return (
     <div className="gameconsole">
@@ -39,7 +36,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p>
-                "HELLO"
+                {props.gameConsole}
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -52,7 +49,10 @@ function GameConsole(props) {
           <InputGroup.Prepend>
             <InputGroup.Text>TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" aria-label="With textarea" />
+          <FormControl as="textarea" aria-label="With textarea"
+            value={props.userInput}
+            onChange={(e) => props.setUserInput(e.target.value)}
+          />
         </InputGroup>
         <br/>
         <p>
@@ -61,7 +61,7 @@ function GameConsole(props) {
           </Button>
           <Button 
             variant="primary"
-            onClick={props.loadLevelOne}
+            onClick={props.updateGameConsole}
           >
             Start Game!
           </Button>
