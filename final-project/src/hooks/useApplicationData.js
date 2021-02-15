@@ -3,8 +3,25 @@ import axios from "axios";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
+    newUserDetails: {
+      firstName: "",
+      lastName: "",
+      userName: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+      avatar: null
+    },
     levels: {}
   })
+
+  function createUser(state) {
+    
+  //   return axios.put(`/api/users/${id}`,{interview})
+  //   .then(response => {
+  //   console.log(response)
+  // })
+  }
 
   useEffect(() => {
     Promise.all([

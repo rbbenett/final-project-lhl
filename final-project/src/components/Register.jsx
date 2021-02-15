@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function RegistrationForm() {
   return (
     <div className="register">
-      <Form method="POST" action="/register">
+      <Form>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFirstName">
             <Form.Label>First Name</Form.Label>
