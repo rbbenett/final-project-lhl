@@ -1,42 +1,15 @@
 import React from 'react'
-import { useState } from 'react';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import useApplicationData from '../hooks/useApplicationData';
 
 function Register() {
 
-  const [newUserDetails, setNewUserDetails] = useState({
-    username: "", 
-    first_name: "", 
-    last_name: "", 
-    email: "", 
-    password: "", 
-    avatar: "", 
-    city: "", 
-    country: ""
-  })
-
-  const registerUser = () => {
-    axios.post('http://localhost:3004/api/users', {
-      username: newUserDetails.username, 
-      first_name: newUserDetails.first_name, 
-      last_name: newUserDetails.last_name, 
-      email: newUserDetails.email, 
-      password: newUserDetails.password, 
-      avatar: newUserDetails.avatar, 
-      city: newUserDetails.city, 
-      country: newUserDetails.country
-    })
-    .then(res => {
-      console.log(res);
-      console.log("ERRORROORORO")
-    })
-  }
+  const { newUserDetails, setNewUserDetails, registerUser } = useApplicationData();
 
   return (
     <div className="register">
@@ -52,7 +25,7 @@ function Register() {
                   ...newUserDetails,
                   first_name: e.target.value
                 })
-              }}
+              }} 
               />
           </Form.Group>
 
