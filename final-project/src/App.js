@@ -20,7 +20,6 @@ import './App.css';
 function App() {
 
   const { state } = useApplicationData();
-  console.log("THE STATE IS>>>", state);
 
   const [showLogin, setShowLogin] = useState(false);
   const handleCloseLogin = () => setShowLogin(false);
