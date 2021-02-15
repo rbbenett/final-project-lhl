@@ -40,11 +40,8 @@ export default function useApplicationData() {
       console.log(res);
     })
   }
-  const loadLevelOne = contentsArray => {
-    return contentsArray.content[0];
-  }
 
-  const updateGameConsole = () => {
+   const loadLevelOne = () => {
     setGameConsole(contents[0].content)
   }
 
@@ -77,7 +74,6 @@ export default function useApplicationData() {
     contents,
     setContents,
     gameConsole,
-    updateGameConsole,
     loadLevelOne,
     newUserDetails,
     setNewUserDetails,
