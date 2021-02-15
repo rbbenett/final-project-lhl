@@ -12,23 +12,17 @@ export default function useApplicationData() {
       passwordConfirmation: "",
       avatar: null
     },
-    levels: {}
+    levels: {},
+    contents: {}
   })
-
-  function createUser(state) {
-    
-  //   return axios.put(`/api/users/${id}`,{interview})
-  //   .then(response => {
-  //   console.log(response)
-  // })
-  }
 
   useEffect(() => {
     Promise.all([
+      axios.get("http://localhost:3004/api/contents"),
       axios.get("http://localhost:3004/api/levels")
     ]).then((all) => {
-      setState(prev => ({...prev, levels: all[0].data }));
-      console.log("ALL IS >>", all);
+      setState(prev => ({...prev, contents: all[0].data, levels: all[1].data }));
+      console.log("content looks like >>", state.contents);
     }).catch((err) => {
       console.log("LOLOLOLOL", err);
     })
