@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 export default function useApplicationData() {
 
   // All States
   const [levels, setLevels] = useState([]);
   const [contents, setContents] = useState([]);
+  const [gameConsole, setGameConsole] = useState('');
+  const [userInput, setUserInput] = useState('');
   const [newUserDetails, setNewUserDetails] = useState({
     username: "", 
     first_name: "", 
@@ -24,6 +27,7 @@ export default function useApplicationData() {
   const handleShowLogin = () => setShowLogin(true);
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
+
   const registerUser = () => {
     axios.post('http://localhost:3004/api/users', {
       username: newUserDetails.username, 
@@ -39,8 +43,10 @@ export default function useApplicationData() {
       console.log(res);
     })
   }
-  const loadLevelOne = contentsArray => {
-    return contentsArray[0].content;
+
+  const updateGameConsole = () => {
+    console.log("YO")
+    setGameConsole(contents[0].content);
   }
 
   // To update state from db on load
@@ -71,7 +77,10 @@ export default function useApplicationData() {
     setLevels,
     contents,
     setContents,
-    loadLevelOne,
+    gameConsole,
+    updateGameConsole,
+    userInput,
+    setUserInput,
     newUserDetails,
     setNewUserDetails,
     registerUser
