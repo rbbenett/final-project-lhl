@@ -27,7 +27,7 @@ function Welcomepage() {
           <ul>
             When you run out of time without having finished typing your paragraph, then Game Over
           </ul>
-          <Button variant="primary" size="lg" href="/play">Start Game</Button>
+          <Button variant="primary" size="lg" href="/play">Play Game</Button>
         </Container>
       </Jumbotron>
     </div>
