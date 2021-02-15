@@ -121,7 +121,7 @@ function Register() {
 
         <Form.Group as={Col} controlId="formBasicConfirmPassword">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="confirmPassword" placeholder="Confirm Password" />
+          <Form.Control type="password" placeholder="Confirm Password" />
         </Form.Group>
         </Form.Row>
 
