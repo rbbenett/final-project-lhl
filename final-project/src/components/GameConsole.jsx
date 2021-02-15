@@ -6,9 +6,7 @@ import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole() {
 
-  const { state, gameConsole, updateGameConsole } = useApplicationData()
-
-
+  const { state, gameConsole, loadLevelOne } = useApplicationData()
 
   return (
     <div className="gameconsole">
@@ -62,7 +60,7 @@ function GameConsole() {
           </Button>
           <Button 
             variant="primary"
-            onClick={updateGameConsole}
+            onClick={loadLevelOne}
           >
             Start Game!
           </Button>
