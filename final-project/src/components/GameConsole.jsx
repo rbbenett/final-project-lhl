@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
-import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl } from 'react-bootstrap';
+import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
+import axios from 'axios';
+import useApplicationData from "../hooks/useApplicationData"
 
 
-function GameConsole() {
+function GameConsole(props) {
+
+  console.log(props.contents[0]);
+
   return (
     <div className="gameconsole">
       <Jumbotron>
@@ -29,9 +34,20 @@ function GameConsole() {
         <br/><br/><br/>
         <ProgressBar animated now={45} variant="success" />
         <br/>
-        <p>
-        Wrinkles everywhere, who was that woman looking back at me from the bathroom mirror? Don’t recognise the face and I haven’t got grey hair, well except for maybe the odd one or two. Is that laughter lines or even more wrinkles? Oh look the start of a moustache, nah that’s got to be somebody else. I’m in the wrong bathroom!
-        </p>
+        <Card>
+          <Card.Header>Quote</Card.Header>
+          <Card.Body>
+            <blockquote className="blockquote mb-0">
+              <p>
+                "HELLO"
+              </p>
+              <footer className="blockquote-footer">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </footer>
+            </blockquote>
+          </Card.Body>
+        </Card>
+        <br/>
         <InputGroup>
           <InputGroup.Prepend>
             <InputGroup.Text>TYPE HERE:</InputGroup.Text>
@@ -40,8 +56,15 @@ function GameConsole() {
         </InputGroup>
         <br/>
         <p>
-          <Button variant="primary">Resume from Level X</Button>
-          <Button variant="primary">Start Game!</Button>
+          <Button variant="primary">
+            Resume from Level X
+          </Button>
+          <Button 
+            variant="primary"
+            onClick={props.loadLevelOne}
+          >
+            Start Game!
+          </Button>
         </p>
       </Jumbotron>
       

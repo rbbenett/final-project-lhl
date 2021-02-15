@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useApplicationData from "./hooks/useApplicationData"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // Import Components
@@ -18,13 +19,19 @@ import './App.css';
 
 function App() {
 
-  const [showLogin, setShowLogin] = useState(false);
-  const handleCloseLogin = () => setShowLogin(false);
-  const handleShowLogin = () => setShowLogin(true);
-
-  const [showRegister, setShowRegister] = useState(false);
-  const handleCloseRegister = () => setShowRegister(false);
-  const handleShowRegister = () => setShowRegister(true);
+  const { 
+    showLogin, 
+    setShowLogin,
+    showRegister,
+    setShowRegister,
+    handleCloseLogin,
+    handleShowLogin,
+    handleCloseRegister,
+    handleShowRegister,
+    contents, 
+    setContents,
+    loadLevelOne
+  } = useApplicationData();
 
   return (
     <Router>
@@ -38,6 +45,7 @@ function App() {
           </Nav>
           <Nav>
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
+            <Nav.Link href="/play">Start Game</Nav.Link>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
             <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
             <Dropdown>
@@ -87,7 +95,10 @@ function App() {
             <Profile />
           </Route>
           <Route path="/play">
-            <GameConsole />
+            <GameConsole 
+              contents={contents}
+              loadLevelOne={loadLevelOne}
+            />
           </Route>
           <Route path="/">
             <Welcomepage />
