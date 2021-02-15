@@ -2,33 +2,35 @@ import React, { useState, setState, useEffect } from 'react';
 import "./GameConsole.css"
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
-import useApplicationData from "../hooks/useApplicationData"
+import GameCompleteMsg from './GameCompleteMsg';
 
 function GameConsole(props) {
 
-  const [gameConsole, setGameConsole] = useState('');
-  const [userInput, setUserInput] = useState('');
-  const updateGameConsole = () => {
-    console.log("YO")
-    setGameConsole(props.contents[0].content);
-  }
+  const [seconds, setSeconds] = useState(10);
 
-  const [seconds, setSeconds] =  useState(0);
+  useEffect(() => {
+    if (seconds > 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+    } else {
+      setSeconds('BOOOOM!');
+    }
+  });
 
   const [typingIn, setTypingIn] = useState("");
+  const [currentLevel, setCurrentLevel] = useState(12);
 
   const startGame = function() {
-    updateGameConsole()
+    setCurrentLevel(currentLevel + 1);
+    console.log(currentLevel);
+    // updateGameConsole(currentLevel);
     // startTimer()
   }
 
-  const checkingForMatch = function(event) {
-    setTypingIn(event.target.value)
-  }
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
-    if(typingIn === gameConsole && typingIn !== "") {
+    if(typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "") {
       console.log("MATCH")
+      setCurrentLevel(currentLevel + 1)
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
         level_id: "",
@@ -72,7 +74,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p>
-                {gameConsole}
+                {props.contents[currentLevel - 1]?.content || <GameCompleteMsg />}
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -85,7 +87,7 @@ function GameConsole(props) {
           <InputGroup.Prepend>
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" onInput={(event) => checkingForMatch(event)} id="textarea"aria-label="With textarea" />
+          <FormControl as="textarea" onChange={(event) => setTypingIn(event.target.value)} id="textarea"aria-label="With textarea" />
         </InputGroup>
         <br />
         <p>
@@ -96,7 +98,7 @@ function GameConsole(props) {
             variant="primary"
             onClick={startGame}
           >
-            Start Game!
+            Start Level 1!
           </Button>
         </p>
       </Jumbotron>
