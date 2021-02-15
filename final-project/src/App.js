@@ -46,7 +46,6 @@ function App() {
           </Nav>
           <Nav>
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
-            <Nav.Link href="/play">Start Game</Nav.Link>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
             <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
             <Dropdown>
