@@ -39,17 +39,7 @@ import useApplicationData from "../hooks/useApplicationData"
 //     }
 //   };
 
-//   const checkingForMatch = function(textarea, content) {
-//   if (document.getElementById('textarea').value === content){
-//     const timerValue = document.getElementById('countdown').value
-//     .then(
-//       postToAttempts(user_id, level_id, content.length, timerValue, true)
-//     )
-//     .then(//pull data from the database about what level you're on then render the gameplay
-//       whatLevelWeAreOn(user_id)
-//       )
-//     }
-//   }
+
 
 //   const whatLevelWeAreOn = function(user_id){
 //     return pool.query(`
@@ -69,7 +59,22 @@ import useApplicationData from "../hooks/useApplicationData"
 //   }
 function GameConsole(props) {
 
-  console.log(props.contents[0]);
+  const [typingIn, setTypingIn] = useState("");
+  const [paragraph, setParagraph] = useState("");
+
+  window.onload = function (){
+    setParagraph(props.contents[0].content)
+  }
+
+  const checkingForMatch = function(event) {
+    setTypingIn(event.target.value)
+  }
+
+  useEffect(() => {
+    if(typingIn === paragraph && typingIn !== ""){
+      console.log("they match")
+    }
+  }, [typingIn])  
 
   return (
     <div className="gameconsole">
@@ -101,7 +106,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <p>
-                "HELLO"
+                {paragraph}
               </p>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -112,9 +117,9 @@ function GameConsole(props) {
         <br/>
         <InputGroup>
           <InputGroup.Prepend>
-            <InputGroup.Text onKeyUp="checkingforMatch()" >TYPE HERE:</InputGroup.Text>
+            <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" aria-label="With textarea" />
+          <FormControl as="textarea" onInput={(event) => checkingForMatch(event)} id="textarea"aria-label="With textarea" />
         </InputGroup>
         <br/>
         <p>
