@@ -19,15 +19,19 @@ import './App.css';
 
 function App() {
 
-  const { state } = useApplicationData();
-
-  const [showLogin, setShowLogin] = useState(false);
-  const handleCloseLogin = () => setShowLogin(false);
-  const handleShowLogin = () => setShowLogin(true);
-
-  const [showRegister, setShowRegister] = useState(false);
-  const handleCloseRegister = () => setShowRegister(false);
-  const handleShowRegister = () => setShowRegister(true);
+  const { 
+    showLogin, 
+    setShowLogin,
+    showRegister,
+    setShowRegister,
+    handleCloseLogin,
+    handleShowLogin,
+    handleCloseRegister,
+    handleShowRegister,
+    contents, 
+    setContents,
+    loadLevelOne
+  } = useApplicationData();
 
   return (
     <Router>
@@ -91,7 +95,10 @@ function App() {
             <Profile />
           </Route>
           <Route path="/play">
-            <GameConsole />
+            <GameConsole 
+              contents={contents}
+              loadLevelOne={loadLevelOne}
+            />
           </Route>
           <Route path="/">
             <Welcomepage />
