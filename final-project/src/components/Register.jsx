@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import "./Register.css"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -72,16 +72,21 @@ function Register() {
         <Form.Row>
           <Form.Group as={Col} controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="Username"
-              placeholder="Enter Username"
-              onChange={e => {
-                setNewUserDetails({
-                  ...newUserDetails,
-                  username: e.target.value
-                })
-              }}
-            />
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>@</InputGroup.Text>
+              </InputGroup.Prepend>
+              <Form.Control
+                type="Username"
+                placeholder="Enter Username"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    username: e.target.value
+                  })
+                }}
+              />
+            </InputGroup>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formBasicEmail">
@@ -156,7 +161,7 @@ function Register() {
         <Form.Group>
           <Form.File id="exampleFormControlFile1" label="Avatar" />
         </Form.Group>
-        
+
         <Button
           variant="primary"
           type="submit"
