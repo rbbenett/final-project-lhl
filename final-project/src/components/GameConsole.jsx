@@ -17,17 +17,30 @@ function GameConsole(props) {
     if (seconds > 0) {
       setIntervalId(setInterval(() => setSeconds((s) => s-1), 1000))
     } else {
-      setSeconds("Game");
+      setSeconds("Game Over");
     }
+  }
+
+  const totalWordsCorrect = function(inputField, currentLevelContent) {
+    const typedIn = inputField.split(' ')
+    const matchingwords = []
+    for (let i = 0; i < typedIn.length; i++) {
+      if(typedIn[i] === currentLevelContent[i])
+      matchingwords.push(typedIn[i])
+      }
+    return matchingwords.length
   }
 
   useEffect(() => {
     if(seconds === 0){
+      setSeconds("Game Over")
+      let currentLevelWords = props.contents[currentLevel].content.split(' ')
+      let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       clearInterval(intervalId)
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
-        level_id: "",
-        words_completed: "",
+        level_id: currentLevel + 1,
+        words_completed: totalOfCorrectWords,
         time_taken: 30,
         passed: false
     })
@@ -35,6 +48,7 @@ function GameConsole(props) {
   },[seconds, intervalId]);
 
   const startGame = function() {
+    clearInterval(intervalId)
     setCurrentLevel(0);
     Timer(30)
   }
@@ -43,15 +57,17 @@ function GameConsole(props) {
   useEffect(() => {
     if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
       console.log("MATCH")
-      let secondsLeft = 30 - seconds
-      clearInterval(intervalId)
-      Timer(30)
-      setCurrentLevel(currentLevel + 1)
+      console.log(currentLevel + 1) // ask about level Id
+      let correctWords = props.contents[currentLevel].content.split(' ').length;
+      let secondsLeft = 30 - seconds;
+      clearInterval(intervalId);
+      Timer(30);
+      setCurrentLevel(currentLevel + 1);
       setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
-        level_id: "",
-        words_completed: "",
+        level_id: currentLevel + 1,
+        words_completed: correctWords,
         time_taken: secondsLeft,
         passed: true
     })
@@ -93,9 +109,6 @@ function GameConsole(props) {
               <div>
                 {props.contents[currentLevel]?.content || <GameCompleteMsg />}
               </div>
-              <footer className="blockquote-footer">
-                Someone famous in <cite title="Source Title">Source Title</cite>
-              </footer>
             </blockquote>
           </Card.Body>
         </Card>
@@ -120,7 +133,7 @@ function GameConsole(props) {
             variant="primary"
             onClick={startGame}
           >
-            Start Level 1!
+            Start Level {currentLevel+1}!
           </Button>
         </p>
       </Jumbotron>
