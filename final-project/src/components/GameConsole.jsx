@@ -30,6 +30,7 @@ function GameConsole(props) {
       }
     return matchingwords.length
   }
+  
 
   useEffect(() => {
     if(seconds === 0){
@@ -48,21 +49,26 @@ function GameConsole(props) {
   },[seconds, intervalId]);
 
   const startGame = function() {
-    clearInterval(intervalId)
-    setCurrentLevel(0);
-    Timer(30)
+    if(currentLevel === 0){
+      clearInterval(intervalId)
+      setCurrentLevel(0);
+      Timer(30)
+    } else {
+      clearInterval(intervalId)
+      Timer(30)
+    }
   }
+  console.log(typingIn.length)
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
       console.log("MATCH")
-      console.log(currentLevel + 1) // ask about level Id
       let correctWords = props.contents[currentLevel].content.split(' ').length;
       let secondsLeft = 30 - seconds;
       clearInterval(intervalId);
-      Timer(30);
       setCurrentLevel(currentLevel + 1);
+      setSeconds(30)
       setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
@@ -100,7 +106,7 @@ function GameConsole(props) {
           <Spinner animation="grow" variant="dark" />
         </>
         <br /><br /><br />
-        <ProgressBar animated now={45} variant="success" />
+        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={props.contents[currentLevel]? (typingIn.length/props.contents[currentLevel].content.length) * 100 : 1} variant="success" />
         <br />
         <Card>
           <Card.Header>{seconds}</Card.Header>
@@ -126,15 +132,15 @@ function GameConsole(props) {
         </InputGroup>
         <br />
         <p>
-          <Button variant="primary">
+        {seconds === 30 ? <Button variant="primary">
             Resume from Level X
-          </Button>
-          <Button
+          </Button> : null}
+          {seconds === 30 ? <Button
             variant="primary"
             onClick={startGame}
           >
-            Start Level {currentLevel+1}!
-          </Button>
+            {currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel+1}!`}
+          </Button> : null}
         </p>
       </Jumbotron>
     </div>
