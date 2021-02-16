@@ -43,7 +43,7 @@ function Profile() {
                 <Card.Header as="h5">Edit Profile</Card.Header>
                 <Card.Body>
                   <Card.Title>Want to update your profile?</Card.Title>
-                  <Button variant="primary" onClick={handleShowEditUser}>Click Here!</Button>
+                  <Button variant="danger" size="lg" onClick={handleShowEditUser}>Click Here!</Button>
                 </Card.Body>
               </Card>
             </Row>
@@ -55,7 +55,7 @@ function Profile() {
                 <Card.Body>
                   <Card.Title>Want to change your password?</Card.Title>
 
-                  <Button variant="primary" onClick={handleShowEditPassword}>Click Here!</Button>
+                  <Button variant="danger" size="lg" onClick={handleShowEditPassword}>Click Here!</Button>
                 </Card.Body>
               </Card>
             </Row>
