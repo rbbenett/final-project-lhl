@@ -37,7 +37,7 @@ function GameConsole(props) {
   },[seconds, intervalId]);
 
   const startGame = function() {
-    setCurrentLevel(currentLevel + 1);
+    setCurrentLevel(0);
     Timer(30)
   }
 
