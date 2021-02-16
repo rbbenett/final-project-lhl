@@ -22,8 +22,8 @@ function Profile() {
             <Card border="secondary" style={{ width: '18rem' }}>
               <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
               <Card.Body>
-                <Card.Title>Bobby Bob</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">bobthebuilder99</Card.Subtitle>
+                <Card.Title>{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name } { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name }</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Card.Subtitle>
                 <ProgressBar animated now={70} label="70%" />
                 {/* <Card.Text><i class="fas fa-certificate"></i> Veteran</Card.Text> */}
                 <Card.Text>
@@ -31,8 +31,8 @@ function Profile() {
                   <Card.Img variant="top" src="images/medal-icon.png" className= "medal-icon" />
                   Veteran
                 </Card.Text>
-                <Card.Text>Highest Level Completed: 4</Card.Text>
-                <Card.Text>Average WPM: 97</Card.Text>
+                <Card.Text>Highest Level Completed: { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared }</Card.Text>
+                <Card.Text>Average WPM: { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).words_per_min }</Card.Text>
                 <Button variant="primary" href="/leaderboard">Global Leaderboard</Button>
               </Card.Body>
             </Card>
