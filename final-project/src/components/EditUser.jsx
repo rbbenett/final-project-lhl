@@ -44,7 +44,7 @@ function EditUser() {
             <Form.Label>First Name</Form.Label>
             <Form.Control 
               type="firstname" 
-              placeholder="Enter First Name"
+              placeholder={ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name }
               onChange={e => {
                 setCurrentUserDetails({
                   ...currentUserDetails,
@@ -58,7 +58,7 @@ function EditUser() {
             <Form.Label>Last Name</Form.Label>
             <Form.Control 
               type="lastname" 
-              placeholder="Enter Last Name"
+              placeholder={ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name }
               onChange={e => {
                 setCurrentUserDetails({
                   ...currentUserDetails,
@@ -74,7 +74,7 @@ function EditUser() {
           <Form.Label>Username</Form.Label>
           <Form.Control 
             type="Username" 
-            placeholder="Enter Username" 
+            placeholder={ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username } 
             onChange={e => {
               setCurrentUserDetails({
                 ...currentUserDetails,
@@ -88,7 +88,7 @@ function EditUser() {
           <Form.Label>Email address</Form.Label>
           <Form.Control 
             type="email" 
-            placeholder="Enter Email" 
+            placeholder={ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).email }
             onChange={e => {
               setCurrentUserDetails({
                 ...currentUserDetails,
@@ -100,35 +100,11 @@ function EditUser() {
         </Form.Row>
 
         <Form.Row>
-        <Form.Group as={Col} controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control 
-            type="password" 
-            placeholder="Password" 
-            onChange={e => {
-              setCurrentUserDetails({
-                ...currentUserDetails,
-                password: e.target.value
-              })
-            }}
-            />
-          <Form.Text id="passwordHelpBlock" muted>
-            Your password must be 8-20 characters long.
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formBasicConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Confirm Password" />
-        </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
         <Form.Group as={Col} controlId="formBasicCity">
           <Form.Label>City</Form.Label>
           <Form.Control 
             type="City" 
-            placeholder="Enter City" 
+            placeholder={ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).city } 
             onChange={e => {
               setCurrentUserDetails({
                 ...currentUserDetails,
@@ -142,7 +118,7 @@ function EditUser() {
           <Form.Label>Country</Form.Label>
           <Form.Control 
             type="Country" 
-            placeholder="Enter Country" 
+            placeholder={ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).country } 
             onChange={e => {
               setCurrentUserDetails({
                 ...currentUserDetails,
