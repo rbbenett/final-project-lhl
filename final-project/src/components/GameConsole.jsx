@@ -8,7 +8,7 @@ function GameConsole(props) {
 
   const [seconds, setSeconds] = useState(31);
   const [typingIn, setTypingIn] = useState("");
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(1);
 
   const Timer = function (){
     if (typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "" ) {
@@ -40,6 +40,7 @@ function GameConsole(props) {
       let secondsLeft = seconds
       setSeconds(31)
       setCurrentLevel(currentLevel + 1)
+      setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
         level_id: "",
@@ -96,7 +97,12 @@ function GameConsole(props) {
           <InputGroup.Prepend>
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" onChange={(event) => setTypingIn(event.target.value)} id="textarea"aria-label="With textarea" />
+          <FormControl as="textarea" 
+            onChange={(event) => setTypingIn(event.target.value)}
+            value={typingIn}
+            id="textarea"
+            aria-label="With textarea" 
+            />
         </InputGroup>
         <br />
         <p>
