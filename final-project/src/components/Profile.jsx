@@ -23,7 +23,7 @@ function Profile() {
               <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
               <Card.Body>
                 <Card.Title>{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name } { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name }</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">@{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Card.Subtitle>
                 <ProgressBar animated now={70} label="70%" />
                 {/* <Card.Text><i class="fas fa-certificate"></i> Veteran</Card.Text> */}
                 <Card.Text>

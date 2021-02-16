@@ -127,6 +127,10 @@ function EditUser() {
         </Form.Group>
         </Form.Row>
 
+        <Form.Group>
+          <Form.File id="exampleFormControlFile1" label="Avatar" />
+        </Form.Group>
+
         <Button 
           variant="primary" 
           type="submit"
