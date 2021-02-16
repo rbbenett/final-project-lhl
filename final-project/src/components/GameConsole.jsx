@@ -6,28 +6,40 @@ import GameCompleteMsg from './GameCompleteMsg';
 
 function GameConsole(props) {
 
+  const [seconds, setSeconds] = useState(31);
   const [typingIn, setTypingIn] = useState("");
   const [currentLevel, setCurrentLevel] = useState(1);
-  const [seconds, setSeconds] = useState(10);
 
-  const startGame = function() {
-    setCurrentLevel(currentLevel + 1);
-    console.log(currentLevel);
+  const Timer = function (){
+    if (typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "" ) {
+      return
+    }
+    if (seconds === 31 ) {
+      return
+    }
+    if (seconds > 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000)
+    } else {
+      setSeconds('GameOver');
+    }
   }
 
   useEffect(() => {
-    if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000);
-    } else {
-      setSeconds('BOOOOM!');
-    }
-  });
+    Timer()
+  },[seconds]);
+
+  const startGame = function() {
+    setCurrentLevel(currentLevel + 1);
+    setSeconds(30)
+  }
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if(typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "") {
       console.log("MATCH")
-      setCurrentLevel(currentLevel + 1);
+      let secondsLeft = seconds
+      setSeconds(31)
+      setCurrentLevel(currentLevel + 1)
       setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
@@ -68,12 +80,12 @@ function GameConsole(props) {
         <ProgressBar animated now={45} variant="success" />
         <br />
         <Card>
-          <Card.Header>Quote</Card.Header>
+          <Card.Header>{seconds}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <p>
+              <div>
                 {props.contents[currentLevel - 1]?.content || <GameCompleteMsg />}
-              </p>
+              </div>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
               </footer>
@@ -105,7 +117,6 @@ function GameConsole(props) {
           </Button>
         </p>
       </Jumbotron>
-
     </div>
   )
 }
