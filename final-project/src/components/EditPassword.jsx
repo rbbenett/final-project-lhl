@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Col } from 'react-bootstrap/Form';
+import { Form, Button, Col } from 'react-bootstrap';
 import "./EditPassword.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
