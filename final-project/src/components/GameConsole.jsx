@@ -12,6 +12,7 @@ function GameConsole(props) {
 
   const Timer = function (){
     if (typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "" ) {
+      clearInterval(0)
       return
     }
     if (seconds === 31 ) {
