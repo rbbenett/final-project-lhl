@@ -1,8 +1,21 @@
 .profile {
-  margin-top: 4rem;
+  margin: auto;
 }
 
 .medal-icon {
   width: 24px;
   height: auto;
+}
+
+div.col {
+  margin: 1rem;
+}
+
+div.card.border-secondary {
+margin: auto
+}
+
+div.card {
+  margin: auto;
+  text-align: center;
 }
