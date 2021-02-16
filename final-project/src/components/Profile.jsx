@@ -22,7 +22,7 @@ function Profile() {
                 </Card.Text>
                 <Card.Text>Highest Level Completed: 4</Card.Text>
                 <Card.Text>Average WPM: 97</Card.Text>
-                <Button variant="primary">Global Leaderboard</Button>
+                <Button variant="primary" href="/leaderboard">Global Leaderboard</Button>
               </Card.Body>
             </Card>
           </Col>
