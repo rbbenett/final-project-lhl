@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import useApplicationData from "../hooks/useApplicationData";
 import { Button, Form, InputGroup } from 'react-bootstrap';
 
 function Login(props) {
@@ -20,9 +19,7 @@ function Login(props) {
       password: loginFormInput.password
     })
     .then(res => {
-      // console.log("YOOOOO")
       console.log(res);
-      // setLoginStatus(res)
       if (Array.isArray(res.data)) {
         props.setLoginStatus("Login successful");
         localStorage.setItem('user_details', JSON.stringify(res.data[0]))
