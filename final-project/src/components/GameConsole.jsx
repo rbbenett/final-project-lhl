@@ -45,6 +45,7 @@ function GameConsole(props) {
         time_taken: 30,
         passed: false
     })
+    .catch(error => (console.log(error)))
     }
   },[seconds, intervalId]);
 
@@ -58,12 +59,10 @@ function GameConsole(props) {
       Timer(30)
     }
   }
-  console.log(typingIn.length)
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
-      console.log("MATCH")
       let correctWords = props.contents[currentLevel].content.split(' ').length;
       let secondsLeft = 30 - seconds;
       clearInterval(intervalId);
@@ -80,6 +79,7 @@ function GameConsole(props) {
       .then(res => {
         console.log(res);
       })
+      .catch(error => (console.log(error)))
     }
   }, [typingIn, intervalId]) 
 
@@ -132,15 +132,21 @@ function GameConsole(props) {
         </InputGroup>
         <br />
         <p>
-        {seconds === 30 ? <Button variant="primary">
-            Resume from Level X
-          </Button> : null}
-          {seconds === 30 ? <Button
-            variant="primary"
-            onClick={startGame}
-          >
+          {seconds === 0 ? 
+            <Button variant="primary">
+              Try Level Again?
+            </Button> : null}
+          {seconds === 30 ? 
+            <Button variant="primary">
+              Resume from Level X
+            </Button> : null}
+          {seconds === 30 ? 
+            <Button
+              variant="primary"
+              onClick={startGame}
+            >
             {currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel+1}!`}
-          </Button> : null}
+            </Button> : null}
         </p>
       </Jumbotron>
     </div>
