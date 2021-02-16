@@ -150,7 +150,7 @@ function GameConsole(props) {
             <Button variant="primary" onClick={resetLevel}>
             Restart Level 
             </Button>}
-          {seconds === 30 ? 
+           {seconds === 30 ? 
             <Button
               variant="primary"
               onClick={startGame}
