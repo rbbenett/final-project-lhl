@@ -5,7 +5,7 @@ import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
 
 function Welcomepage() {
-  const soundUrl = "./sounds/mortal-kombat.mp3";
+  const soundUrl = "./sounds/roll.mp3";
 
   const [play] = useSound(soundUrl);
 
