@@ -38,6 +38,7 @@ function GameConsole(props) {
 
   const startGame = function() {
     setCurrentLevel(0);
+    clearInterval(intervalId);
     Timer(30)
   }
 
