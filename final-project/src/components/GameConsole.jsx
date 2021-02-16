@@ -21,8 +21,6 @@ function GameConsole(props) {
     }
   }
 
-  console.log(seconds)
-
   useEffect(() => {
     if(seconds === 0){
       clearInterval(intervalId)
@@ -30,7 +28,7 @@ function GameConsole(props) {
         user_id: "",
         level_id: "",
         words_completed: "",
-        time_taken: "",
+        time_taken: 30,
         passed: false
     })
     }
@@ -54,7 +52,7 @@ function GameConsole(props) {
         user_id: "",
         level_id: "",
         words_completed: "",
-        time_taken: "",
+        time_taken: secondsLeft,
         passed: true
     })
       .then(res => {
