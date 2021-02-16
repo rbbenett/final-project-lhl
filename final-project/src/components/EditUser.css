@@ -10,9 +10,13 @@ h3 {
   text-align: center;
 }
 div.form-group {
-  margin: 1rem
+  margin-top: 1rem
 }
 
 div.form-row {
   margin: -20px
+}
+
+button.btn.btn-primary {
+  margin: 0 0 1rem 0
 }
