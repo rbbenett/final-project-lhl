@@ -3,7 +3,6 @@ import useApplicationData from "../hooks/useApplicationData";
 import { useState, useEffect } from 'react';
 import { Navbar, Image, Nav, Dropdown, Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Link } from "react-router-dom";
-import Avatar from 'react-avatar';
 import Register from './Register';
 import Login from './Login';
 
