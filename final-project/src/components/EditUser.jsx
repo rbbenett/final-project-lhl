@@ -16,7 +16,6 @@ function EditUser() {
     first_name: "",
     last_name: "",
     email: "",
-    avatar: "",
     city: "",
     country: ""
   });
@@ -27,7 +26,6 @@ function EditUser() {
       first_name: currentUserDetails.first_name,
       last_name: currentUserDetails.last_name,
       email: currentUserDetails.email,
-      avatar: currentUserDetails.avatar,
       city: currentUserDetails.city,
       country: currentUserDetails.country
     })
@@ -128,10 +126,6 @@ function EditUser() {
             />
         </Form.Group>
         </Form.Row>
-
-        <Form.Group>
-          <Form.File id="exampleFormControlFile1" label="Avatar" />
-        </Form.Group>
 
         <Button 
           variant="primary" 
