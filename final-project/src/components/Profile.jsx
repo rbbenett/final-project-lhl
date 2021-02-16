@@ -42,7 +42,7 @@ function Profile() {
               <Card style={{ width: '45rem' }} >
                 <Card.Header as="h5">Edit Profile</Card.Header>
                 <Card.Body>
-                  <Card.Title>Need to update your profile?</Card.Title>
+                  <Card.Title>Want to update your profile?</Card.Title>
                   <Button variant="primary" onClick={handleShowEditUser}>Click Here!</Button>
                 </Card.Body>
               </Card>
@@ -51,9 +51,9 @@ function Profile() {
             <br/>
             <Row>
               <Card style={{ width: '45rem' }} >
-                <Card.Header as="h5">Security</Card.Header>
+                <Card.Header as="h5">Change Password</Card.Header>
                 <Card.Body>
-                  <Card.Title>Need to change your password?</Card.Title>
+                  <Card.Title>Want to change your password?</Card.Title>
 
                   <Button variant="primary" onClick={handleShowEditPassword}>Click Here!</Button>
                 </Card.Body>
