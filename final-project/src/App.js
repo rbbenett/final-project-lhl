@@ -86,6 +86,11 @@ function App() {
           <Modal.Body>
             <Register />
           </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => {handleCloseRegister(); handleShowLogin()}}> 
+              Already Registered? Click Here!
+            </Button>
+          </Modal.Footer>
         </Modal>
 
 
