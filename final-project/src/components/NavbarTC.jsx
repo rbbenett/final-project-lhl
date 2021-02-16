@@ -22,6 +22,10 @@ function NavbarTC() {
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
 
+  const checkLoggedIn = () => {
+    return localStorage.getItem("user_details");
+  }
+
   useEffect(() => {
     console.log("LOADED!!!", loginStatus)
     setUsername(loginStatus);
@@ -37,22 +41,25 @@ function NavbarTC() {
         <Nav className="mr-auto">
         </Nav>
         <Nav>
-          <Navbar.Brand>Welcome back, { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Navbar.Brand>
-          <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
-          <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
-          <Dropdown>
-            <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
-              <Image src="images/fox.jpg" className="navbar-avatar" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-container">
-              <Dropdown.Item href="/profile">View Profile</Dropdown.Item>
-              <Dropdown.Item href="/leaderboard">View Leaderboard</Dropdown.Item>
-              <Dropdown.Item 
-                href="/"
-                onClick={() => localStorage.clear()}
-                >Logout</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <Navbar.Brand> {checkLoggedIn() && 'Welcome back, ' + JSON.parse(localStorage.getItem("user_details")).username}</Navbar.Brand>
+          {!checkLoggedIn() && <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>}
+          {!checkLoggedIn() && <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>}
+          {checkLoggedIn() && 
+            <Dropdown>
+              <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
+                <Image src="images/fox.jpg" className="navbar-avatar" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="dropdown-menu-container">
+                <Dropdown.Item href="/profile">View Profile</Dropdown.Item>
+                <Dropdown.Item href="/leaderboard">View Leaderboard</Dropdown.Item>
+                <Dropdown.Item 
+                  href="/"
+                  onClick={() => localStorage.clear()}
+                  >Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          }
+          
         </Nav>
       </Navbar>
 
