@@ -1,13 +1,9 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
-import "./EditPassword.css"
-
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Form, Button, Col } from 'react-bootstrap';
+import "./EditPassword.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import useApplicationData from '../hooks/useApplicationData';
+
 
 function EditPassword() {
 

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Card, Button, Image } from "react-bootstrap";
-import "./Footer.css"
+import "./Footer.css";
 
 function Footer() {
   return (

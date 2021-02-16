@@ -1,8 +1,7 @@
-import React from 'react';
-import useApplicationData from "../hooks/useApplicationData";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Image, Nav, Dropdown, Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Link } from "react-router-dom";
+import useApplicationData from "../hooks/useApplicationData";
 import Register from './Register';
 import Login from './Login';
 

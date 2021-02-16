@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Image, Card, Button, ProgressBar, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, ProgressBar, Modal } from 'react-bootstrap';
 import EditUser from './EditUser';
-import EditPassword from './EditPassword'
-import "./Profile.css"
+import EditPassword from './EditPassword';
+import "./Profile.css";
 
 function Profile() {
   const [showEditUser, setShowEditUser] = useState(false);

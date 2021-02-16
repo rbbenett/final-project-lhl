@@ -1,11 +1,9 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import { Form, Button, Col, InputGroup } from 'react-bootstrap'
-import "./Register.css"
-
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Form, Button, Col, InputGroup } from 'react-bootstrap';
+import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import useApplicationData from '../hooks/useApplicationData';
+
 
 function Register() {
 
