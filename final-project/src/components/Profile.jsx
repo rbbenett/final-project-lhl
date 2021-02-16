@@ -1,8 +1,19 @@
-import React from 'react';
-import { Container, Row, Col, Image, Card, Button, ProgressBar } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Image, Card, Button, ProgressBar, Modal } from 'react-bootstrap';
+import EditUser from './EditUser';
+import EditPassword from './EditPassword'
 import "./Profile.css"
 
 function Profile() {
+  const [showEditUser, setShowEditUser] = useState(false);
+  const [showEditPassword, setShowEditPassword] = useState(false);
+
+  const handleCloseEditUser = () => setShowEditUser(false);
+  const handleShowEditUser = () => setShowEditUser(true);
+  const handleCloseEditPassword = () => setShowEditPassword(false);
+  const handleShowEditPassword = () => setShowEditPassword(true);
+
+
   return (
     <div className="profile">
       <Container>
@@ -31,10 +42,8 @@ function Profile() {
               <Card style={{ width: '45rem' }} >
                 <Card.Header as="h5">Edit Profile</Card.Header>
                 <Card.Body>
-                  <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>Change username</Card.Text>
-                  <Card.Text>Change location</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Card.Title>Need to update your profile?</Card.Title>
+                  <Button variant="primary" onClick={handleShowEditUser}>Click Here!</Button>
                 </Card.Body>
               </Card>
             </Row>
@@ -44,15 +53,35 @@ function Profile() {
               <Card style={{ width: '45rem' }} >
                 <Card.Header as="h5">Security</Card.Header>
                 <Card.Body>
-                  <Card.Title>Special title treatment</Card.Title>
-                  <Card.Text>Change password</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Card.Title>Need to change your password?</Card.Title>
+
+                  <Button variant="primary" onClick={handleShowEditPassword}>Click Here!</Button>
                 </Card.Body>
               </Card>
             </Row>
           </Col>
         </Row>
       </Container>
+
+      {/* Modal for Edit User Form */}
+      <Modal show={showEditUser} onHide={handleCloseEditUser}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditUser />
+        </Modal.Body>
+      </Modal>
+
+      {/* Modal for Edit User Pasdsword Form */}
+      <Modal show={showEditPassword} onHide={handleCloseEditPassword}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditPassword />
+        </Modal.Body>
+      </Modal>          
     </div>
   )
 }
