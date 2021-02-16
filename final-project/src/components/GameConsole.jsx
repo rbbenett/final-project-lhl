@@ -3,6 +3,7 @@ import "./GameConsole.css"
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
+import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
 
@@ -20,8 +21,6 @@ function GameConsole(props) {
     }
   }
 
-  console.log(seconds)
-
   useEffect(() => {
     if(seconds === 0){
       clearInterval(intervalId)
@@ -29,30 +28,31 @@ function GameConsole(props) {
         user_id: "",
         level_id: "",
         words_completed: "",
-        time_taken: "",
+        time_taken: 30,
         passed: false
     })
     }
   },[seconds, intervalId]);
 
   const startGame = function() {
-    setCurrentLevel(currentLevel + 1);
+    setCurrentLevel(0);
     Timer(30)
   }
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
-    if(typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "") {
+    if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
       console.log("MATCH")
       let secondsLeft = 30 - seconds
       clearInterval(intervalId)
       Timer(30)
       setCurrentLevel(currentLevel + 1)
+      setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
         level_id: "",
         words_completed: "",
-        time_taken: "",
+        time_taken: secondsLeft,
         passed: true
     })
       .then(res => {
@@ -91,7 +91,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div>
-                {props.contents[currentLevel - 1]?.content || <GameCompleteMsg />}
+                {props.contents[currentLevel]?.content || <GameCompleteMsg />}
               </div>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
@@ -104,7 +104,12 @@ function GameConsole(props) {
           <InputGroup.Prepend>
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" onChange={(event) => setTypingIn(event.target.value)} id="textarea"aria-label="With textarea" />
+          <FormControl as="textarea" 
+            onChange={(event) => setTypingIn(event.target.value)}
+            value={typingIn}
+            id="textarea"
+            aria-label="With textarea" 
+            />
         </InputGroup>
         <br />
         <p>
