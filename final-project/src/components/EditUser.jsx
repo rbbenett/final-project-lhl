@@ -13,6 +13,7 @@ function EditUser() {
     first_name: "",
     last_name: "",
     email: "",
+    avatar: "",
     city: "",
     country: ""
   });
@@ -23,6 +24,7 @@ function EditUser() {
       first_name: currentUserDetails.first_name,
       last_name: currentUserDetails.last_name,
       email: currentUserDetails.email,
+      avatar: currentUserDetails.avatar,
       city: currentUserDetails.city,
       country: currentUserDetails.country
     })
