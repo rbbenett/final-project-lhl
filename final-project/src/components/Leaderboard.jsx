@@ -41,10 +41,10 @@ function Leaderboard(props) {
             <th colSpan="4" classname="align-me">Leaderboard</th>
           </tr>
           <tr>
-            <th>Place</th>
+            <th>Ranking</th>
             <th>Username</th>
             <th>Highest Level</th>
-            <th>WPM</th>
+            <th>Words Per Minute</th>
           </tr>
         </thead>
         <tbody>
