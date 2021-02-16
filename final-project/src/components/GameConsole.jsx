@@ -6,7 +6,14 @@ import GameCompleteMsg from './GameCompleteMsg';
 
 function GameConsole(props) {
 
+  const [typingIn, setTypingIn] = useState("");
+  const [currentLevel, setCurrentLevel] = useState(1);
   const [seconds, setSeconds] = useState(10);
+
+  const startGame = function() {
+    setCurrentLevel(currentLevel + 1);
+    console.log(currentLevel);
+  }
 
   useEffect(() => {
     if (seconds > 0) {
@@ -16,21 +23,12 @@ function GameConsole(props) {
     }
   });
 
-  const [typingIn, setTypingIn] = useState("");
-  const [currentLevel, setCurrentLevel] = useState(12);
-
-  const startGame = function() {
-    setCurrentLevel(currentLevel + 1);
-    console.log(currentLevel);
-    // updateGameConsole(currentLevel);
-    // startTimer()
-  }
-
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if(typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "") {
       console.log("MATCH")
-      setCurrentLevel(currentLevel + 1)
+      setCurrentLevel(currentLevel + 1);
+      setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
         user_id: "",
         level_id: "",
@@ -87,7 +85,12 @@ function GameConsole(props) {
           <InputGroup.Prepend>
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
-          <FormControl as="textarea" onChange={(event) => setTypingIn(event.target.value)} id="textarea"aria-label="With textarea" />
+          <FormControl as="textarea" 
+            onChange={(event) => setTypingIn(event.target.value)}
+            value={typingIn}
+            id="textarea"
+            aria-label="With textarea" 
+            />
         </InputGroup>
         <br />
         <p>
