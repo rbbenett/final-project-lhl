@@ -6,7 +6,7 @@ import GameCompleteMsg from './GameCompleteMsg';
 
 function GameConsole(props) {
 
-  const [seconds, setSeconds] = useState(31);
+  const [seconds, setSeconds] = useState(30);
   const [typingIn, setTypingIn] = useState("");
   const [currentLevel, setCurrentLevel] = useState(1);
 
@@ -14,7 +14,7 @@ function GameConsole(props) {
     if (typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "" ) {
       return
     }
-    if (seconds === 31 ) {
+    if (seconds === 30 ) {
       return
     }
     if (seconds > 0) {
@@ -30,7 +30,7 @@ function GameConsole(props) {
 
   const startGame = function() {
     setCurrentLevel(currentLevel + 1);
-    setSeconds(30)
+    setSeconds(29)
   }
 
   //Post request to attempts if both the text areas are the same
@@ -38,7 +38,7 @@ function GameConsole(props) {
     if(typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "") {
       console.log("MATCH")
       let secondsLeft = seconds
-      setSeconds(31)
+      setSeconds(30)
       setCurrentLevel(currentLevel + 1)
       setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
