@@ -31,6 +31,11 @@ function GameConsole(props) {
     return matchingwords.length
   }
   
+  const resetLevel = function () {
+    clearInterval(intervalId)
+    setCurrentLevel(0);
+    Timer(30)
+  }
 
   useEffect(() => {
     if(seconds === 0){
@@ -135,7 +140,10 @@ function GameConsole(props) {
           {seconds === 30 ? 
             <Button variant="primary">
               Resume from Level X
-            </Button> : null}
+            </Button> : null || 
+            <Button variant="primary" onClick={resetLevel}>
+            Restart Level 
+            </Button>}
           {seconds === 30 ? 
             <Button
               variant="primary"
