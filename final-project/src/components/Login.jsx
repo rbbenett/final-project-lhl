@@ -1,20 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import "./Navbar.css";
-
+import useApplicationData from "../hooks/useApplicationData";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-
-function Login() {
+function Login(props) {
 
   const [loginFormInput, setLoginFormInput] = useState({
     username: "",
     password: ""
   })
 
-  const [loginStatus, setLoginStatus] = useState("");
+  console.log("login status from login.jsx >>", props.loginStatus)
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -22,16 +20,17 @@ function Login() {
       username: loginFormInput.username,
       password: loginFormInput.password
     })
-      .then(res => {
-        // console.log("YOOOOO")
-        console.log(res);
-        // setLoginStatus(res)
-        if (Array.isArray(res.data)) {
-          setLoginStatus("Login successful");
-        } else {
-          setLoginStatus("Login failed");
-        }
-      })
+    .then(res => {
+      // console.log("YOOOOO")
+      console.log(res);
+      // setLoginStatus(res)
+      if (Array.isArray(res.data)) {
+        props.setLoginStatus("Login successful");
+        localStorage.setItem('user_details', JSON.stringify(res.data[0]))
+      } else {
+        props.setLoginStatus("Login failed");
+      }
+    })
   }
 
   return (
@@ -73,7 +72,7 @@ function Login() {
           Submit
         </Button>
       </Form>
-      <h1>{loginStatus}</h1>
+      <h1>{props.loginStatus}</h1>
     </div>
   )
 }
