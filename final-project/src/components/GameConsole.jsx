@@ -33,7 +33,7 @@ function GameConsole(props) {
   
   const resetLevel = function () {
     clearInterval(intervalId)
-    setCurrentLevel(0);
+    setCurrentLevel(currentLevel);
     Timer(30)
   }
 
@@ -63,6 +63,12 @@ function GameConsole(props) {
       clearInterval(intervalId)
       Timer(30)
     }
+  }
+
+  const restartfromFirstLevel = function() {
+    clearInterval(intervalId)
+      setCurrentLevel(0);
+      Timer(30)
   }
 
   //Post request to attempts if both the text areas are the same
@@ -150,6 +156,9 @@ function GameConsole(props) {
               onClick={startGame}
             >
             {currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel+1}!`}
+            </Button> ||
+            <Button variant="primary" onClick={restartfromFirstLevel}>
+            Start from Level 1
             </Button> : null}
         </p>
       </Jumbotron>
