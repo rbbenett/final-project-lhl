@@ -49,7 +49,7 @@ function App() {
           <Nav>
             <Navbar.Brand>Welcome back, Bob</Navbar.Brand>
             <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
-            <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
+            {/* <Nav.Link onClick={handleShowRegister}>Register</Nav.Link> */}
             <Dropdown>
               <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
                 <Image src="images/fox.jpg" className="navbar-avatar" />
@@ -72,8 +72,8 @@ function App() {
             <Login />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleCloseLogin}>
-              Forgot Username or Password?
+            <Button variant="primary" onClick={() => {handleCloseLogin(); handleShowRegister()}}> 
+              Not Registered? Click Here!
             </Button>
           </Modal.Footer>
         </Modal>
