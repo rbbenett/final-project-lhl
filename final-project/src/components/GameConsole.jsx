@@ -3,12 +3,14 @@ import "./GameConsole.css"
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
+import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
 
+  const { contents, setContents } = useApplicationData()
   const [seconds, setSeconds] = useState(30);
   const [typingIn, setTypingIn] = useState("");
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState(0);
 
   const Timer = function (){
     if (typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "" ) {
@@ -29,13 +31,13 @@ function GameConsole(props) {
   },[seconds]);
 
   const startGame = function() {
-    setCurrentLevel(currentLevel);
+    setCurrentLevel(0);
     setSeconds(29)
   }
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
-    if(typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "") {
+    if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
       console.log("MATCH")
       let secondsLeft = seconds
       setSeconds(30)
@@ -84,7 +86,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div>
-                {props.contents[currentLevel - 1]?.content || <GameCompleteMsg />}
+                {props.contents[currentLevel]?.content || <GameCompleteMsg />}
               </div>
               <footer className="blockquote-footer">
                 Someone famous in <cite title="Source Title">Source Title</cite>
