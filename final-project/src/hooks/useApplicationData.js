@@ -11,16 +11,16 @@ export default function useApplicationData() {
   const [users, setUsers] = useState([]);
   const [gameConsole, setGameConsole] = useState('');
   const [userInput, setUserInput] = useState('');
-  const [newUserDetails, setNewUserDetails] = useState({
-    username: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    avatar: "",
-    city: "",
-    country: ""
-  });
+  // const [newUserDetails, setNewUserDetails] = useState({
+  //   username: "",
+  //   first_name: "",
+  //   last_name: "",
+  //   email: "",
+  //   password: "",
+  //   avatar: "",
+  //   city: "",
+  //   country: ""
+  // });
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -30,21 +30,21 @@ export default function useApplicationData() {
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
 
-  const registerUser = () => {
-    axios.post('http://localhost:3004/api/users', {
-      username: newUserDetails.username,
-      first_name: newUserDetails.first_name,
-      last_name: newUserDetails.last_name,
-      email: newUserDetails.email,
-      password: newUserDetails.password,
-      avatar: newUserDetails.avatar,
-      city: newUserDetails.city,
-      country: newUserDetails.country
-    })
-      .then(res => {
-        console.log(res);
-      })
-  }
+  // const registerUser = () => {
+  //   axios.post('http://localhost:3004/api/users', {
+  //     username: newUserDetails.username,
+  //     first_name: newUserDetails.first_name,
+  //     last_name: newUserDetails.last_name,
+  //     email: newUserDetails.email,
+  //     password: newUserDetails.password,
+  //     avatar: newUserDetails.avatar,
+  //     city: newUserDetails.city,
+  //     country: newUserDetails.country
+  //   })
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  // }
 
   // const updateGameConsole = () => {
   //   console.log("YO")
@@ -90,9 +90,6 @@ export default function useApplicationData() {
     users,
     setUsers,
     userInput,
-    setUserInput,
-    newUserDetails,
-    setNewUserDetails,
-    registerUser
+    setUserInput
   };
 }
