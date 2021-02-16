@@ -65,8 +65,8 @@ function NavbarTC() {
           <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseLogin}>
-            Forgot Username or Password?
+          <Button variant="primary" onClick={() => {handleCloseLogin(); handleShowRegister()}}>
+            New User? Click Here To Register!
           </Button>
         </Modal.Footer>
       </Modal>
@@ -79,6 +79,11 @@ function NavbarTC() {
         <Modal.Body>
           <Register />
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => {handleCloseRegister(); handleShowLogin()}}>
+            Already Registered? Click Here To Login!
+          </Button>
+        </Modal.Footer>
       </Modal>     
     </div>
   )
