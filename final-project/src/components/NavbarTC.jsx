@@ -38,7 +38,7 @@ function NavbarTC() {
         <Nav className="mr-auto">
         </Nav>
         <Nav>
-          <Navbar.Brand>Welcome back, { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Navbar.Brand>
+          <Navbar.Brand>Welcome back, @{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Navbar.Brand>
           <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
           <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
           <Dropdown>
