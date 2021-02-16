@@ -7,40 +7,47 @@ import useApplicationData from "../hooks/useApplicationData"
 
 function GameConsole(props) {
 
-  const { contents, setContents } = useApplicationData()
   const [seconds, setSeconds] = useState(30);
   const [typingIn, setTypingIn] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [intervalId, setIntervalId] = useState(null)
 
-  const Timer = function (){
-    if (typingIn === props.contents[currentLevel - 1]?.content && typingIn !== "" ) {
-      return
-    }
-    if (seconds === 30 ) {
-      return
-    }
+  const Timer = function (seconds){
+    setSeconds(seconds)
     if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000)
+      setIntervalId(setInterval(() => setSeconds((s) => s-1), 1000))
     } else {
-      setSeconds('GameOver');
+      setSeconds("Game");
     }
   }
 
+  console.log(seconds)
+
   useEffect(() => {
-    Timer()
-  },[seconds]);
+    if(seconds === 0){
+      clearInterval(intervalId)
+      axios.post('http://localhost:3004/api/attempts', {
+        user_id: "",
+        level_id: "",
+        words_completed: "",
+        time_taken: "",
+        passed: false
+    })
+    }
+  },[seconds, intervalId]);
 
   const startGame = function() {
-    setCurrentLevel(0);
-    setSeconds(29)
+    setCurrentLevel(currentLevel + 1);
+    Timer(30)
   }
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
       console.log("MATCH")
-      let secondsLeft = seconds
-      setSeconds(30)
+      let secondsLeft = 30 - seconds
+      clearInterval(intervalId)
+      Timer(30)
       setCurrentLevel(currentLevel + 1)
       setTypingIn("");
       axios.post('http://localhost:3004/api/attempts', {
@@ -54,7 +61,7 @@ function GameConsole(props) {
         console.log(res);
       })
     }
-  }, [typingIn]) 
+  }, [typingIn, intervalId]) 
 
   return (
     <div className="gameconsole">
