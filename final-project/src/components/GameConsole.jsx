@@ -132,10 +132,6 @@ function GameConsole(props) {
         </InputGroup>
         <br />
         <p>
-          {seconds === 0 ? 
-            <Button variant="primary">
-              Try Level Again?
-            </Button> : null}
           {seconds === 30 ? 
             <Button variant="primary">
               Resume from Level X
