@@ -1,18 +1,7 @@
 const express = require('express');
-// const bcrypt  = require('bcrypt');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    if (req.session.isNew) {
-      const templateVars = {
-        user: req.session["userName"]
-      };
-      res.render("register", templateVars);
-    } else {
-      res.redirect("/");
-    }
-  });
 
   router.post("/", (req, res) => {
     let username = req.body.userName;
