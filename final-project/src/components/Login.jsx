@@ -2,8 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import useApplicationData from "../hooks/useApplicationData";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 
 function Login(props) {
 
@@ -37,7 +36,11 @@ function Login(props) {
     <div className="login">
       <Form>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
+        <Form.Label>Username</Form.Label>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>@</InputGroup.Text>
+              </InputGroup.Prepend>
           <Form.Control 
             type="username" placeholder="Enter username"
             value={loginFormInput.username}
@@ -48,6 +51,7 @@ function Login(props) {
               })
             }}
             />
+            </InputGroup>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
