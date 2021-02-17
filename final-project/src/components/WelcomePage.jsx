@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Jumbotron, Image, Button } from 'react-bootstrap';
-import "./WelcomePage.css"
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
+import "./WelcomePage.css";
 
 function Welcomepage() {
   const soundUrl = "./sounds/roll.mp3";
