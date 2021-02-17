@@ -11,6 +11,7 @@ function GameConsole(props) {
   const [typingIn, setTypingIn] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
   const [intervalId, setIntervalId] = useState(null)
+  const [levelContent, setLevelContent] = useState("")
 
   const Timer = function (seconds){
     setSeconds(seconds)
@@ -20,6 +21,16 @@ function GameConsole(props) {
       setSeconds("Game Over");
     }
   }
+
+  // useEffect(() => {
+  //   for (let i = 0; i < typingIn.length; i++){
+  //     if(levelContent[typingIn.length - 1] !== typingIn[typingIn.length - 1]) { 
+
+  //       levelContent.replace(levelContent[typingIn.length - 1] ,<span>hello</span>)
+  //       return
+  //     }
+  //   }
+  // },[typingIn])
 
   const totalWordsCorrect = function(inputField, currentLevelContent) {
     const typedIn = inputField.split(' ')
@@ -32,9 +43,10 @@ function GameConsole(props) {
   }
   
   const resetLevel = function () {
+    setLevelContent("Are you Ready to start")
     clearInterval(intervalId)
-    setCurrentLevel(0);
-    Timer(30)
+    setCurrentLevel(currentLevel);
+    setSeconds(30)
   }
 
   useEffect(() => {
@@ -56,13 +68,22 @@ function GameConsole(props) {
 
   const startGame = function() {
     if(currentLevel === 0){
+      setLevelContent(props.contents[currentLevel]?.content)
       clearInterval(intervalId)
       setCurrentLevel(0);
       Timer(30)
     } else {
       clearInterval(intervalId)
+      setLevelContent(props.contents[currentLevel]?.content)
       Timer(30)
     }
+  }
+
+  const restartfromFirstLevel = function() {
+    setLevelContent("Are you Ready to start")
+    clearInterval(intervalId)
+    setCurrentLevel(0);
+    setSeconds(30)
   }
 
   //Post request to attempts if both the text areas are the same
@@ -70,6 +91,7 @@ function GameConsole(props) {
     if(typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
       let correctWords = props.contents[currentLevel].content.split(' ').length;
       let secondsLeft = 30 - seconds;
+      setLevelContent("Time for next level. Press the button below when you're ready to start")
       clearInterval(intervalId);
       setCurrentLevel(currentLevel + 1);
       setSeconds(30)
@@ -111,14 +133,14 @@ function GameConsole(props) {
           <Spinner animation="grow" variant="dark" />
         </>
         <br /><br /><br />
-        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={props.contents[currentLevel]? (typingIn.length/props.contents[currentLevel].content.length) * 100 : 1} variant="success" />
+        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={props.contents[currentLevel] ? (typingIn.length/props.contents[currentLevel].content.length) * 100 : 1} variant="success" />
         <br />
         <Card>
           <Card.Header>{seconds}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div>
-                {props.contents[currentLevel]?.content || <GameCompleteMsg />}
+                {levelContent || setLevelContent("Are you Ready to start")}
               </div>
             </blockquote>
           </Card.Body>
@@ -144,13 +166,16 @@ function GameConsole(props) {
             <Button variant="primary" onClick={resetLevel}>
             Restart Level 
             </Button>}
-          {seconds === 30 ? 
+           {seconds === 30 ? 
             <Button
               variant="primary"
               onClick={startGame}
             >
             {currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel+1}!`}
-            </Button> : null}
+            </Button> : null ||
+            <Button variant="primary" onClick={restartfromFirstLevel}>
+            Go back to Level 1
+            </Button>}
         </p>
       </Jumbotron>
     </div>
