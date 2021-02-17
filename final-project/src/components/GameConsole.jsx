@@ -4,7 +4,6 @@ import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card 
 import GameCompleteMsg from './GameCompleteMsg';
 import "./GameConsole.css"
 
-
 function GameConsole(props) {
 
   const [seconds, setSeconds] = useState(30);
@@ -20,6 +19,20 @@ function GameConsole(props) {
     } else {
       setSeconds("Game Over");
     }
+  }
+
+  const highlightWords = (event) => {
+    let value = event.target.value;
+    let txt = document.getElementById("console-text").innerText;
+    let idx = txt.indexOf(value);
+    if(idx >= 0) {
+      let newText = [txt.substring(0, idx), <strong>{txt.substring(idx, idx + value.length)}</strong>, txt.substring(idx + value.length)];
+      setTypingIn(value);
+      setLevelContent(newText);
+    } else {
+      setLevelContent(levelContent);
+      setTypingIn(value);
+    }    
   }
 
   // useEffect(() => {
@@ -139,7 +152,7 @@ function GameConsole(props) {
           <Card.Header>{seconds}</Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <div>
+              <div id="console-text">
                 {levelContent || setLevelContent("Are you Ready to start")}
               </div>
             </blockquote>
@@ -151,7 +164,8 @@ function GameConsole(props) {
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl as="textarea" 
-            onChange={(event) => setTypingIn(event.target.value)}
+            // onChange={(event) => setTypingIn(event.target.value)}
+            onChange={(event) => highlightWords(event)}
             value={typingIn}
             id="textarea"
             aria-label="With textarea" 
