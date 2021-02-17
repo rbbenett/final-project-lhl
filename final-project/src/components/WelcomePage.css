@@ -11,3 +11,11 @@
 a.btn {
   margin-top: 2rem;
 }
+
+div.jumbotron {
+  padding: 0;
+}
+
+button.play-game {
+  margin-bottom: 1rem
+}
