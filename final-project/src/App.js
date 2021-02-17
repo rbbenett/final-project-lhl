@@ -15,14 +15,7 @@ import './App.css';
 
 function App() {
 
-  const {
-    contents, 
-    setContents,
-    gameConsole,
-    updateGameConsole,
-    userInput,
-    setUserInput
-  } = useApplicationData();
+  const { contents } = useApplicationData();
 
   return (
     <Router>
