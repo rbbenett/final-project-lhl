@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Card, Button, Image } from "react-bootstrap";
-import "./Footer.css"
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -10,7 +10,7 @@ function Footer() {
           <Image src="images/typing-icon.png" className="typecraft-logo-footer" />
           <Card.Title>Typecraft Inc.</Card.Title>
           <Card.Text>
-            <Card.Link href="#">Careers</Card.Link>
+            <Card.Link href="https://www.cirquedusoleil.com/casting/disciplines/clowns-physical-actors/clowns">Careers</Card.Link>
           </Card.Text>
           <Card.Text>
             <Card.Link href="#">Terms of Use</Card.Link>

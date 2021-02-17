@@ -1,9 +1,9 @@
-import React, { useState, setState, useEffect } from 'react';
-import "./GameConsole.css"
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
-import useApplicationData from "../hooks/useApplicationData"
+import "./GameConsole.css"
+
 
 function GameConsole(props) {
 
@@ -44,6 +44,7 @@ function GameConsole(props) {
   
   const resetLevel = function () {
     setLevelContent("Are you Ready to start")
+    setTypingIn("");
     clearInterval(intervalId)
     setCurrentLevel(currentLevel);
     setSeconds(30)
@@ -68,11 +69,13 @@ function GameConsole(props) {
 
   const startGame = function() {
     if(currentLevel === 0){
+      setTypingIn("");
       setLevelContent(props.contents[currentLevel]?.content)
       clearInterval(intervalId)
       setCurrentLevel(0);
       Timer(30)
     } else {
+      setTypingIn("");
       clearInterval(intervalId)
       setLevelContent(props.contents[currentLevel]?.content)
       Timer(30)
@@ -81,6 +84,7 @@ function GameConsole(props) {
 
   const restartfromFirstLevel = function() {
     setLevelContent("Are you Ready to start")
+    setTypingIn("");
     clearInterval(intervalId)
     setCurrentLevel(0);
     setSeconds(30)
