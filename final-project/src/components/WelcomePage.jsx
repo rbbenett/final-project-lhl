@@ -1,13 +1,21 @@
-import React from 'react';
-import { Container, Jumbotron, Image, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Jumbotron, Image, Button, Carousel } from 'react-bootstrap';
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
 import "./WelcomePage.css";
+import Leaderboard from "./Leaderboard"
+
 
 function Welcomepage() {
   const soundUrl = "./sounds/roll.mp3";
 
   const [play] = useSound(soundUrl);
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
 
   return (
     <div className="welcome-container">
