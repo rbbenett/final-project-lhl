@@ -13,17 +13,6 @@ function GameConsole(props) {
   const [levelContent, setLevelContent] = useState("")
   const [levelStarted, setLevelStarted] = useState(false)
 
-  //Timer to start and set seconds
-  const Timer = function (seconds) {
-    setLevelStarted(true)
-    setSeconds(seconds)
-    if (seconds > 0) {
-      setIntervalId(setInterval(() => setSeconds((s) => s - 1), 1000))
-    } else {
-      setSeconds("Game Over");
-    }
-  }
-
   //Highlights the words that are right
   const highlightWords = (event) => {
     let value = event.target.value;
@@ -38,51 +27,17 @@ function GameConsole(props) {
       setTypingIn(value);
     }
   }
-
-  //If they dont finish a level, this calcuates how many words were correct
-  const totalWordsCorrect = function (inputField, currentLevelContent) {
-    const typedIn = inputField.split(' ')
-    const matchingwords = []
-    for (let i = 0; i < typedIn.length; i++) {
-      if (typedIn[i] === currentLevelContent[i])
-        matchingwords.push(typedIn[i])
+  
+  //Timer to start and set seconds
+  const Timer = function (seconds) {
+    setLevelStarted(true)
+    setSeconds(seconds)
+    if (seconds > 0) {
+      setIntervalId(setInterval(() => setSeconds((s) => s - 1), 1000))
+    } else {
+      setSeconds("Game Over");
     }
-    return matchingwords.length
   }
-
-  //Triggered when they want to reset the current level
-  const resetLevel = function () {
-    setLevelStarted(false)
-    setLevelContent("Are You Ready To Start?")
-    setTypingIn("");
-    clearInterval(intervalId)
-    setCurrentLevel(currentLevel);
-    setSeconds(30)
-  }
-
-  //What happens when the timer reaches 0
-  useEffect(() => {
-    if (seconds === 0) {
-      setSeconds("Game Over")
-      let currentLevelWords = props.contents[currentLevel].content.split(' ')
-      let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
-      setLevelContent("GameOver")
-      clearInterval(intervalId)
-      console.log("totalOFcorrectword function gives", totalOfCorrectWords)
-      console.log("current level gives", currentLevel)
-      axios.post('/attempts', {
-        user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
-        level_id: currentLevel + 1,
-        words_completed: totalOfCorrectWords,
-        time_taken: 30,
-        passed: false
-      })
-      .then(res => {
-        console.log("I DID REACH HERE")
-        console.log(res);
-      })
-    }
-  }, [seconds, intervalId]);
 
   //Starts the timer and the sets the level up
   const startGame = function () {
@@ -101,6 +56,16 @@ function GameConsole(props) {
     }
   }
 
+  //Triggered when they want to reset the current level
+  const resetLevel = function () {
+    setLevelStarted(false)
+    setLevelContent("Are You Ready To Start?")
+    setTypingIn("");
+    clearInterval(intervalId)
+    setCurrentLevel(currentLevel);
+    setSeconds(30)
+  }
+
   // Restarts the game from the first level
   const restartfromFirstLevel = function () {
     setLevelStarted(false)
@@ -111,26 +76,65 @@ function GameConsole(props) {
     setSeconds(30)
   }
 
+  //If they dont finish a level, this calcuates how many words were correct
+  const totalWordsCorrect = function (inputField, currentLevelContent) {
+    const typedIn = inputField.split(' ')
+    const matchingwords = []
+    for (let i = 0; i < typedIn.length; i++) {
+      if (typedIn[i] === currentLevelContent[i])
+        matchingwords.push(typedIn[i])
+    }
+    return matchingwords.length
+  }
+
   //Resuming from the last cleared level button
   const resumeFromLastClearedLevel = function () {
     setCurrentLevel(JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared);
-    setLevelStarted(true)
-    setTypingIn("");
-    clearInterval(intervalId)
-    setLevelContent(props.contents[currentLevel]?.content)
-    setSeconds(30)
-    Timer(30)
   }
+  useEffect(() => {
+    if (currentLevel !== 0) {
+      setLevelStarted(true)
+      setTypingIn("");
+      clearInterval(intervalId)
+      setLevelContent(props.contents[currentLevel]?.content)
+      setSeconds(30)
+      Timer(30)
+    }
+  }, [currentLevel])
+
+  //Post request to attempts if they fail the level.
+  useEffect(() => {
+    if (seconds === 0) {
+      setSeconds("Game Over")
+      let currentLevelWords = props.contents[currentLevel].content.split(' ')
+      let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
+      setLevelContent("GameOver")
+      clearInterval(intervalId)
+      console.log("totalOFcorrectword function gives", totalOfCorrectWords)
+      console.log("current level gives", currentLevel)
+      axios.post('/attempts', {
+        user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
+        level_id: currentLevel + 1,
+        words_completed: totalOfCorrectWords,
+        time_taken: 30,
+        passed: false
+      })
+        .then(res => {
+          console.log("I DID REACH HERE")
+          console.log(res);
+        })
+    }
+  }, [seconds, intervalId]);
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if (typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
+      setCurrentLevel(currentLevel + 1);
       let correctWords = props.contents[currentLevel].content.split(' ').length;
       let secondsLeft = 30 - seconds;
       setLevelContent("Time for next level. Press the button below when you're ready to start")
       clearInterval(intervalId);
       setLevelStarted(false)
-      setCurrentLevel(currentLevel + 1);
       setSeconds(30)
       setTypingIn("");
       axios.post('/attempts', {
@@ -139,13 +143,14 @@ function GameConsole(props) {
         words_completed: correctWords,
         time_taken: secondsLeft,
         passed: true
-    })
-      .then(res => {
-        console.log("user completed level posted to db", res);
       })
+        .then(res => {
+          console.log("user completed level posted to db", res);
+        })
     }
   }, [typingIn, intervalId])
 
+  //Stops from pasting into text field.
   const handleChange = (e) => {
     e.preventDefault();
   };
@@ -180,7 +185,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div id="console-text">
-                {currentLevel === 13? <GameCompleteMsg/> : levelContent || setLevelContent("Are You Ready To Start?")}
+                {currentLevel === 13 ? <GameCompleteMsg /> : levelContent || setLevelContent("Are You Ready To Start?")}
               </div>
             </blockquote>
           </Card.Body>
@@ -208,7 +213,7 @@ function GameConsole(props) {
               Start from the begining
             </Button> : null}
           {levelStarted === false && currentLevel === 0 && JSON.parse(localStorage.getItem("user_details")) && currentLevel !== JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared ?
-            <Button variant="primary" onClick={resumeFromLastClearedLevel} onclick='button.style.display = "none"'>
+            <Button variant="primary" onClick={resumeFromLastClearedLevel} >
               Start from last cleared level
             </Button> : null}
           {levelStarted === true ?
@@ -223,7 +228,7 @@ function GameConsole(props) {
             >
               {levelStarted === true ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
             </Button> : null}
-            {/* {levelStarted === false ?
+          {/* {levelStarted === false ?
               <Button variant="primary" onClick={restartfromFirstLevel}>
               Go back to Level 1
             </Button> : null} */}
