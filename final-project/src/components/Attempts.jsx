@@ -44,7 +44,7 @@ function Attempts() {
     let result = [];
     for (let i = 0; i < sortedAttempts.length; i++) {
       result.push(sortedAttempts[i].user_id)
-  }
+    }
     return result
   }
 
@@ -133,6 +133,7 @@ function Attempts() {
                 <td>{roundTo((currentUserAttempts[4] && currentUserAttempts[4].words_completed) * 60 / (currentUserAttempts[4] && currentUserAttempts[4].time_taken), 2)}</td>
               </tr>) : null
               }
+
             </tbody>
           </Table>
           <Alert variant="success">
