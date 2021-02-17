@@ -1,9 +1,9 @@
-import React, { useState, setState, useEffect } from 'react';
-import "./GameConsole.css"
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
-import useApplicationData from "../hooks/useApplicationData"
+import "./GameConsole.css"
+
 
 function GameConsole(props) {
 
