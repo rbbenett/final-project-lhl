@@ -3,3 +3,10 @@
   margin: auto;
   text-align: center;
 }
+
+strong {
+  background: green;
+  color: white;
+  font-weight: inherit;
+}
+
