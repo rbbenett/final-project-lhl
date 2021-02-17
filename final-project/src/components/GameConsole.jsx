@@ -111,12 +111,13 @@ function GameConsole(props) {
   }
 
   const resumeFromLastClearedLevel = function () {
-    setLevelStarted(false)
-    setLevelContent("Are you Ready to start")
+    setLevelStarted(true)
     setTypingIn("");
     clearInterval(intervalId)
     setCurrentLevel(JSON.parse(localStorage.getItem("user_details")).highest_level_cleared);
+    setLevelContent(props.contents[currentLevel]?.content)
     setSeconds(30)
+    Timer(30)
   }
 
   //Post request to attempts if both the text areas are the same
