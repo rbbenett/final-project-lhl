@@ -53,6 +53,7 @@ const attemptsRoutes = require("./routes/attempts");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
 
+
 // Mount all resource routes
 app.use("/", indexRoutes(db));
 app.use("/api/users", usersRoutes(db));
@@ -62,6 +63,7 @@ app.use("/api/contents", contentsRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
+
 
 
 app.listen(PORT, () => {
