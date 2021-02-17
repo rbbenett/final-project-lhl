@@ -41,7 +41,7 @@ function Profile() {
           <Col>
             <Row>
               <Card style={{ width: '45rem' }} >
-                <Card.Header as="h5">Previous Attempts</Card.Header>
+                <Card.Header as="h5">🔥Your Top Typing Speeds🔥</Card.Header>
                 <Card.Body>
                   <Attempts />
                 </Card.Body>
