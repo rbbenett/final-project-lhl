@@ -1,8 +1,7 @@
-import React from 'react';
-import useApplicationData from "../hooks/useApplicationData";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Image, Nav, Dropdown, Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Link } from "react-router-dom";
+import useApplicationData from "../hooks/useApplicationData";
 import Register from './Register';
 import Login from './Login';
 
@@ -37,7 +36,7 @@ function NavbarTC() {
         <Nav className="mr-auto">
         </Nav>
         <Nav>
-          <Navbar.Brand>Welcome back, { localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Navbar.Brand>
+          <Navbar.Brand>Welcome back, @{ localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username }</Navbar.Brand>
           <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>
           <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>
           <Dropdown>
@@ -65,8 +64,8 @@ function NavbarTC() {
           <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseLogin}>
-            Forgot Username or Password?
+          <Button variant="primary" onClick={() => {handleCloseLogin(); handleShowRegister()}}>
+            New User? Click Here To Register!
           </Button>
         </Modal.Footer>
       </Modal>
@@ -79,6 +78,11 @@ function NavbarTC() {
         <Modal.Body>
           <Register />
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => {handleCloseRegister(); handleShowLogin()}}>
+            Already Registered? Click Here To Login!
+          </Button>
+        </Modal.Footer>
       </Modal>     
     </div>
   )

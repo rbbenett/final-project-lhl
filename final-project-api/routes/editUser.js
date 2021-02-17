@@ -21,24 +21,17 @@ module.exports = (db) => {
     let first_name = req.body.first_name;
     let last_name = req.body.last_name;
     let email = req.body.email;
-    let password = req.body.password;
     let avatar = req.body.avatar; 
     let city = req.body.city;
     let country = req.body.country;
 
     return db.query(`
-      INSERT INTO users (username, first_name, last_name, email, password, city, country, avatar)
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+      UPDATE users (username, first_name, last_name, email, city, country, avatar)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
-    `, [username, first_name, last_name, email, password, city, country, avatar])
+    `, [username, first_name, last_name, email, city, country, avatar])
       .then(response => {
         console.log("YO", response);
-        // let userName = response.rows[0].name;
-        // let userID = response.rows[0].id;
-        // req.session["userName"] = userName;
-        // req.session["userID"] = userID;
-        // res.redirect("/postings");
-        // return response.rows[0] ? response.rows[0] : null;
       })
       .catch(e => {
         response.send(e);
