@@ -7,7 +7,7 @@ import DelayLink from 'react-delay-link';
 
 function Attempts() {
 
-  const soundUrl = "./sounds/roll.mp3";
+  const soundUrl = "./sounds/SuperMarioBros.mp3";
 
   const [play] = useSound(soundUrl);
 
@@ -15,16 +15,16 @@ function Attempts() {
 
   const { attempts, setAttempts } = useApplicationData()
 
-  const [sortType, setSortType] = useState('levels');
+  const [sortType, setSortType] = useState('words_completed');
 
   const sortedAttempts = useMemo(() => {
     const sortArray = type => {
       const types = {
-        wordsPerMin: 'words_completed',
+        wordsCompleted: 'words_completed',
         levels: 'level_id',
       };
       const sortProperty = types[type];
-      const secondarySortProperty = types[type === 'levels' ? 'wordsPerMin' : 'levels']
+      const secondarySortProperty = types[type === 'wordsCompleted' ? 'levels' : 'wordsCompleted']
       const sorted = [...attempts].sort((a, b) => {
         const initialDiff = b[sortProperty] - a[sortProperty]
         if (initialDiff === 0) {
@@ -35,7 +35,7 @@ function Attempts() {
       });
       return sorted;
     };
-    return sortArray(sortType)
+    return sortArray(sortType).reverse()
   }, [attempts, sortType])
 
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
@@ -56,8 +56,6 @@ function Attempts() {
       }
     return result
   })
-
-  console.log(currentUserArray[0])
 
   if (sortedUsersId().includes(currentUser)) {
     return (
