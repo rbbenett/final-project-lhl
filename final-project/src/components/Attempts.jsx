@@ -24,7 +24,7 @@ function Attempts() {
         levels: 'level_id',
       };
       const sortProperty = types[type];
-      const secondarySortProperty = types[type === 'wordsCompleted' ? 'levels' : 'wordsCompleted']
+      const secondarySortProperty = types[type === 'levels' ? 'wordsCompleted' : 'levels']
       const sorted = [...attempts].sort((a, b) => {
         const initialDiff = b[sortProperty] - a[sortProperty]
         if (initialDiff === 0) {
@@ -48,7 +48,7 @@ function Attempts() {
     return result
   }
 
-  const currentUserArray = useMemo(() => {
+  const currentUserAttempts = useMemo(() => {
     let result = []
     for (let attempt of sortedAttempts)
       if (attempt.user_id === currentUser && attempt.passed === true) {
@@ -56,6 +56,8 @@ function Attempts() {
       }
     return result
   })
+
+  console.log(currentUserAttempts)
 
   if (sortedUsersId().includes(currentUser)) {
     return (
@@ -71,64 +73,64 @@ function Attempts() {
               </tr>
             </thead>
             <tbody>
-              {currentUserArray[0] ? (
+              {currentUserAttempts[0] ? (
                 <tr>
                 <td>
                   <Moment format='MMMM Do, YYYY'>
-                    {currentUserArray[0] && currentUserArray[0].attempted_at}
+                    {currentUserAttempts[0] && currentUserAttempts[0].attempted_at}
                   </Moment>
                 </td>
-                <td>{currentUserArray[0] && currentUserArray[0].level_id}</td>
-                <td>{currentUserArray[0] && currentUserArray[0].time_taken + " Seconds"}</td>
-                <td>{roundTo((currentUserArray[0] && currentUserArray[0].words_completed) * 60 / (currentUserArray[0] && currentUserArray[0].time_taken), 2)}</td>
+                <td>{currentUserAttempts[0] && currentUserAttempts[0].level_id}</td>
+                <td>{currentUserAttempts[0] && currentUserAttempts[0].time_taken + " Seconds"}</td>
+                <td>{roundTo((currentUserAttempts[0] && currentUserAttempts[0].words_completed) * 60 / (currentUserAttempts[0] && currentUserAttempts[0].time_taken), 2)}</td>
               </tr>) : null
               }
-              {currentUserArray[1] ? (              
+              {currentUserAttempts[1] ? (              
               <tr>
                 <td>
                   <Moment format="MMMM Do, YYYY">
-                    {currentUserArray[1] && currentUserArray[1].attempted_at}
+                    {currentUserAttempts[1] && currentUserAttempts[1].attempted_at}
                   </Moment>
                 </td>
-                <td>{currentUserArray[1] && currentUserArray[1].level_id}</td>
-                <td>{currentUserArray[1] && currentUserArray[1].time_taken + " Seconds"}</td>
-                <td>{roundTo((currentUserArray[1] && currentUserArray[1].words_completed) * 60 / (currentUserArray[1] && currentUserArray[1].time_taken), 2)}</td>
+                <td>{currentUserAttempts[1] && currentUserAttempts[1].level_id}</td>
+                <td>{currentUserAttempts[1] && currentUserAttempts[1].time_taken + " Seconds"}</td>
+                <td>{roundTo((currentUserAttempts[1] && currentUserAttempts[1].words_completed) * 60 / (currentUserAttempts[1] && currentUserAttempts[1].time_taken), 2)}</td>
               </tr>) : null
               }
-              {currentUserArray[2] ? (
+              {currentUserAttempts[2] ? (
               <tr>
                 <td>
                   <Moment format="MMMM Do, YYYY">
-                    {currentUserArray[2] && currentUserArray[2].attempted_at}
+                    {currentUserAttempts[2] && currentUserAttempts[2].attempted_at}
                   </Moment>
                 </td>
-                <td>{currentUserArray[2] && currentUserArray[2].level_id}</td>
-                <td>{currentUserArray[2] && currentUserArray[2].time_taken + " Seconds"}</td>
-                <td>{roundTo((currentUserArray[2] && currentUserArray[2].words_completed) * 60 / (currentUserArray[2] && currentUserArray[2].time_taken), 2)}</td>
+                <td>{currentUserAttempts[2] && currentUserAttempts[2].level_id}</td>
+                <td>{currentUserAttempts[2] && currentUserAttempts[2].time_taken + " Seconds"}</td>
+                <td>{roundTo((currentUserAttempts[2] && currentUserAttempts[2].words_completed) * 60 / (currentUserAttempts[2] && currentUserAttempts[2].time_taken), 2)}</td>
               </tr>) : null
               }
-              {currentUserArray[3] ? (
+              {currentUserAttempts[3] ? (
               <tr>
                 <td>
                   <Moment format="MMMM Do, YYYY">
-                    {currentUserArray[3] && currentUserArray[3].attempted_at}
+                    {currentUserAttempts[3] && currentUserAttempts[3].attempted_at}
                   </Moment>
                 </td>
-                <td>{currentUserArray[3] && currentUserArray[3].level_id}</td>
-                <td>{currentUserArray[3] && currentUserArray[3].time_taken + " Seconds"}</td>
-                <td>{roundTo((currentUserArray[3] && currentUserArray[3].words_completed) * 60 / (currentUserArray[3] && currentUserArray[3].time_taken), 2)}</td>
+                <td>{currentUserAttempts[3] && currentUserAttempts[3].level_id}</td>
+                <td>{currentUserAttempts[3] && currentUserAttempts[3].time_taken + " Seconds"}</td>
+                <td>{roundTo((currentUserAttempts[3] && currentUserAttempts[3].words_completed) * 60 / (currentUserAttempts[3] && currentUserAttempts[3].time_taken), 2)}</td>
               </tr>) : null
               }
-              {currentUserArray[4] ? (
+              {currentUserAttempts[4] ? (
               <tr>
                 <td>
                   <Moment format="MMMM Do, YYYY">
-                    {currentUserArray[4] && currentUserArray[4].attempted_at}
+                    {currentUserAttempts[4] && currentUserAttempts[4].attempted_at}
                   </Moment>
                 </td>
-                <td>{currentUserArray[4] && currentUserArray[4].level_id}</td>
-                <td>{currentUserArray[4] && currentUserArray[4].time_taken + " Seconds"}</td>
-                <td>{roundTo((currentUserArray[4] && currentUserArray[4].words_completed) * 60 / (currentUserArray[4] && currentUserArray[4].time_taken), 2)}</td>
+                <td>{currentUserAttempts[4] && currentUserAttempts[4].level_id}</td>
+                <td>{currentUserAttempts[4] && currentUserAttempts[4].time_taken + " Seconds"}</td>
+                <td>{roundTo((currentUserAttempts[4] && currentUserAttempts[4].words_completed) * 60 / (currentUserAttempts[4] && currentUserAttempts[4].time_taken), 2)}</td>
               </tr>) : null
               }
             </tbody>
