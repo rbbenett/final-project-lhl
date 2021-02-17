@@ -164,6 +164,10 @@ function GameConsole(props) {
         <br />
         <p>
           {seconds === 30 ? 
+            <Button variant="primary" onClick={restartfromFirstLevel}>
+              Start from level 1
+            </Button> : null}
+          {seconds === 30 ? 
             <Button variant="primary">
               Resume from Level X
             </Button> : null || 
