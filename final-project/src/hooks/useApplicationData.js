@@ -9,7 +9,11 @@ export default function useApplicationData() {
   const [attempts, setAttempts] = useState([]);
   const [users, setUsers] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [loginStatus, setLoginStatus] = useState("");
+
+  // Helper functions
+  const checkLoggedIn = () => {
+    return localStorage.getItem("user_details");
+  }
 
   // To update state from db on load
   useEffect(() => {
@@ -43,7 +47,6 @@ export default function useApplicationData() {
     setUsers,
     userInput,
     setUserInput,
-    loginStatus,
-    setLoginStatus
+    checkLoggedIn
   };
 }

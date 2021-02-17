@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Image, Nav, Dropdown, Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Link } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData";
@@ -7,34 +7,21 @@ import Login from './Login';
 
 function NavbarTC() {
 
-  const {
-    loginStatus, 
-    setLoginStatus,
-  } = useApplicationData();
+  const { checkLoggedIn } = useApplicationData();
 
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [username, setUsername] = useState("");
 
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
 
-  const checkLoggedIn = () => {
-    return localStorage.getItem("user_details");
-  }
-
-  useEffect(() => {
-    console.log("LOADED!!!", loginStatus)
-    setUsername(loginStatus);
-  }, [loginStatus])
-
   return (
     <div className="navbar-tc">
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Link to="/">
-          <Image href="/" src="images/typing-icon.png" className="typecraft-logo" />
+          <Image src="images/typing-icon.png" className="typecraft-logo" />
         </Link>
         <Navbar.Brand href="/">Typecraft</Navbar.Brand>
         <Nav className="mr-auto">
@@ -58,17 +45,19 @@ function NavbarTC() {
               </Dropdown.Menu>
             </Dropdown>
           }
-          
         </Nav>
       </Navbar>
 
       {/* Modal for Login Form */}
-      <Modal show={showLogin} onHide={handleCloseLogin}>
+      {!checkLoggedIn() &&
+        <Modal show={showLogin} onHide={handleCloseLogin}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Login loginStatus={loginStatus} setLoginStatus={setLoginStatus} />
+          <Login 
+            handleCloseLogin={handleCloseLogin}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => {handleCloseLogin(); handleShowRegister()}}>
@@ -76,6 +65,8 @@ function NavbarTC() {
           </Button>
         </Modal.Footer>
       </Modal>
+      }
+
 
       {/* Modal for Register Form */}
       <Modal show={showRegister} onHide={handleCloseRegister}>
@@ -83,7 +74,9 @@ function NavbarTC() {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Register />
+          <Register 
+            handleCloseRegister={handleCloseRegister}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => {handleCloseRegister(); handleShowLogin()}}>
