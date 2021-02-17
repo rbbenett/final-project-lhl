@@ -22,6 +22,16 @@ function GameConsole(props) {
     }
   }
 
+  // useEffect(() => {
+  //   for (let i = 0; i < typingIn.length; i++){
+  //     if(levelContent[typingIn.length - 1] !== typingIn[typingIn.length - 1]) { 
+
+  //       levelContent.replace(levelContent[typingIn.length - 1] ,<span>hello</span>)
+  //       return
+  //     }
+  //   }
+  // },[typingIn])
+
   const totalWordsCorrect = function(inputField, currentLevelContent) {
     const typedIn = inputField.split(' ')
     const matchingwords = []
@@ -33,6 +43,7 @@ function GameConsole(props) {
   }
   
   const resetLevel = function () {
+    setLevelContent("Are you Ready to start")
     clearInterval(intervalId)
     setCurrentLevel(currentLevel);
     setSeconds(30)
@@ -69,6 +80,7 @@ function GameConsole(props) {
   }
 
   const restartfromFirstLevel = function() {
+    setLevelContent("Are you Ready to start")
     clearInterval(intervalId)
     setCurrentLevel(0);
     setSeconds(30)
