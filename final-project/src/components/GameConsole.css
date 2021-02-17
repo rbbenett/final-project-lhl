@@ -10,3 +10,11 @@ strong {
   font-weight: inherit;
 }
 
+Button.startGame{
+  margin: 1rem
+}
+
+Button.restartGame {
+  margin: 1rem
+}
+
