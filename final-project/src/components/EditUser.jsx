@@ -135,8 +135,9 @@ function EditUser() {
           </Form.Group>
 
           <Button
-            variant="primary-btn"
+            variant="primary"
             type="submit"
+            className="edit-submit"
             onClick={editUser}
           >
             Submit
