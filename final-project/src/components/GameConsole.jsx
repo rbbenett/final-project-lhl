@@ -11,8 +11,10 @@ function GameConsole(props) {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [intervalId, setIntervalId] = useState(null)
   const [levelContent, setLevelContent] = useState("")
+  const [levelStarted, setLevelStarted] = useState(false)
 
   const Timer = function (seconds){
+    setLevelStarted(true)
     setSeconds(seconds)
     if (seconds > 0) {
       setIntervalId(setInterval(() => setSeconds((s) => s-1), 1000))
@@ -20,6 +22,8 @@ function GameConsole(props) {
       setSeconds("Game Over");
     }
   }
+
+  console.log(JSON.parse(localStorage.getItem("user_details")).highest_level_cleared)
 
   const highlightWords = (event) => {
     let value = event.target.value;
@@ -56,6 +60,7 @@ function GameConsole(props) {
   }
   
   const resetLevel = function () {
+    setLevelStarted(false)
     setLevelContent("Are you Ready to start")
     setTypingIn("");
     clearInterval(intervalId)
@@ -69,8 +74,8 @@ function GameConsole(props) {
       let currentLevelWords = props.contents[currentLevel].content.split(' ')
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       clearInterval(intervalId)
-      axios.post('http://localhost:3004/api/attempts', {
-        user_id: "",
+      axios.post('/attempts', {
+        user_id: JSON.parse(localStorage.getItem("user_details")).id,
         level_id: currentLevel + 1,
         words_completed: totalOfCorrectWords,
         time_taken: 30,
@@ -81,6 +86,7 @@ function GameConsole(props) {
   },[seconds, intervalId]);
 
   const startGame = function() {
+    setLevelStarted(true)
     if(currentLevel === 0){
       setTypingIn("");
       setLevelContent(props.contents[currentLevel]?.content)
@@ -96,10 +102,20 @@ function GameConsole(props) {
   }
 
   const restartfromFirstLevel = function() {
+    setLevelStarted(false)
     setLevelContent("Are you Ready to start")
     setTypingIn("");
     clearInterval(intervalId)
     setCurrentLevel(0);
+    setSeconds(30)
+  }
+
+  const resumeFromLastClearedLevel = function () {
+    setLevelStarted(false)
+    setLevelContent("Are you Ready to start")
+    setTypingIn("");
+    clearInterval(intervalId)
+    setCurrentLevel(JSON.parse(localStorage.getItem("user_details")).highest_level_cleared);
     setSeconds(30)
   }
 
@@ -113,8 +129,8 @@ function GameConsole(props) {
       setCurrentLevel(currentLevel + 1);
       setSeconds(30)
       setTypingIn("");
-      axios.post('http://localhost:3004/api/attempts', {
-        user_id: "",
+      axios.post('/attempts', {
+        user_id: JSON.parse(localStorage.getItem("user_details")).id,
         level_id: currentLevel + 1,
         words_completed: correctWords,
         time_taken: secondsLeft,
@@ -184,19 +200,24 @@ function GameConsole(props) {
         </InputGroup>
         <br />
         <p>
-          {seconds === 30 ? 
-            <Button variant="primary">
-              Resume from Level X
-            </Button> : null || 
+          {levelStarted === false && currentLevel !== 0? 
+            <Button variant="primary" onClick={restartfromFirstLevel}>
+              Start from the begining
+            </Button> : null}
+          {levelStarted === false && currentLevel !== JSON.parse(localStorage.getItem("user_details")).highest_level_cleared? 
+            <Button variant="primary" onClick={resumeFromLastClearedLevel} onclick='button.style.display = "none"'>
+              Start from last cleared level
+            </Button> : null}
+            {levelStarted === true ?
             <Button variant="primary" onClick={resetLevel}>
-            Restart Level 
-            </Button>}
-           {seconds === 30 ? 
+              Restart Level 
+            </Button> : null}
+           {levelStarted === false ? 
             <Button
               variant="primary"
               onClick={startGame}
             >
-            {currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel+1}!`}
+            {levelStarted === true ? `Start Game ` : `Start Level ${currentLevel+1}!`}
             </Button> : null ||
             <Button variant="primary" onClick={restartfromFirstLevel}>
             Go back to Level 1
