@@ -5,7 +5,7 @@ import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function Register() {
+function Register(props) {
 
   const [newUserDetails, setNewUserDetails] = useState({
     username: "",
@@ -31,6 +31,7 @@ function Register() {
     })
       .then(res => {
         console.log(res);
+        props.handleCloseRegister();
       })
   }
 
