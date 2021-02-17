@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Container, Jumbotron, Image, Button, Carousel } from 'react-bootstrap';
+import { Container, Jumbotron, Image, Button, Fade } from 'react-bootstrap';
+import Typing from "react-typing-animation";
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
 import "./WelcomePage.css";
 import Leaderboard from "./Leaderboard"
+import useApplicationData from '../hooks/useApplicationData';
 
 
 function Welcomepage() {
+
+  const { checkLoggedIn } = useApplicationData();
+
   const soundUrl = "./sounds/roll.mp3";
 
   const [play] = useSound(soundUrl);
@@ -22,7 +27,11 @@ function Welcomepage() {
       <Jumbotron fluid>
         <Container>
           <Image src="images/typing-icon.png" className="typing-icon" />
-          <h1>Welcome to Typecraft!</h1>
+          <h1>
+            <Typing speed={40}>
+              Welcome to Typecraft!
+            </Typing>
+          </h1>
           <p>
             Before you start playing, here's how the game is going to work:
           </p>
