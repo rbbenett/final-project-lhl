@@ -68,6 +68,8 @@ function GameConsole(props) {
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       setLevelContent("GameOver")
       clearInterval(intervalId)
+      console.log("totalOFcorrectword function gives", totalOfCorrectWords)
+      console.log("current level gives", currentLevel)
       axios.post('/attempts', {
         user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
         level_id: currentLevel + 1,
@@ -75,7 +77,10 @@ function GameConsole(props) {
         time_taken: 30,
         passed: false
       })
-        .catch(error => (console.log(error)))
+      .then(res => {
+        console.log("I DID REACH HERE")
+        console.log(res);
+      })
     }
   }, [seconds, intervalId]);
 
@@ -134,11 +139,10 @@ function GameConsole(props) {
         words_completed: correctWords,
         time_taken: secondsLeft,
         passed: true
+    })
+      .then(res => {
+        console.log("user completed level posted to db", res);
       })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(error => (console.log(error)))
     }
   }, [typingIn, intervalId])
 
@@ -213,6 +217,7 @@ function GameConsole(props) {
             </Button> : null}
           {levelStarted === false ?
             <Button
+              className="startGame"
               variant="primary"
               onClick={startGame}
             >

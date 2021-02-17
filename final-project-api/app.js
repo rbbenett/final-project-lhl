@@ -63,6 +63,7 @@ app.use("/api/contents", contentsRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
+app.use("/attempts", attemptsRoutes(db));
 
 
 
