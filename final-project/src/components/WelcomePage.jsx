@@ -12,7 +12,7 @@ function Welcomepage() {
 
   const { checkLoggedIn } = useApplicationData();
 
-  const soundUrl = "./sounds/roll.mp3";
+  const soundUrl = "./sounds/SuperMarioBros.mp3";
 
   const [play] = useSound(soundUrl);
 
