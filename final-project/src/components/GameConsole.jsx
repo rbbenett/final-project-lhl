@@ -89,11 +89,11 @@ function GameConsole(props) {
 
   //Resuming from the last cleared level button
   const resumeFromLastClearedLevel = function () {
+    setLevelStarted(true)
     setCurrentLevel(JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared);
   }
   useEffect(() => {
     if (currentLevel !== 0) {
-      setLevelStarted(true)
       setTypingIn("");
       clearInterval(intervalId)
       setLevelContent(props.contents[currentLevel]?.content)
@@ -106,6 +106,7 @@ function GameConsole(props) {
   useEffect(() => {
     if (seconds === 0) {
       setSeconds("Game Over")
+      setLevelStarted(false)
       let currentLevelWords = props.contents[currentLevel].content.split(' ')
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       setLevelContent("GameOver")
@@ -120,6 +121,7 @@ function GameConsole(props) {
         passed: false
       })
         .then(res => {
+          //if currentlevel+1 > highest level in local storage, make a patch request to user to update highest level completed
           console.log("I DID REACH HERE")
           console.log(res);
         })
@@ -129,12 +131,12 @@ function GameConsole(props) {
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if (typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
-      setCurrentLevel(currentLevel + 1);
       let correctWords = props.contents[currentLevel].content.split(' ').length;
       let secondsLeft = 30 - seconds;
       setLevelContent("Time for next level. Press the button below when you're ready to start")
       clearInterval(intervalId);
       setLevelStarted(false)
+      setCurrentLevel(currentLevel + 1)
       setSeconds(30)
       setTypingIn("");
       axios.post('/attempts', {
@@ -146,6 +148,7 @@ function GameConsole(props) {
       })
         .then(res => {
           console.log("user completed level posted to db", res);
+          //if currentlevel+1 > highest level in local storage, make a patch request to user to update highest level completed
         })
     }
   }, [typingIn, intervalId])
