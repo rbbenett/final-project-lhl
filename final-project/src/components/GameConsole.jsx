@@ -121,7 +121,11 @@ function GameConsole(props) {
       })
       .catch(error => (console.log(error)))
     }
-  }, [typingIn, intervalId]) 
+  }, [typingIn, intervalId])
+  
+  const handleChange = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="gameconsole">
@@ -169,6 +173,9 @@ function GameConsole(props) {
             value={typingIn}
             id="textarea"
             aria-label="With textarea" 
+            onCut={handleChange}
+            onCopy={handleChange}
+            onPaste={handleChange}
             />
         </InputGroup>
         <br />
