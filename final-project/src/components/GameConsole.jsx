@@ -23,8 +23,6 @@ function GameConsole(props) {
     }
   }
 
-  console.log(JSON.parse(localStorage.getItem("user_details")).highest_level_cleared)
-
   const highlightWords = (event) => {
     let value = event.target.value;
     let txt = document.getElementById("console-text").innerText;
@@ -38,16 +36,6 @@ function GameConsole(props) {
       setTypingIn(value);
     }    
   }
-
-  // useEffect(() => {
-  //   for (let i = 0; i < typingIn.length; i++){
-  //     if(levelContent[typingIn.length - 1] !== typingIn[typingIn.length - 1]) { 
-
-  //       levelContent.replace(levelContent[typingIn.length - 1] ,<span>hello</span>)
-  //       return
-  //     }
-  //   }
-  // },[typingIn])
 
   const totalWordsCorrect = function(inputField, currentLevelContent) {
     const typedIn = inputField.split(' ')
@@ -74,16 +62,21 @@ function GameConsole(props) {
       let currentLevelWords = props.contents[currentLevel].content.split(' ')
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       clearInterval(intervalId)
+      console.log("totalOFcorrectword function gives", totalOfCorrectWords)
+      console.log("current level gives", currentLevel)
       axios.post('/attempts', {
-        user_id: JSON.parse(localStorage.getItem("user_details")).id,
+        user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
         level_id: currentLevel + 1,
         words_completed: totalOfCorrectWords,
         time_taken: 30,
         passed: false
-    })
-    .catch(error => (console.log(error)))
+      })
+      .then(res => {
+        console.log("I DID REACH HERE")
+        console.log(res);
+      })
     }
-  },[seconds, intervalId]);
+  }, [seconds, intervalId]);
 
   const startGame = function() {
     setLevelStarted(true)
@@ -115,7 +108,7 @@ function GameConsole(props) {
     setLevelContent("Are you Ready to start")
     setTypingIn("");
     clearInterval(intervalId)
-    setCurrentLevel(JSON.parse(localStorage.getItem("user_details")).highest_level_cleared);
+    setCurrentLevel(JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared);
     setSeconds(30)
   }
 
@@ -130,16 +123,15 @@ function GameConsole(props) {
       setSeconds(30)
       setTypingIn("");
       axios.post('/attempts', {
-        user_id: JSON.parse(localStorage.getItem("user_details")).id,
+        user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
         level_id: currentLevel + 1,
         words_completed: correctWords,
         time_taken: secondsLeft,
         passed: true
     })
       .then(res => {
-        console.log(res);
+        console.log("user completed level posted to db", res);
       })
-      .catch(error => (console.log(error)))
     }
   }, [typingIn, intervalId])
   
@@ -204,7 +196,7 @@ function GameConsole(props) {
             <Button variant="primary" onClick={restartfromFirstLevel}>
               Start from the begining
             </Button> : null}
-          {levelStarted === false && currentLevel !== JSON.parse(localStorage.getItem("user_details")).highest_level_cleared? 
+          {levelStarted === false && currentLevel !== JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared? 
             <Button variant="primary" onClick={resumeFromLastClearedLevel} onclick='button.style.display = "none"'>
               Start from last cleared level
             </Button> : null}
