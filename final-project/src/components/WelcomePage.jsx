@@ -36,19 +36,19 @@ function Welcomepage() {
             Before you start playing, here's how the game is going to work:
           </p>
           <ul>
-            A selection of words will appear on the screen
+            1. A selection of words will appear on the screen
           </ul>
           <ul>
-            You have to type the worst as fast as possible!
+            2. You have to type the words as fast as possible!
           </ul>
           <ul>
-            But, you wont be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
+            3. You won't be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
           </ul>
           <ul>
-            As the levels go up the time allocated to each level will stay the same but the amount of words will get bigger.
+            4. As the levels go up. the time allocated to each level will stay the same but the amount of words will get bigger.
           </ul>
           <ul>
-            When you run out of time without having finished typing your paragraph, then Game Over
+            5. When you run out of time without having finished typing your paragraph, Game Over!
           </ul>
           <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
             <Button variant="primary" size="lg">Play Game</Button>
