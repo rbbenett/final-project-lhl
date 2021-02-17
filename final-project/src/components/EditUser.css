@@ -16,3 +16,7 @@ div.form-group {
 div.form-row {
   margin: -20px
 }
+
+button.edit-submit{
+  margin: 0 0 1rem 0
+}
