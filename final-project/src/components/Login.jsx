@@ -9,8 +9,6 @@ function Login(props) {
     password: ""
   })
 
-  console.log("login status from login.jsx >>", props.loginStatus)
-
   const loginUser = (e) => {
     e.preventDefault();
     axios.post('/login', {
@@ -18,14 +16,12 @@ function Login(props) {
       password: loginFormInput.password
     })
     .then(res => {
-      // console.log("YOOOOO")
       console.log(res);
-      // setLoginStatus(res)
       if (Array.isArray(res.data)) {
-        props.setLoginStatus("Login successful");
         localStorage.setItem('user_details', JSON.stringify(res.data[0]))
+        props.handleCloseLogin();
       } else {
-        props.setLoginStatus("Login failed");
+        console.log("Incorrect username/password")
       }
     })
   }
@@ -74,7 +70,6 @@ function Login(props) {
           Submit
         </Button>
       </Form>
-      <h1>{props.loginStatus}</h1>
     </div>
   )
 }
