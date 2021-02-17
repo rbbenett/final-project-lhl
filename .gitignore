@@ -1,4 +1,5 @@
 node_modules/
+final-project/node_modules/.cache/.eslintcache
 
 # Logs
 logs
