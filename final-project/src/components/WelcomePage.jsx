@@ -20,63 +20,31 @@ function Welcomepage() {
   return (
     <div className="welcome-container">
       <Jumbotron fluid>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="./images/rick.jpg"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-            <Image src="images/typing-icon.png" className="typing-icon" />
-              <h1>Welcome to Typecraft!</h1>
-              <p>
-                Before you start playing, here's how the game is going to work:
-              </p>
-              <ul>
-                1. A selection of words will appear on the screen
-              </ul>
-              <ul>
-                2. You have to type the words as fast as possible!
-              </ul>
-              <ul>
-                3. You won't be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
-              </ul>
-              <ul>
-                4. As the levels go up, the time allocated to each level will stay the same but the amount of words will get bigger.
-              </ul>
-              <ul>
-                5. When you run out of time without having finished typing your paragraph it's Game Over!!!
-              </ul>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="./images/rick.jpg"
-              alt="Second slide"
-            />
-
-            <Carousel.Caption>
-              <Leaderboard />
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="./images/rick.jpg"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-        <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
-          <Button className="play-game" variant="primary" size="lg">Play Game</Button>
-        </DelayLink>
+        <Container>
+          <Image src="images/typing-icon.png" className="typing-icon" />
+          <h1>Welcome to Typecraft!</h1>
+          <p>
+            Before you start playing, here's how the game is going to work:
+          </p>
+          <ul>
+            A selection of words will appear on the screen
+          </ul>
+          <ul>
+            You have to type the worst as fast as possible!
+          </ul>
+          <ul>
+            But, you wont be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
+          </ul>
+          <ul>
+            As the levels go up the time allocated to each level will stay the same but the amount of words will get bigger.
+          </ul>
+          <ul>
+            When you run out of time without having finished typing your paragraph, then Game Over
+          </ul>
+          <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
+            <Button variant="primary" size="lg">Play Game</Button>
+          </DelayLink>
+        </Container>
       </Jumbotron>
     </div>
   )
