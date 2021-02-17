@@ -16,7 +16,7 @@ import './App.css';
 function App() {
 
   const {
-    contents, 
+    contents,
     setContents,
     gameConsole,
     updateGameConsole,
@@ -36,7 +36,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/play">
-            <GameConsole 
+            <GameConsole
               contents={contents}
             />
           </Route>
