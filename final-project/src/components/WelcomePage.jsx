@@ -37,16 +37,16 @@ function Welcomepage() {
                 1. A selection of words will appear on the screen
               </ul>
               <ul>
-                2. You have to type the worst as fast as possible!
+                2. You have to type the words as fast as possible!
               </ul>
               <ul>
-                3. But, you wont be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
+                3. You won't be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
               </ul>
               <ul>
-                4. As the levels go up the time allocated to each level will stay the same but the amount of words will get bigger.
+                4. As the levels go up, the time allocated to each level will stay the same but the amount of words will get bigger.
               </ul>
               <ul>
-                5. When you run out of time without having finished typing your paragraph, then Game Over
+                5. When you run out of time without having finished typing your paragraph it's Game Over!!!
               </ul>
             </Carousel.Caption>
           </Carousel.Item>
