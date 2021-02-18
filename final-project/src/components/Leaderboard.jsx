@@ -3,7 +3,7 @@ import {Container, Table} from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
 import "./Leaderboard.css"
 
-function Leaderboard(props) {
+function Leaderboard() {
   
   const { users, setUsers } = useApplicationData()
 
