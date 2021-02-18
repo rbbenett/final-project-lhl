@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import {Container, Table} from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
+import Map from "./PlayerMap";
 import "./Leaderboard.css"
 
 function Leaderboard() {
@@ -110,6 +111,9 @@ function Leaderboard() {
           </tr>
         </tbody>
       </Table>
+      </Container>
+      <Container className="googleMap">
+      <Map />
       </Container>
     </div>
   )
