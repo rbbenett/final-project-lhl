@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
+import Chat from './Chat';
 import "./GameConsole.css"
 
 function GameConsole(props) {
@@ -160,7 +161,7 @@ function GameConsole(props) {
 
   return (
     <div className="gameconsole">
-      <Jumbotron>
+      <Jumbotron className="game-area">
         <h1>TypeCraft</h1>
         <>
           <Spinner animation="border" variant="primary" />
@@ -237,6 +238,7 @@ function GameConsole(props) {
             </Button> : null} */}
         </p>
       </Jumbotron>
+      <Chat />
     </div>
   )
 }
