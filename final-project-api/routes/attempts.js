@@ -44,20 +44,22 @@ module.exports = (db) => {
         } else {
           dbquery = `
           UPDATE users
-          SET words_per_min = $1,
+          SET words_per_min = $1
           WHERE id = $2
           RETURNING *;`
           dbparams = [wpm.toFixed(0), user_id]
         }
         db.query(dbquery, dbparams)
       }).then(response => {
-
+        console.log(response)
       })
-      .catch(e => {
-        response.send(e);
+      .catch(err => {
+        console.log(err)
+        res
+          .status(500)
+          .json({ error: err.message });
         // console.log("CATCH BLOCK OF QUERY")
       });
   });
-
   return router;
 };
