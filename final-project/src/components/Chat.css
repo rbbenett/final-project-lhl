@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-#messages {
-=======
 /* #messages {
->>>>>>> 79e20bba2aae82e858200a71aae77ab78a6f3abc
   height: 200px;
   background-color: #eee;
   font-size: 12px;
@@ -16,8 +11,6 @@ input {
 
 #submit {
   width: 100%;
-<<<<<<< HEAD
-=======
   margin-top: 0;
 }
 
@@ -82,5 +75,4 @@ input {
   .container {
     width: 60%;
   }
->>>>>>> 79e20bba2aae82e858200a71aae77ab78a6f3abc
 }
