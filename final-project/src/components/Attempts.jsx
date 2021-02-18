@@ -122,7 +122,7 @@ function Attempts() {
             </tbody>
           </Table>
           <Alert variant="success">
-        <Alert.Heading>Hey, nice to see you!</Alert.Heading>
+        <Alert.Heading>Hey, nice to see you again!</Alert.Heading>
         <p>
           Congrats on the rad scores! Looks like you're doing quite well but don't let that stop you. Click on the button below to try and reach even better scores!
         </p>
@@ -139,7 +139,7 @@ function Attempts() {
   } else {
     return (
       <Alert variant="danger">
-        <Alert.Heading>Hey, nice to see you!</Alert.Heading>
+        <Alert.Heading>Hey, you must be new here!</Alert.Heading>
         <p>
           Aww yeah, so it looks like you haven't actually played yet. No worries! Simply click on the button below to play this super awesome game and build up your typing chops!
         </p>
