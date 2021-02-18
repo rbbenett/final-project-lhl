@@ -1,6 +1,7 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import useApplicationData from "../hooks/useApplicationData"
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import useApplicationData from "../hooks/useApplicationData";
+import Geocode from "react-geocode";
 
 const containerStyle = {
   width: '600px',
@@ -17,36 +18,39 @@ const position = {
   lng: -122.214
 }
 
+// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+
+// set location_type filter . Its optional.
+// google geocoder returns more that one address for given lat/lng.
+// In some case we need one address as response for which google itself provides a location_type filter.
+// So we can easily parse the result for fetching address components
+// ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE are the accepted values.
+// And according to the below google docs in description, ROOFTOP param returns the most accurate result.
+Geocode.setLocationType("ROOFTOP");
+
+
+
+
+
+
 function Map() {
-  
+
   const { users, setUsers } = useApplicationData()
 
   const userLocations = () => {
     let userLocation = []
-    for (let user of users ) {
+    for (let user of users) {
       let userObj = {}
-        userObj['name'] = user.username;
-        userObj['location'] = {
-          ['lat']: user.city,
-          ['long']: user.country
-        } 
-         userLocation.push(userObj) 
-        }
-        return userLocation
-      } 
-
-      console.log(userLocations())
-
-    var geocoding = require('geocoding');
-
-    geocoding({
-      address: 'Santa Cruz',
-      components: {
-        country: 'ES'
+      userObj['name'] = user.username;
+      userObj['location'] = {
+        ['lat']: user.city,
+        ['long']: user.country
       }
-    }).then(function(results){
-      console.log(results);
-    })
+      userLocation.push(userObj)
+    }
+    return userLocation
+  }
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -66,16 +70,29 @@ function Map() {
   }, [])
 
   return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={10}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+    >
+      { userLocations().map(item => {
+        const userLocation = Geocode.fromAddress(item.location).then(
+          (response) => {
+            const { lat, lng } = response.results[0].geometry.location;
+            console.log(lat, lng);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+              return (
+              <Marker key={item.name} position={userLocation}/>
+              )
+            })}
+      <></>
+    </GoogleMap>
   ) : <></>
 }
 
