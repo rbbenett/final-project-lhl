@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
 
 function Login(props) {
 
@@ -9,6 +10,8 @@ function Login(props) {
     username: "",
     password: ""
   })
+
+  const history = useHistory();
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -21,17 +24,11 @@ function Login(props) {
       if (Array.isArray(res.data)) {
         localStorage.setItem('user_details', JSON.stringify(res.data[0]))
         props.handleCloseLogin();
+        history.push("/play");
       } else {
         console.log("Incorrect username/password")
       }
     })
-  }
-
-  const history = useHistory();
-
-  const routeChange = () =>{ 
-    let path = `/profile`; 
-    history.push(path);
   }
 
   return (
@@ -73,7 +70,7 @@ function Login(props) {
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button variant="primary" type="submit"
-        onClick={e => {loginUser(e); routeChange()}}
+        onClick={e => loginUser(e)}
         >
           Submit
         </Button>
