@@ -216,8 +216,8 @@ function GameConsole(props) {
               Start from the begining
             </Button> : null}
           {levelStarted === false && currentLevel === 0 && JSON.parse(localStorage.getItem("user_details")) && currentLevel !== JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared ?
-            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} >
-              Start from last cleared level
+            <Button variant="primary" onClick={resumeFromLastClearedLevel} >
+              Start from level {JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared + 1}
             </Button> : null}
           {levelStarted === true ?
             <Button className="restartGame" variant="primary" onClick={resetLevel}>
