@@ -38,7 +38,7 @@ function Profile() {
               <Card.Body>
                 <Card.Title className="profileName">{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name} {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name}</Card.Title>
                 <Card.Subtitle className="profileUserName text-muted">@{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username}</Card.Subtitle>
-                <ProgressBar animated aria-valuemin="0" aria-valuemax="100" now={12} label={roundTo(userGameStatus, 0) + "%"} />
+                <ProgressBar animated aria-valuemin="0" aria-valuemax="100" now={highest * 8.4} label={roundTo(highest * 8.4, 0) + "%"} />
                 {userGameStatus == 100 ?
                   <Card.Text className="medalCard">
                     <br />
