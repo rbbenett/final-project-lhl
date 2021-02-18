@@ -12,8 +12,8 @@ const TextContainer = ({ users }) => (
               <p>
                 {users.map(({name}) => (
                   <div key={name} className="activeItem">
+                    <img className="onlineIcon" src="images/onlineIcon.png" alt="online icon" />
                     {name}
-                    {/* <img alt="Online Icon" src={onlineIcon}/> */}
                   </div>
                 ))}
               </p>
