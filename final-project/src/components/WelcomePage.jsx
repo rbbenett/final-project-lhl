@@ -11,9 +11,11 @@ function Welcomepage() {
 
   const { checkLoggedIn } = useApplicationData();
 
-  const soundUrl = "./sounds/SuperMarioBros.mp3";
+  const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
+  const playTypeSoundURL = "./sounds/type.mp3";
 
-  const [play] = useSound(soundUrl);
+  const [playGameSound] = useSound(playGameSoundUrl);
+  const [playTypeSound] = useSound(playTypeSoundURL)
 
   const [index, setIndex] = useState(0);
 
@@ -42,8 +44,8 @@ function Welcomepage() {
               Do you have what it takes???
             </Typing>
           </h2>
-          <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
-            <Button variant="primary" size="lg">Play Game</Button>
+          <DelayLink delay={3000} to="/play" clickAction={playGameSound} replace={false}>
+            <Button className="startGameButton" variant="primary" size="lg">Play Game</Button>
           </DelayLink>
         </Container>
       </Jumbotron>
