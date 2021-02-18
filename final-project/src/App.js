@@ -15,7 +15,14 @@ import './App.css';
 
 function App() {
 
-  const { contents } = useApplicationData();
+  const {
+    contents,
+    setContents,
+    gameConsole,
+    updateGameConsole,
+    userInput,
+    setUserInput
+  } = useApplicationData();
 
   return (
     <Router>
@@ -29,7 +36,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/play">
-            <GameConsole 
+            <GameConsole
               contents={contents}
             />
           </Route>
