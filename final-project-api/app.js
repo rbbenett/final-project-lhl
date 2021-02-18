@@ -7,20 +7,37 @@ const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const app        = express();
 
-// socket.io
-const http       = require("http");
-const server     = http.createServer(app);
-const socket     = require("socket.io");
-const io         = socket(server);
+// socket io
+const server = require("http").createServer();
+const io = require("socket.io")(server, {
+  transports: ["websocket", "polling"]
+});
+const users = {};
+io.on("connection", client => {
+  client.on("username", username => {
+    const user = {
+      name: username,
+      id: client.id
+    };
+    users[client.id] = user;
+    io.emit("connected", user);
+    io.emit("users", Object.values(users));
+  });
 
-io.on("connection", socket => {
-  socket.emit("your id", socket.id);
-  socket.on("send message", body => {
-    io.emit("message", body)
-  })
-})
+  client.on("send", message => {
+    io.emit("message", {
+      text: message,
+      date: new Date().toISOString(),
+      user: users[client.id]
+    });
+  });
 
-
+  client.on("disconnect", () => {
+    const username = users[client.id];
+    delete users[client.id];
+    io.emit("disconnected", client.id);
+  });
+});
 
 // const bodyParser = require("body-parser");
 // const sass       = require("node-sass-middleware");
@@ -81,8 +98,6 @@ app.use("/api/attempts", attemptsRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/attempts", attemptsRoutes(db));
-
-
 
 app.listen(PORT, () => {
   console.log(`typecraft listening on port ${PORT}`);
