@@ -7,8 +7,8 @@ function Footer() {
     <div className="footer">
       <Card bg={'dark'} text={'white'} className="text-center mb-2">
         <Card.Body>
-          <Image src="images/typing-icon.png" className="typecraft-logo-footer" />
-          <Card.Title>Typecraft Inc.</Card.Title>
+          <Image src="images/keyboard.png" className="typecraft-logo-footer" />
+          <Card.Title>TypeCraft Inc.</Card.Title>
           <Card.Text>
             <Card.Link href="https://www.cirquedusoleil.com/casting/disciplines/clowns-physical-actors/clowns">Careers</Card.Link>
           </Card.Text>
