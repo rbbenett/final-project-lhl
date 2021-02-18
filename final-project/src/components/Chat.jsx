@@ -1,165 +1,128 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from "styled-components";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
-const Page = styled.div`
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  align-items: center;
-  background-color: #46516e;
-  flex-direction: column;
-`;
+import "bootstrap/dist/css/bootstrap.css";
+import "./Chat.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-  max-height: 500px;
-  overflow: auto;
-  width: 400px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  padding-bottom: 10px;
-  margin-top: 25px;
-`;
+import TextContainer from './TextContainer';
+import Messages from './Messages';
+// import InfoBar from '../InfoBar/InfoBar';
+import Input from './Input';
 
-const TextArea = styled.textarea`
-  width: 98%;
-  height: 100px;
-  border-radius: 10px;
-  margin-top: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  font-size: 17px;
-  background-color: transparent;
-  border: 1px solid lightgray;
-  outline: none;
-  color: lightgray;
-  letter-spacing: 1px;
-  line-height: 20px;
-  ::placeholder {
-    color: lightgray;
-  }
-`;
+import './Chat.css';
 
-const Button = styled.button`
-  background-color: pink;
-  width: 100%;
-  border: none;
-  height: 50px;
-  border-radius: 10px;
-  color: #46516e;
-  font-size: 17px;
-`;
+const username = JSON.parse(localStorage.getItem("user_details"))?.username
 
-const Form = styled.form`
-  width: 400px;
-`;
-
-const MyRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-`;
-
-const MyMessage = styled.div`
-  width: 45%;
-  background-color: pink;
-  color: #46516e;
-  padding: 10px;
-  margin-right: 5px;
-  text-align: center;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
-`;
-
-const PartnerRow = styled(MyRow)`
-  justify-content: flex-start;
-`;
-
-const PartnerMessage = styled.div`
-  width: 45%;
-  background-color: transparent;
-  color: lightgray;
-  border: 1px solid lightgray;
-  padding: 10px;
-  margin-left: 5px;
-  text-align: center;
-  border-top-left-radius: 10%;
-  border-bottom-left-radius: 10%;
-`;
+const socket = io("http://localhost:8000", {
+  transports: ["websocket", "polling"]
+});
 
 const Chat = () => {
 
-  const [yourID, setYourID] = useState();
   const [users, setUsers] = useState([]);
-  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-
-  const socketRef = useRef();
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    socket.on("connect", () => {
+      socket.emit("username", username);
+    });
 
-    socketRef.current = io.connect('/');
+    socket.on("users", users => {
+      setUsers(users);
+    });
 
-    socketRef.current.on("your id", id => {
-      setYourID(id);
-    }, []);
+    socket.on("message", message => {
+      setMessages(messages => [...messages, message]);
+    });
 
-    socketRef.current.on("message", (message) => {
-      console.log("here");
-      receivedMessage(message);
-    })
+    socket.on("connected", user => {
+      setUsers(users => [...users, user]);
+    });
+
+    socket.on("disconnected", id => {
+      setUsers(users => {
+        return users.filter(user => user.id !== id);
+      });
+    });
   }, []);
 
-  function receivedMessage(message) {
-    setMessages(oldMsgs => [...oldMsgs, message]);
-  }
+  // const submit = event => {
+  //   event.preventDefault();
+  //   socket.emit("send", message);
+  //   setMessage("");
+  // };
 
-  function sendMessage(e) {
-    e.preventDefault();
-    const messageObject = {
-      body: message,
-      id: yourID,
-    };
-    setMessage("");
-    socketRef.current.emit("send message", messageObject);
-  }
+  const sendMessage = (event) => {
+    event.preventDefault();
 
-  function handleChange(e) {
-    setMessage(e.target.value);
+    if(message) {
+      socket.emit('send', message, () => setMessage(''));
+    }
   }
 
   return (
-    <Page>
-      <Container>
-        {messages.map((message, index) => {
-          if (message.id === yourID) {
-            return (
-              <MyRow key={index}>
-                <MyMessage>
-                  {message.body}
-                </MyMessage>
-              </MyRow>
-            )
-          }
-          return (
-            <PartnerRow key={index}>
-              <PartnerMessage>
-                {message.body}
-              </PartnerMessage>
-            </PartnerRow>
-          )
-        })}
-      </Container>
-      <Form onSubmit={sendMessage}>
-        <TextArea value={message} onChange={handleChange} placeholder="Say something..." />
-        <Button>Send</Button>
-      </Form>
-    </Page>
-  )
-}
+    <div className="outerContainer">
+      <div className="container">
+          {/* <InfoBar room={room} /> */}
+          <Messages messages={messages} name={username} />
+          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+      </div>
+      <TextContainer users={users}/>
+    </div>
 
+
+    // <div className="container">
+    //   <div className="row">
+    //     <div className="col-md-8">
+    //       <h6>Messages</h6>
+    //       <div id="messages">
+    //         {messages.map(({ user, date, text }, index) => (
+    //           // <div key={index} className="each-msg-container">
+    //           //   <p className="each-msg-username">{user.name}</p>
+    //           //   <p className="each-msg-text">{text}</p>
+    //           //   <p className="each-msg-time">{moment(date).format("h:mma")}</p>
+    //           // </div>
+    //           <div key={index} className="row mb-2">
+    //             <div className="col-md-3">
+    //               {moment(date).format("h:mma")}
+    //             </div>
+    //             <div className="col-md-2">{user.name}</div>
+    //             <div className="col-md-2">{text}</div>
+    //           </div>
+    //         ))}
+    //       </div>
+    //       <form onSubmit={submit} id="form">
+    //         <div className="input-group">
+    //           <input
+    //             type="text"
+    //             className="form-control"
+    //             onChange={e => setMessage(e.currentTarget.value)}
+    //             value={message}
+    //             id="text"
+    //           />
+    //           <span className="input-group-btn">
+    //             <button id="submit" type="submit" className="btn btn-primary">
+    //               Send
+    //             </button>
+    //           </span>
+    //         </div>
+    //       </form>
+    //     </div>
+    //     <div className="col-md-4">
+    //       <h6>{users.length} typists online</h6>
+    //       <ul id="users">
+    //         {users.map(({ name, id }) => (
+    //           <li key={id}>{name}</li>
+    //         ))}
+    //       </ul>
+    //     </div>
+    //   </div>
+    // </div>
+  );
+
+}
 export default Chat
