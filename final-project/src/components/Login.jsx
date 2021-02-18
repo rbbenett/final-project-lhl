@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
 function Login(props) {
 
@@ -24,6 +25,13 @@ function Login(props) {
         console.log("Incorrect username/password")
       }
     })
+  }
+
+  const history = useHistory();
+
+  const routeChange = () =>{ 
+    let path = `/profile`; 
+    history.push(path);
   }
 
   return (
@@ -65,7 +73,7 @@ function Login(props) {
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button variant="primary" type="submit"
-        onClick={e => loginUser(e)}
+        onClick={e => {loginUser(e); routeChange()}}
         >
           Submit
         </Button>
