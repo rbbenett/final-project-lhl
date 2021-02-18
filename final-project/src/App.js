@@ -9,7 +9,7 @@ import Profile from "./components/Profile.jsx";
 import Welcomepage from "./components/WelcomePage.jsx";
 import GameConsole from "./components/GameConsole.jsx";
 import NavbarTC from "./components/NavbarTC.jsx";
-import Chat from "./components/Chat.jsx";
+// import Chat from "./components/Chat.jsx";
 
 // Import stylesheets
 import './App.css';
@@ -37,7 +37,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/play">
-            <Chat />
+            {/* <Chat /> */}
             <GameConsole
               contents={contents}
             />
