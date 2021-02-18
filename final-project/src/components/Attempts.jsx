@@ -21,42 +21,19 @@ function Attempts() {
 
   const [sortType, setSortType] = useState('words_per_min');
 
-  const sortedAttempts = useMemo(() => {
-    const sortArray = type => {
-      const types = {
-        wordsPerMin: 'words_per_min',
-        levels: 'level_id',
-      };
-      const sortProperty = types[type];
-      const secondarySortProperty = types[type === 'levels' ? 'wordsPerMin' : 'levels']
-      const sorted = [...attempts].sort((a, b) => {
-        const initialDiff = b[sortProperty] - a[sortProperty]
-        if (initialDiff === 0) {
-          return b[secondarySortProperty] - a[secondarySortProperty]
-        } else {
-          return initialDiff;
-        }
-      });
-      return sorted;
-    };
-    return sortArray(sortType).reverse()
-  }, [attempts, sortType])
-
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
-
-  console.log(sortedAttempts)
 
   const sortedUsersId = () => {
     let result = [];
-    for (let i = 0; i < sortedAttempts.length; i++) {
-      result.push(sortedAttempts[i].user_id)
+    for (let i = 0; i < attempts.length; i++) {
+      result.push(attempts[i].user_id)
     }
     return result
   }
 
   const currentUserAttempts = useMemo(() => {
     let result = []
-    for (let attempt of sortedAttempts)
+    for (let attempt of attempts)
       if (attempt.user_id === currentUser && attempt.passed === true) {
         result.push(attempt)
       }
@@ -66,8 +43,6 @@ function Attempts() {
   const sortUserAttempts = currentUserAttempts.sort((a, b) => {
     return b.words_per_min - a.words_per_min
   })
-
-  console.log(sortUserAttempts)
 
   if (sortedUsersId().includes(currentUser)) {
     return (
