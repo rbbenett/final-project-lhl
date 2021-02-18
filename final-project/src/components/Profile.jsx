@@ -14,6 +14,10 @@ function Profile() {
   const handleCloseEditPassword = () => setShowEditPassword(false);
   const handleShowEditPassword = () => setShowEditPassword(true);
 
+  const roundTo = require('round-to');
+
+  
+  const userGameStatus = (((localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared)/12) * 100)
 
   return (
     <div className="profile">
@@ -23,18 +27,47 @@ function Profile() {
             <Card border="secondary" style={{ width: '18rem' }}>
               <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
               <Card.Body>
-                <Card.Title>{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name} {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">@{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username}</Card.Subtitle>
-                <ProgressBar animated now={(localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared) * 10} label={((localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared) * 10) + "%"} />
-                {/* <Card.Text><i class="fas fa-certificate"></i> Veteran</Card.Text> */}
-                <Card.Text>
+                <Card.Title className="profileName">{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name} {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name}</Card.Title>
+                <Card.Subtitle className="profileUserName text-muted">@{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username}</Card.Subtitle>
+                <ProgressBar animated now={roundTo(userGameStatus, 0)} label={roundTo(userGameStatus, 0) + "%"} />
+                {userGameStatus > 75 ? 
+                <Card.Text className="medalCard">
                   <br />
-                  <Card.Img variant="top" src="images/medal-icon.png" className="medal-icon" />
-                  Veteran
+                  <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
+                  <Card.Img className="medal-icon" variant="top" src="images/3medal.png" className="medal-icon" />
+                  <Card.Img className="medal-icon" variant="top" src="images/2medal.png" className="medal-icon" />
+                  <Card.Img className="medal-icon" variant="top" src="images/1medal.png" className="medal-icon" />
+                  <br />
+                  <strong className="progressTitle">Veteran</strong>
+                </Card.Text> 
+                : userGameStatus > 50 ?
+                <Card.Text className="medalCard">
+                  <br />
+                  <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
+                  <Card.Img className="medal-icon" variant="top" src="images/3medal.png" className="medal-icon" />
+                  <Card.Img className="medal-icon" variant="top" src="images/2medal.png" className="medal-icon" />
+                  <br />
+                  <strong className="progressTitle">Experienced</strong>
                 </Card.Text>
-                <Card.Text>Highest Level Completed: {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared}</Card.Text>
+                : userGameStatus > 25 ?
+                <Card.Text className="medalCard">
+                  <br />
+                  <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
+                  <Card.Img className="medal-icon" variant="top" src="images/3medal.png" className="medal-icon" />
+                  <br />
+                  <strong className="progressTitle">Seasoned</strong>
+                </Card.Text>
+                : 
+                <Card.Text className="medalCard">
+                  <br />
+                  <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
+                  <br />
+                  <strong className="progressTitle">Rookie</strong>
+                </Card.Text>
+                }
+                <Card.Text>Highest Level Completed: {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared + "/12"}</Card.Text>
                 <Card.Text>Average WPM: {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).words_per_min}</Card.Text>
-                <Button variant="primary" href="/leaderboard">Global Leaderboard</Button>
+                <Button className="leaderboardButton" variant="primary" href="/leaderboard">Global Leaderboard</Button>
               </Card.Body>
             </Card>
           </Col>
