@@ -14,6 +14,7 @@ function Profile() {
   const handleCloseEditPassword = () => setShowEditPassword(false);
   const handleShowEditPassword = () => setShowEditPassword(true);
 
+  console.log(JSON.parse(localStorage.getItem("user_details")))
 
   return (
     <div className="profile">
