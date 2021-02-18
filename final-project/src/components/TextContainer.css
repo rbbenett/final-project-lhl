@@ -22,8 +22,8 @@
   padding-left: 10px;
 }
 
-.textContainer h1 {
-  margin-bottom: 0px;
+.online-typists-heading {
+  font-size: 1rem;
 }
 
 @media (min-width: 320px) and (max-width: 1200px) {
