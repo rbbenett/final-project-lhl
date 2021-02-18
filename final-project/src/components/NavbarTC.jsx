@@ -23,7 +23,7 @@ function NavbarTC() {
         <Link to="/">
           <Image src="images/typing-icon.png" className="typecraft-logo" />
         </Link>
-        <Navbar.Brand href="/">Typecraft</Navbar.Brand>
+        <Navbar.Brand href="/">TypeCraft</Navbar.Brand>
         <Nav className="mr-auto">
         </Nav>
         <Nav>
