@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -22,7 +22,8 @@ module.exports = (db) => {
     let words_completed = req.body.words_completed;
     let time_taken = req.body.time_taken;
     let passed = req.body.passed;
-    console.log("SO I DO GET HERE")
+    let current_highest_level_passed = req.body.current_highest_level_passed;
+    let wpm = req.body.wpm;
 
     return db.query(`
       INSERT INTO attempts (user_id, level_id, words_completed, time_taken, passed)
@@ -30,17 +31,31 @@ module.exports = (db) => {
       RETURNING *;
     `, [user_id, level_id, words_completed, time_taken, passed])
       .then(response => {
-        console.log("inserted attempt", response);
-        // let userName = response.rows[0].name;
-        // let userID = response.rows[0].id;
-        // req.session["userName"] = userName;
-        // req.session["userID"] = userID;
-        // res.redirect("/postings");
-        // return response.rows[0] ? response.rows[0] : null;
+        let dbquery = ""
+        let dbparams = ""
+        if (current_highest_level_passed < level_id) {
+          dbquery = `
+          UPDATE users
+          SET highest_level_cleared = $1, words_per_min = $2
+          WHERE id = $3
+          RETURNING *;
+          `
+          dbparams = [level_id, wpm.toFixed(0), user_id]
+        } else {
+          dbquery = `
+          UPDATE users
+          SET words_per_min = $1,
+          WHERE id = $2
+          RETURNING *;`
+          dbparams = [wpm.toFixed(0), user_id]
+        }
+        db.query(dbquery, dbparams)
+      }).then(response => {
+
       })
       .catch(e => {
         response.send(e);
-        console.log("CATCH BLOCK OF QUERY")
+        // console.log("CATCH BLOCK OF QUERY")
       });
   });
 
