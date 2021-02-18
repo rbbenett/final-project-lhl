@@ -14,3 +14,7 @@ a.btn {
 }
 
 h1, h2 { font-family: "Lucida Sans Typewriter"}
+
+.startGameButton {
+  margin: 1rem
+}
