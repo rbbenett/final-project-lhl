@@ -21,30 +21,27 @@ function Welcomepage() {
     <div className="welcome-container">
       <Jumbotron fluid>
         <Container>
-          <Image src="images/typing-icon.png" className="typing-icon" />
+          <Image src="images/keyboard.png" className="typing-icon" />
           <h1>
-            <Typing speed={40}>
+            <Typing speed={60}>
               Welcome to Typecraft!
             </Typing>
           </h1>
-          <p>
-            Before you start playing, here's how the game is going to work:
-          </p>
-          <ul>
-            1. A selection of words will appear on the screen
-          </ul>
-          <ul>
-            2. You have to type the words as fast as possible!
-          </ul>
-          <ul>
-            3. You won't be able to advance on to the next level if there are any mistakes so make sure you check for mistakes as well
-          </ul>
-          <ul>
-            4. As the levels go up. the time allocated to each level will stay the same but the amount of words will get bigger.
-          </ul>
-          <ul>
-            5. When you run out of time without having finished typing your paragraph, Game Over!
-          </ul>
+          <h2>
+          <Typing startDelay={2000} speed={60}>
+              10 Levels!!!
+            </Typing>
+          </h2>
+          <h2>
+          <Typing startDelay={3000} speed={60}>
+              30 Seconds!!!
+            </Typing>
+          </h2>
+          <h2>
+          <Typing startDelay={4000} speed={60}>
+              Do you have what it takes???
+            </Typing>
+          </h2>
           <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
             <Button variant="primary" size="lg">Play Game</Button>
           </DelayLink>
