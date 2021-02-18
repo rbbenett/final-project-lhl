@@ -6,10 +6,11 @@
   width: 15rem;
   height: auto;
   margin-bottom: 1rem;
-}
-
-a.btn {
-  margin-top: 2rem;
+  margin: auto;
 }
 
 h1, h2 { font-family: "Lucida Sans Typewriter"}
+
+.startGameButton {
+  margin: 1rem
+}
