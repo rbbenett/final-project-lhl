@@ -17,10 +17,6 @@ function Welcomepage() {
 
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-
   return (
     <div className="welcome-container">
       <Jumbotron fluid>
