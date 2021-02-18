@@ -5,9 +5,26 @@ require('dotenv').config();
 const PORT       = process.env.PORT || 3004;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
+const app        = express();
+
+// socket.io
+const http       = require("http");
+const server     = http.createServer(app);
+const socket     = require("socket.io");
+const io         = socket(server);
+
+io.on("connection", socket => {
+  socket.emit("your id", socket.id);
+  socket.on("send message", body => {
+    io.emit("message", body)
+  })
+})
+
+
+
 // const bodyParser = require("body-parser");
 // const sass       = require("node-sass-middleware");
-const app        = express();
+
 const morgan     = require('morgan');
 const cors = require("cors");
 // const cookieSession = require('cookie-session');
@@ -68,5 +85,8 @@ app.use("/attempts", attemptsRoutes(db));
 
 
 app.listen(PORT, () => {
-  console.log(`Lighthouse Marketplace listening on port ${PORT}`);
+  console.log(`typecraft listening on port ${PORT}`);
 });
+
+// socket.io
+server.listen(8000, () => console.log("socket io server is running on port 8000"));
