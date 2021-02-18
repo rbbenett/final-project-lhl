@@ -4,7 +4,6 @@ import Typing from "react-typing-animation";
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
 import "./WelcomePage.css";
-import Leaderboard from "./Leaderboard"
 import useApplicationData from '../hooks/useApplicationData';
 
 
