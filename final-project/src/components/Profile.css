@@ -19,3 +19,33 @@ div.card {
   margin: auto;
   text-align: center;
 }
+
+img.medal-icon {
+  width: 25%;
+  margin-bottom: 1rem
+}
+
+div.progress {
+  margin: 1rem
+}
+
+p.card-text {
+  margin: 1rem
+}
+
+strong.progressTitle {
+  background: none;
+  color: black
+}
+
+a.leaderboardButton {
+  margin: 0
+}
+
+div.profileUserName {
+  margin: 1rem
+}
+
+div.profileName {
+  margin: 1rem
+}
