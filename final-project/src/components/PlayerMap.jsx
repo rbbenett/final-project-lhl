@@ -22,26 +22,31 @@ function Map() {
   const { users, setUsers } = useApplicationData()
 
   const userLocations = () => {
-    let userLocation = {
-      name: "",
-      location: {
-        lat: 0,
-        lng: 0
-      },
-    }
-    for (let i = 0; i < users.length; i++ ) {
-      userLocation = {
-        name: users[i].username,
-        location: {
-          lat: users[i].city,
-          long: users[i].country
+    let userLocation = []
+    for (let user of users ) {
+      let userObj = {}
+        userObj['name'] = user.username;
+        userObj['location'] = {
+          ['lat']: user.city,
+          ['long']: user.country
+        } 
+         userLocation.push(userObj) 
         }
+        return userLocation
       } 
-      return userLocation
-    }
-  }
 
-  console.log(userLocations())
+      console.log(userLocations())
+
+    var geocoding = require('geocoding');
+
+    geocoding({
+      address: 'Santa Cruz',
+      components: {
+        country: 'ES'
+      }
+    }).then(function(results){
+      console.log(results);
+    })
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
