@@ -29,7 +29,6 @@ function App() {
     <Router>
       <div className="app">
         <NavbarTC />
-        <Chat />
         <Switch>
           <Route path="/leaderboard">
             <Leaderboard />
@@ -38,6 +37,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/play">
+            <Chat />
             <GameConsole
               contents={contents}
             />
