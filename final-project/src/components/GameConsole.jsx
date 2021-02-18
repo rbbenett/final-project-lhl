@@ -183,7 +183,7 @@ function GameConsole(props) {
 
   return (
     <div className="gameconsole">
-      <Jumbotron className="game-area">
+      <Jumbotron className="game-area" style={{marginBottom: 0}}>
         <h1>TypeCraft</h1>
         <>
           <Spinner animation="border" variant="primary" />
