@@ -15,5 +15,10 @@ module.exports = (db) => {
       });
   });
 
+  router.post('/', (req,res) => {
+    console.log(req.body)
+    db.query('')
+  })
+
   return router;
 };

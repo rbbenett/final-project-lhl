@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
 import Chat from './Chat';
 import "./GameConsole.css"
+import useApplicationData from "../hooks/useApplicationData";
 
 function GameConsole(props) {
+
+  const { attempts, setAttempts } = useApplicationData()
 
   const [seconds, setSeconds] = useState(30);
   const [typingIn, setTypingIn] = useState("");
@@ -13,6 +16,21 @@ function GameConsole(props) {
   const [intervalId, setIntervalId] = useState(null)
   const [levelContent, setLevelContent] = useState("")
   const [levelStarted, setLevelStarted] = useState(false)
+
+  const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
+
+  // calculate wpm of the user
+  const totalAvgWpm = function() {
+    let result = []
+    for (let attempt of attempts)
+      if (attempt.user_id === currentUser) {
+        result.push(attempt)
+      }
+    let totalWords = (result.reduce((a, b) => a + (parseInt(b.words_completed) || 0), 0))
+    let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
+    return totalWords/totalTime
+  }
+
 
   //Highlights the words that are right
   const highlightWords = (event) => {
@@ -28,7 +46,7 @@ function GameConsole(props) {
       setTypingIn(value);
     }
   }
-  
+
   //Timer to start and set seconds
   const Timer = function (seconds) {
     setLevelStarted(true)
@@ -110,22 +128,23 @@ function GameConsole(props) {
       setLevelStarted(false)
       let currentLevelWords = props.contents[currentLevel].content.split(' ')
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
+      let wpm = totalAvgWpm()
+      console.log(wpm)
       setLevelContent("GameOver")
       clearInterval(intervalId)
-      console.log("totalOFcorrectword function gives", totalOfCorrectWords)
-      console.log("current level gives", currentLevel)
       axios.post('/attempts', {
         user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
         level_id: currentLevel + 1,
         words_completed: totalOfCorrectWords,
         time_taken: 30,
-        passed: false
+        passed: false,
+        current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared,
+        wpm: wpm
       })
         .then(res => {
-          //if currentlevel+1 > highest level in local storage, make a patch request to user to update highest level completed
-          console.log("I DID REACH HERE")
-          console.log(res);
+          console.log(res)
         })
+        .catch(err => console.log(err))
     }
   }, [seconds, intervalId]);
 
@@ -137,6 +156,7 @@ function GameConsole(props) {
       setLevelContent("Time for next level. Press the button below when you're ready to start")
       clearInterval(intervalId);
       setLevelStarted(false)
+      let wpm = totalAvgWpm()
       setCurrentLevel(currentLevel + 1)
       setSeconds(30)
       setTypingIn("");
@@ -145,12 +165,14 @@ function GameConsole(props) {
         level_id: currentLevel + 1,
         words_completed: correctWords,
         time_taken: secondsLeft,
-        passed: true
+        passed: true,
+        current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared,
+        wpm: wpm
       })
         .then(res => {
-          console.log("user completed level posted to db", res);
-          //if currentlevel+1 > highest level in local storage, make a patch request to user to update highest level completed
+          console.log(res)
         })
+        .catch(err => console.log(err))
     }
   }, [typingIn, intervalId])
 
@@ -230,7 +252,7 @@ function GameConsole(props) {
               variant="primary"
               onClick={startGame}
             >
-              {levelStarted === true ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
+              {levelStarted === true && seconds !== "Game Over" ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
             </Button> : null}
           {/* {levelStarted === false ?
               <Button variant="primary" onClick={restartfromFirstLevel}>
