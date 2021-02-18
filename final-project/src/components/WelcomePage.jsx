@@ -24,7 +24,7 @@ function Welcomepage() {
           <Image src="images/keyboard.png" className="typing-icon" />
           <h1>
             <Typing speed={60}>
-              Welcome to Typecraft!
+              Welcome to TypeCraft!
             </Typing>
           </h1>
           <h2>
