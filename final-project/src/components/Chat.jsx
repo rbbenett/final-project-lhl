@@ -66,12 +66,12 @@ const Chat = () => {
 
   return (
     <div className="outerContainer">
+      <TextContainer users={users}/>
       <div className="chat-container">
           <InfoBar />
           <Messages messages={messages} name={username} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
-      <TextContainer users={users}/>
     </div>
   );
 

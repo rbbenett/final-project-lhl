@@ -1,7 +1,11 @@
 .gameconsole {
-  width: 90%;
-  margin: auto;
+  display: flex;
+  height: 100vh;
   text-align: center;
+}
+
+.game-area {
+  width: 70%;
 }
 
 strong {
