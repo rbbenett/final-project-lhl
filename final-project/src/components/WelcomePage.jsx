@@ -9,15 +9,9 @@ import useApplicationData from '../hooks/useApplicationData';
 
 function Welcomepage() {
 
-  const { checkLoggedIn } = useApplicationData();
-
   const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
-  const playTypeSoundURL = "./sounds/type.mp3";
 
   const [playGameSound] = useSound(playGameSoundUrl);
-  const [playTypeSound] = useSound(playTypeSoundURL)
-
-  const [index, setIndex] = useState(0);
 
   return (
     <div className="welcome-container">
