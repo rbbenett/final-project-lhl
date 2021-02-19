@@ -1,5 +1,30 @@
 .welcome-container {
   text-align: center;
+  height: 100%;
+}
+
+.container-of-bg {
+  background-image: url("./keyboard-white.jpg");
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  margin-bottom: 0;
+}
+
+.welcome-text-box {
+  margin-top: 12rem;
+}
+
+.welcome-to-typecraft {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 800;
+  font-size: 5rem;
+}
+
+h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+  font-size: 2rem;
 }
 
 .typing-icon {
@@ -8,8 +33,6 @@
   margin-bottom: 1rem;
   margin: auto;
 }
-
-h1, h2 { font-family: "Lucida Sans Typewriter"}
 
 .startGameButton {
   margin: 1rem
