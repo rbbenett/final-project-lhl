@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 import useApplicationData from "../hooks/useApplicationData"
@@ -17,131 +17,51 @@ function Map() {
 
   const [selected, setSelected] = useState({});
   const { users, setUsers } = useApplicationData();
-  
+  const [points, setPoints] = useState();
+
   Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
-  // const locations = [
-  //   {
-  //     name: "@JSmith",
-  //     location: {
-  //       lat: 43.6532,
-  //       lng: -79.3832
-  //     },
-  //   },
-
-  const userArray = async () => {
-    let result = [];
-    let userObject;
-    let userCoords;
-    let userLat;
-    let userLng;
-    for (let user of users) {
-      userCoords = await geoLocation(`${user.city}, ${user.country}`);
-      console.log("user roads >>>", userCoords)
-      userLat = userCoords[0];
-      userLng = userCoords[1];
-      userObject = {};
-      userObject.name = user.username;
-      userObject.location = {
-        lat: userLat, 
-        lng: userLng
-      }
-      result.push(userObject)
+  // Get geocode based on a city and country
+  async function getLocation(city, country) {
+    try {
+      let response = await Geocode.fromAddress(`${city}, ${country}`);
+      return (
+        {
+          lat: response.results[0].geometry.location.lat,
+          lng: response.results[0].geometry.location.lng
+        }
+      )
     }
-    return result
+    catch(err) {
+      console.log("Error fetching geodata:", err);
+    }
+    return null;
   }
-
-  // console.log(userArray())
-
-  function geoLocation(city, country){ 
-    Geocode.fromAddress(city, country)
-    .then((response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        return [lat, lng];
-        console.log(lat, lng);
-      },
-      (error) => {
-        console.error(error);
+  
+  // get geocode of each user in the database 
+  async function getLocations(users) {
+    let result = [];
+    for (let user of users) {
+      const res = await getLocation(`${user.city}, ${user.country}`);
+      const newUser = {
+        name: user.username,
+        location: res,
       }
-    );
+      result.push(newUser)
+    }
+    return result;
   }
+  
+  useEffect(() => {
+    (async () => {
+      const stuff = await getLocations(users).then((res) => {return res})
+      setPoints(stuff);
+    })()
+  }, [users]);
 
   const onSelect = item => {
     setSelected(item);
   }
-
-  const locations = [
-    {
-      name: "@JSmith",
-      location: {
-        lat: 43.6532,
-        lng: -79.3832
-      },
-    },
-    {
-      name: "@ChuckNorr",
-      location: {
-        lat: 34.0522,
-        lng: -118.2437
-      },
-    },
-    {
-      name: "@TFey",
-      location: {
-        lat: 40.7594,
-        lng: -73.9800
-      },
-    },
-    {
-      name: "@CChanning",
-      location: {
-        lat: 45.5017,
-        lng: -73.5673
-      },
-    },
-    {
-      name: "@CDion",
-      location: {
-        lat: 45.5020,
-        lng: -73.5670
-      },
-    },
-    {
-      name: "@WGretzsky",
-      location: {
-        lat: 43.6535,
-        lng: -79.3835
-      },
-    },
-    {
-      name: "@JTrudeau",
-      location: {
-        lat: 45.4445,
-        lng: -75.6858
-      },
-    },
-    {
-      name: "@CTatum",
-      location: {
-        lat: 34.0928,
-        lng: -118.3287
-      },
-    },
-    {
-      name: "@MMouse",
-      location: {
-        lat: 28.3852,
-        lng: -81.5639
-      },
-    },
-    {
-      name: "@CLloyd",
-      location: {
-        lat: 34.1478,
-        lng: -118.1445
-      },
-    }
-  ];
 
   return (
     <LoadScript
@@ -153,7 +73,7 @@ function Map() {
         zoom={3}
       >
         {
-          locations.map(item => {
+          points && points.map(item => {
             return (
               <Marker key={item.name}
                 position={item.location}
@@ -171,13 +91,13 @@ function Map() {
               onCloseClick={() => setSelected({})}
             >
               <div>
-              <img src="./images/user.png" alt="User Icon"></img>
-              <p style={{ margin: "0" }}>{selected.name}</p>
+                <img src="./images/user.png" alt="User Icon"></img>
+                <p style={{ margin: "0" }}>{selected.name}</p>
               </div>
             </InfoWindow>
           )
         }
-      <></>
+        <></>
       </GoogleMap>
     </LoadScript >
   )
