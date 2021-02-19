@@ -18,7 +18,9 @@ function Register(props) {
     country: ""
   });
 
-  const registerUser = () => {
+  const registerUser = (e) => {
+    e.preventDefault();
+    console.log("hi")
     axios.post('/register', {
       username: newUserDetails.username,
       first_name: newUserDetails.first_name,
@@ -29,10 +31,18 @@ function Register(props) {
       city: newUserDetails.city,
       country: newUserDetails.country
     })
-      .then(res => {
-        console.log(res);
-        props.handleCloseRegister();
-      })
+    .then(res => {
+      console.log(res);
+      props.handleCloseRegister();
+      console.log("REACHED HEREEEEE")
+      if (Array.isArray(res.data)) {
+        localStorage.setItem('user_details', JSON.stringify(res.data[0]))
+        props.handleCloseLogin();
+        // history.push("/play");
+      } else {
+        console.log("Incorrect username/password")
+      }
+    })
   }
 
   return (
@@ -164,7 +174,7 @@ function Register(props) {
         <Button
           variant="primary"
           type="submit"
-          onClick={registerUser}
+          onClick={(e) => registerUser(e)}
         >
           Submit
         </Button>
