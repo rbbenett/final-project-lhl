@@ -32,31 +32,8 @@ module.exports = (db) => {
       RETURNING *;
     `, [username, first_name, last_name, email, password, city, country, avatar])
       .then(response => {
-        console.log("YOOO");
-        db.query(`
-            SELECT * FROM users
-            WHERE username = $1 AND password = $2;
-          `, [username, password])
-          // .then(response => {
-          //   if (response.rows[0]) {
-          //     console.log("we found a user match!")
-          //     console.log(response.rows)
-          //     // res.send(response.rows)
-          //   } else {
-          //     console.log("dont exist!")
-          //     // res.send("WRONG COMBO")
-          //   }
-          // })
-      })
-      .then(response => {
-        if (response.rows[0]) {
-          console.log("we found a user match!")
-          console.log(response.rows)
-          // res.send(response.rows)
-        } else {
-          console.log("dont exist!")
-          // res.send("WRONG COMBO")
-        }
+        console.log("YO", response);
+        // res.redirect("/login");
       })
       .catch(e => {
         response.send(e);

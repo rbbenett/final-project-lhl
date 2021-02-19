@@ -39,7 +39,7 @@ function Leaderboard() {
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th colSpan="4" classname="align-me">Leaderboard</th>
+            <th colSpan="4" className="align-me">Leaderboard</th>
           </tr>
           <tr>
             <th>Ranking</th>
