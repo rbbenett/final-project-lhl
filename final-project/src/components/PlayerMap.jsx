@@ -19,6 +19,8 @@ function Map() {
   const { users, setUsers } = useApplicationData();
   const [points, setPoints] = useState();
 
+  console.log(selected)
+
   Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
   // Get geocode based on a city and country
@@ -45,6 +47,8 @@ function Map() {
       const res = await getLocation(`${user.city}, ${user.country}`);
       const newUser = {
         name: user.username,
+        city: user.city,
+        country: user.country,
         location: res,
       }
       result.push(newUser)
@@ -92,7 +96,8 @@ function Map() {
             >
               <div>
                 <img src="./images/user.png" alt="User Icon"></img>
-                <p style={{ margin: "0" }}>{selected.name}</p>
+                <p style={{ margin: "0" }}>@{selected.name}</p>
+                <p style={{ margin: "0" }}>{selected.city}, {selected.country}</p>
               </div>
             </InfoWindow>
           )
