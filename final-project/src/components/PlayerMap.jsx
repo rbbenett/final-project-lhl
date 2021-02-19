@@ -12,7 +12,7 @@ function Map() {
 
   const containerStyle = {
     width: '600px',
-    height: '600px'
+    height: '600px',
   };
   
   const onSelect = item => {
