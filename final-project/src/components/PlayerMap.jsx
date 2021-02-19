@@ -1,6 +1,5 @@
-import React from 'react'
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import useApplicationData from "../hooks/useApplicationData";
+import React, { useState } from 'react'
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 
 const containerStyle = {
@@ -36,21 +35,86 @@ Geocode.setLocationType("ROOFTOP");
 
 function Map() {
 
-  const { users, setUsers } = useApplicationData()
-
-  const userLocations = () => {
-    let userLocation = []
-    for (let user of users) {
-      let userObj = {}
-      userObj['name'] = user.username;
-      userObj['location'] = {
-        ['lat']: user.city,
-        ['long']: user.country
-      }
-      userLocation.push(userObj)
-    }
-    return userLocation
+  const [ selected, setSelected ] = useState({});
+  
+  const onSelect = item => {
+    setSelected(item);
   }
+
+  const locations = [
+    {
+      name: "@JSmith",
+      location: { 
+        lat: 43.6532,
+        lng: -79.3832 
+      },
+    },
+    {
+      name: "@ChuckNorr",
+      location: { 
+        lat: 34.0522,
+        lng: -118.2437
+      },
+    },
+    {
+      name: "@TFey",
+      location: { 
+        lat: 40.7594,
+        lng: -73.9800
+      },
+    },
+    {
+      name: "@CChanning",
+      location: { 
+        lat: 45.5017,
+        lng: -73.5673
+      },
+    },
+    {
+      name: "@CDion",
+      location: { 
+        lat: 45.5020,
+        lng: -73.5670
+      },
+    },
+    {
+      name: "@WGretzsky",
+      location: { 
+        lat: 43.6535,
+        lng: -79.3835 
+      },
+    },
+    {
+      name: "@JTrudeau",
+      location: { 
+        lat: 45.4445,
+        lng: -75.6858
+      },
+    },
+    {
+      name: "@CTatum",
+      location: { 
+        lat: 34.0928,
+        lng: -118.3287
+      },
+    },
+    {
+      name: "@MMouse",
+      location: { 
+        lat: 28.3852,
+        lng: -81.5639
+      },
+    },
+    {
+      name: "@CLloyd",
+      location: { 
+        lat: 34.1478,
+        lng: -118.1445
+      },
+    }
+  ];
+
+
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -77,20 +141,28 @@ function Map() {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      { userLocations().map(item => {
-        const userLocation = Geocode.fromAddress(item.location).then(
-          (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-            console.log(lat, lng);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+      {
+            locations.map(item => {
               return (
-              <Marker key={item.name} position={userLocation}/>
+              <Marker key={item.name} 
+                position={item.location}
+                onClick={() => onSelect(item)}
+              />
               )
-            })}
+            })
+         }
+        {
+            selected.location && 
+            (
+              <InfoWindow
+              position={selected.location}
+              clickable={true}
+              onCloseClick={() => setSelected({})}
+            >
+              <p>{selected.name}</p>
+            </InfoWindow>
+            )
+         }
       <></>
     </GoogleMap>
   ) : <></>
