@@ -33,7 +33,7 @@ module.exports = (db) => {
       .then(response => {
         let dbquery = ""
         let dbparams = ""
-        if (current_highest_level_passed < level_id) {
+        if (current_highest_level_passed < level_id + 1) {
           dbquery = `
           UPDATE users
           SET highest_level_cleared = $1, words_per_min = $2
