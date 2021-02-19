@@ -19,7 +19,7 @@ function GameConsole(props) {
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
   // calculate wpm of the user
-  const totalAvgWpm = function() {
+  const totalAvgWpm = function () {
     let result = []
     for (let attempt of attempts)
       if (attempt.user_id === currentUser) {
@@ -27,7 +27,7 @@ function GameConsole(props) {
       }
     let totalWords = (result.reduce((a, b) => a + (parseInt(b.words_completed) || 0), 0))
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
-    return totalWords/totalTime
+    return totalWords / totalTime
   }
 
 
@@ -36,13 +36,12 @@ function GameConsole(props) {
     let value = event.target.value;
     let txt = document.getElementById("console-text").innerText;
     let idx = txt.indexOf(value);
+    setTypingIn(value);
     if (idx >= 0) {
       let newText = [txt.substring(0, idx), <strong>{txt.substring(idx, idx + value.length)}</strong>, txt.substring(idx + value.length)];
-      setTypingIn(value);
       setLevelContent(newText);
     } else {
       setLevelContent(levelContent);
-      setTypingIn(value);
     }
   }
 
@@ -59,19 +58,14 @@ function GameConsole(props) {
 
   //Starts the timer and the sets the level up
   const startGame = function () {
-    setLevelStarted(true)
+    setLevelStarted(true);
+    setTypingIn("");
+    clearInterval(intervalId)
+    Timer(30)
+    setLevelContent(props.contents[currentLevel]?.content)
     if (currentLevel === 0) {
-      setTypingIn("");
-      setLevelContent(props.contents[currentLevel]?.content)
-      clearInterval(intervalId)
       setCurrentLevel(0);
-      Timer(30)
-    } else {
-      setTypingIn("");
-      clearInterval(intervalId)
-      setLevelContent(props.contents[currentLevel]?.content)
-      Timer(30)
-    }
+    } 
   }
 
   //Triggered when they want to reset the current level
