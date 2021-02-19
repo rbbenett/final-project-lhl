@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/api';
+import Geocode from "react-geocode";
+import useApplicationData from "../hooks/useApplicationData"
 
 let center = {
   lat: 43.644357428479296,
@@ -14,6 +16,47 @@ const containerStyle = {
 function Map() {
 
   const [selected, setSelected] = useState({});
+  const { users, setUsers } = useApplicationData();
+
+  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+
+  function geoLocation(location){
+    let result = [] 
+    Geocode.fromAddress(location)
+    .then((response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        return (lat, lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );return result
+  }
+
+  const userArray = async () => {
+    let result = [];
+    let userObject;
+    let userCoords;
+    let userLat;
+    let userLng;
+    for (let user of users) {
+      let userLocation = (user.city.concat(", " + user.country))
+      userCoords = geoLocation(`"${userLocation}"`);
+      console.log("user roads >>>", userCoords)
+      userLat = userCoords[0];
+      userLng = userCoords[1];
+      userObject = {};
+      userObject.name = user.username;
+      userObject.location = {
+        lat: userLat, 
+        lng: userLng
+      }
+      result.push(userObject)
+    }
+    return result
+  }
+  console.log(userArray())
+
 
   const onSelect = item => {
     setSelected(item);
