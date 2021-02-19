@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
@@ -14,9 +14,10 @@ function GameConsole(props) {
   const [typingIn, setTypingIn] = useState("");
   const [currentLevel, setCurrentLevel] = useState(0);
   const [intervalId, setIntervalId] = useState(null)
-  const [levelContent, setLevelContent] = useState("")
+  const [levelContent, setLevelContent] = useState("Are You Ready To Start?")
   const [levelStarted, setLevelStarted] = useState(false)
   const [text, setText] = useState("");
+  const [highestLevel, setHighestLevel] = useState(0);
 
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
@@ -31,6 +32,18 @@ function GameConsole(props) {
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
     return totalWords / totalTime
   }
+  //Get users so we can check the highest level cleared
+  useEffect(() => {
+    axios.get("http://localhost:3004/api/users", {
+    })
+      .then(res => {
+        for (let user of res.data['users']) {
+          if (user.id === JSON.parse(localStorage.getItem("user_details")).id) {
+            setHighestLevel(user.highest_level_cleared)
+          }
+        }
+      })
+  }, [highestLevel])
 
   //Highlights the words that are right
   const highlightWords = (event) => {
@@ -64,14 +77,14 @@ function GameConsole(props) {
     let nOfWords = levels[level_id - 1].number_of_words;
     // console.log("Your requested number of words =>", nOfWords, `p-1/${nOfWords}-${nOfWords}`);
     axios.get(`https://www.randomtext.me/api/gibberish/p-1/${nOfWords}-${nOfWords}`)
-    .then(res => {
-      let taggedText = res.data.text_out;
-      // console.log("we get back>>", taggedText)
-      let cleanText = taggedText.replace(/<\/?[^>]+(>|$)/g, "");
-      postContentToDB(cleanText, level_id);
-      setLevelContent(cleanText)
-      setText(cleanText)
-    })
+      .then(res => {
+        let taggedText = res.data.text_out;
+        // console.log("we get back>>", taggedText)
+        let cleanText = taggedText.replace(/<\/?[^>]+(>|$)/g, "");
+        postContentToDB(cleanText, level_id);
+        setLevelContent(cleanText)
+        setText(cleanText)
+      })
   }
 
   // giveMeRandomText(7);
@@ -82,9 +95,9 @@ function GameConsole(props) {
       level_id: level_id,
       theme_id: 1
     })
-    .then(res => {
-    })
-    .catch(err => console.log("Catch block of posting content to DB from front end", err))
+      .then(res => {
+      })
+      .catch(err => console.log("Catch block of posting content to DB from front end", err))
   }
 
   //Starts the timer and the sets the level up
@@ -97,7 +110,7 @@ function GameConsole(props) {
     setLevelContent(giveMeRandomText(currentLevel + 1))
     if (currentLevel === 0) {
       setCurrentLevel(0);
-    } 
+    }
   }
 
   //Triggered when they want to reset the current level
@@ -134,7 +147,11 @@ function GameConsole(props) {
   //Resuming from the last cleared level button
   const resumeFromLastClearedLevel = function () {
     setLevelStarted(true)
-    setCurrentLevel(JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared);
+    setCurrentLevel(highestLevel);
+    setLevelContent(giveMeRandomText(currentLevel + 1))
+    setSeconds(30)
+    Timer(30)
+    clearInterval(intervalId)
   }
   useEffect(() => {
     if (currentLevel !== 0) {
@@ -143,6 +160,9 @@ function GameConsole(props) {
       setLevelContent(giveMeRandomText(currentLevel + 1))
       setSeconds(30)
       Timer(30)
+    }
+    if ((currentLevel) > highestLevel) {
+      setHighestLevel(currentLevel)
     }
   }, [currentLevel])
 
@@ -175,12 +195,12 @@ function GameConsole(props) {
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
     if (typingIn === text.trim() && typingIn !== "") {
+      setLevelContent(giveMeRandomText(currentLevel))
       let correctWords = text.split(' ').length;
       let secondsLeft = 30 - seconds;
       clearInterval(intervalId);
       let wpm = totalAvgWpm()
       setCurrentLevel(currentLevel + 1)
-      setLevelContent(giveMeRandomText(currentLevel))
       setSeconds(30)
       setTypingIn("");
       axios.post('/attempts', {
@@ -206,7 +226,7 @@ function GameConsole(props) {
 
   return (
     <div className="gameconsole">
-      <Jumbotron className="game-area" style={{marginBottom: 0}}>
+      <Jumbotron className="game-area" style={{ marginBottom: 0 }}>
         <h1>TypeCraft</h1>
         <>
           <Spinner animation="border" variant="primary" />
@@ -234,7 +254,7 @@ function GameConsole(props) {
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div id="console-text">
-                {currentLevel === 13 ? <GameCompleteMsg /> : levelContent || setLevelContent("Are You Ready To Start?")}
+                {currentLevel === 13 ? <GameCompleteMsg /> : levelContent}
               </div>
             </blockquote>
           </Card.Body>
@@ -250,9 +270,9 @@ function GameConsole(props) {
             value={typingIn}
             id="textarea"
             aria-label="With textarea"
-            // onCut={handleChange}
-            // onCopy={handleChange}
-            // onPaste={handleChange}
+          // onCut={handleChange}
+          // onCopy={handleChange}
+          // onPaste={handleChange}
           />
         </InputGroup>
         <br />
@@ -261,9 +281,9 @@ function GameConsole(props) {
             <Button className="startGame" variant="primary" onClick={restartfromFirstLevel}>
               Start from the begining
             </Button> : null}
-          {levelStarted === false && currentLevel === 0 && JSON.parse(localStorage.getItem("user_details")) && currentLevel !== JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared ?
+          {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel ?
             <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} >
-              Start from level {JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared + 1}
+              Start from level {highestLevel}
             </Button> : null}
           {levelStarted === true ?
             <Button className="restartGame" variant="primary" onClick={resetLevel}>
@@ -275,7 +295,7 @@ function GameConsole(props) {
               variant="primary"
               onClick={startGame}
             >
-              {levelStarted === true || seconds !== "Game Over" ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
+              {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel}!`}
             </Button> : null}
           {/* {levelStarted === false ?
               <Button variant="primary" onClick={restartfromFirstLevel}>
