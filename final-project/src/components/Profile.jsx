@@ -4,7 +4,6 @@ import { Container, Row, Col, Card, Button, ProgressBar } from 'react-bootstrap'
 import Attempts from "./Attempts";
 import "./Profile.css";
 import axios from "axios";
-import useApplicationData from "../hooks/useApplicationData";
 
 function Profile() {
 
