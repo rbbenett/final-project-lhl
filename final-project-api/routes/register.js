@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -22,23 +22,41 @@ module.exports = (db) => {
     let last_name = req.body.last_name;
     let email = req.body.email;
     let password = req.body.password;
-    let avatar = req.body.avatar; 
+    let avatar = req.body.avatar;
     let city = req.body.city;
     let country = req.body.country;
 
-    return db.query(`
+    db.query(`
       INSERT INTO users (username, first_name, last_name, email, password, city, country, avatar)
       VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *;
     `, [username, first_name, last_name, email, password, city, country, avatar])
       .then(response => {
-        console.log("YO", response);
-        // let userName = response.rows[0].name;
-        // let userID = response.rows[0].id;
-        // req.session["userName"] = userName;
-        // req.session["userID"] = userID;
-        // res.redirect("/postings");
-        // return response.rows[0] ? response.rows[0] : null;
+        console.log("YOOO");
+        db.query(`
+            SELECT * FROM users
+            WHERE username = $1 AND password = $2;
+          `, [username, password])
+          // .then(response => {
+          //   if (response.rows[0]) {
+          //     console.log("we found a user match!")
+          //     console.log(response.rows)
+          //     // res.send(response.rows)
+          //   } else {
+          //     console.log("dont exist!")
+          //     // res.send("WRONG COMBO")
+          //   }
+          // })
+      })
+      .then(response => {
+        if (response.rows[0]) {
+          console.log("we found a user match!")
+          console.log(response.rows)
+          // res.send(response.rows)
+        } else {
+          console.log("dont exist!")
+          // res.send("WRONG COMBO")
+        }
       })
       .catch(e => {
         response.send(e);
