@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/api';
+
+let center = {
+  lat: 43.644357428479296,
+  lng: -79.40218810875912
+};
+
+const containerStyle = {
+  width: '600px',
+  height: '600px',
+};
 
 function Map() {
 
-  const [ selected, setSelected ] = useState({});
+  const [selected, setSelected] = useState({});
 
-  const center = {
-    lat: 43.6532,
-    lng: -79.3832
-  };
-
-  const containerStyle = {
-    width: '600px',
-    height: '600px',
-  };
-  
   const onSelect = item => {
     setSelected(item);
   }
@@ -22,126 +22,114 @@ function Map() {
   const locations = [
     {
       name: "@JSmith",
-      location: { 
+      location: {
         lat: 43.6532,
-        lng: -79.3832 
+        lng: -79.3832
       },
     },
     {
       name: "@ChuckNorr",
-      location: { 
+      location: {
         lat: 34.0522,
         lng: -118.2437
       },
     },
     {
       name: "@TFey",
-      location: { 
+      location: {
         lat: 40.7594,
         lng: -73.9800
       },
     },
     {
       name: "@CChanning",
-      location: { 
+      location: {
         lat: 45.5017,
         lng: -73.5673
       },
     },
     {
       name: "@CDion",
-      location: { 
+      location: {
         lat: 45.5020,
         lng: -73.5670
       },
     },
     {
       name: "@WGretzsky",
-      location: { 
+      location: {
         lat: 43.6535,
-        lng: -79.3835 
+        lng: -79.3835
       },
     },
     {
       name: "@JTrudeau",
-      location: { 
+      location: {
         lat: 45.4445,
         lng: -75.6858
       },
     },
     {
       name: "@CTatum",
-      location: { 
+      location: {
         lat: 34.0928,
         lng: -118.3287
       },
     },
     {
       name: "@MMouse",
-      location: { 
+      location: {
         lat: 28.3852,
         lng: -81.5639
       },
     },
     {
       name: "@CLloyd",
-      location: { 
+      location: {
         lat: 34.1478,
         lng: -118.1445
       },
     }
   ];
 
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
-  })
-
-  const [map, setMap] = React.useState(null)
-
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
+  return (
+    <LoadScript
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}
     >
-      {
-            locations.map(item => {
-              return (
-              <Marker key={item.name} 
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={3}
+      >
+        {
+          locations.map(item => {
+            return (
+              <Marker key={item.name}
                 position={item.location}
                 onClick={() => onSelect(item)}
               />
-              )
-            })
-         }
+            )
+          })
+        }
         {
-            selected.location && 
-            (
-              <InfoWindow
+          selected.location &&
+          (
+            <InfoWindow
               position={selected.location}
               clickable={true}
               onCloseClick={() => setSelected({})}
             >
-              <p>{selected.name}</p>
+              <div>
+              <img src="./images/user.png" alt="User Icon"></img>
+              <p style={{ margin: "0" }}>{selected.name}</p>
+              </div>
             </InfoWindow>
-            )
-         }
+          )
+        }
       <></>
-    </GoogleMap>
-  ) : <></>
+      </GoogleMap>
+    </LoadScript >
+  )
 }
 
 export default React.memo(Map)
