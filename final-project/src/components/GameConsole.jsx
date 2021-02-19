@@ -16,11 +16,12 @@ function GameConsole(props) {
   const [intervalId, setIntervalId] = useState(null)
   const [levelContent, setLevelContent] = useState("")
   const [levelStarted, setLevelStarted] = useState(false)
+  const [text, setText] = useState("");
 
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
   // calculate wpm of the user
-  const totalAvgWpm = function() {
+  const totalAvgWpm = function () {
     let result = []
     for (let attempt of attempts)
       if (attempt.user_id === currentUser) {
@@ -28,7 +29,7 @@ function GameConsole(props) {
       }
     let totalWords = (result.reduce((a, b) => a + (parseInt(b.words_completed) || 0), 0))
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
-    return totalWords/totalTime
+    return totalWords / totalTime
   }
 
   //Highlights the words that are right
@@ -36,13 +37,12 @@ function GameConsole(props) {
     let value = event.target.value;
     let txt = document.getElementById("console-text").innerText;
     let idx = txt.indexOf(value);
+    setTypingIn(value);
     if (idx >= 0) {
       let newText = [txt.substring(0, idx), <strong>{txt.substring(idx, idx + value.length)}</strong>, txt.substring(idx + value.length)];
-      setTypingIn(value);
       setLevelContent(newText);
     } else {
       setLevelContent(levelContent);
-      setTypingIn(value);
     }
   }
 
@@ -62,13 +62,15 @@ function GameConsole(props) {
     if (level_id === 0) return "Incorrect level_id entered."
     if (levels[level_id - 1] === undefined) return "Error occured"
     let nOfWords = levels[level_id - 1].number_of_words;
-    console.log("Your requested number of words =>", nOfWords, `p-1/${nOfWords}-${nOfWords}`);
+    // console.log("Your requested number of words =>", nOfWords, `p-1/${nOfWords}-${nOfWords}`);
     axios.get(`https://www.randomtext.me/api/gibberish/p-1/${nOfWords}-${nOfWords}`)
     .then(res => {
       let taggedText = res.data.text_out;
       // console.log("we get back>>", taggedText)
       let cleanText = taggedText.replace(/<\/?[^>]+(>|$)/g, "");
       postContentToDB(cleanText, level_id);
+      setLevelContent(cleanText)
+      setText(cleanText)
     })
   }
 
@@ -81,27 +83,21 @@ function GameConsole(props) {
       theme_id: 1
     })
     .then(res => {
-      console.log("Then block of posting content to DB from front end", res)
     })
     .catch(err => console.log("Catch block of posting content to DB from front end", err))
   }
 
   //Starts the timer and the sets the level up
   const startGame = function () {
-    setLevelStarted(true)
+    setLevelStarted(true);
+    setTypingIn("");
+    clearInterval(intervalId)
+    Timer(30)
+    setCurrentLevel(currentLevel)
+    setLevelContent(giveMeRandomText(currentLevel + 1))
     if (currentLevel === 0) {
-      setTypingIn("");
-      console.log("blaaaa", props.contents)
-      setLevelContent(props.contents[currentLevel]?.content)
-      clearInterval(intervalId)
       setCurrentLevel(0);
-      Timer(30)
-    } else {
-      setTypingIn("");
-      clearInterval(intervalId)
-      setLevelContent(props.contents[currentLevel]?.content)
-      Timer(30)
-    }
+    } 
   }
 
   //Triggered when they want to reset the current level
@@ -110,7 +106,7 @@ function GameConsole(props) {
     setLevelContent("Are You Ready To Start?")
     setTypingIn("");
     clearInterval(intervalId)
-    setCurrentLevel(currentLevel);
+    setCurrentLevel(currentLevel)
     setSeconds(30)
   }
 
@@ -144,7 +140,7 @@ function GameConsole(props) {
     if (currentLevel !== 0) {
       setTypingIn("");
       clearInterval(intervalId)
-      setLevelContent(props.contents[currentLevel]?.content)
+      setLevelContent(giveMeRandomText(currentLevel + 1))
       setSeconds(30)
       Timer(30)
     }
@@ -158,7 +154,6 @@ function GameConsole(props) {
       let currentLevelWords = props.contents[currentLevel].content.split(' ')
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       let wpm = totalAvgWpm()
-      console.log(wpm)
       setLevelContent("GameOver")
       clearInterval(intervalId)
       axios.post('/attempts', {
@@ -179,14 +174,13 @@ function GameConsole(props) {
 
   //Post request to attempts if both the text areas are the same
   useEffect(() => {
-    if (typingIn === props.contents[currentLevel]?.content && typingIn !== "") {
-      let correctWords = props.contents[currentLevel].content.split(' ').length;
+    if (typingIn === text.trim() && typingIn !== "") {
+      let correctWords = text.split(' ').length;
       let secondsLeft = 30 - seconds;
-      setLevelContent("Time for next level. Press the button below when you're ready to start")
       clearInterval(intervalId);
-      setLevelStarted(false)
       let wpm = totalAvgWpm()
       setCurrentLevel(currentLevel + 1)
+      setLevelContent(giveMeRandomText(currentLevel))
       setSeconds(30)
       setTypingIn("");
       axios.post('/attempts', {
@@ -256,9 +250,9 @@ function GameConsole(props) {
             value={typingIn}
             id="textarea"
             aria-label="With textarea"
-            onCut={handleChange}
-            onCopy={handleChange}
-            onPaste={handleChange}
+            // onCut={handleChange}
+            // onCopy={handleChange}
+            // onPaste={handleChange}
           />
         </InputGroup>
         <br />
@@ -281,7 +275,7 @@ function GameConsole(props) {
               variant="primary"
               onClick={startGame}
             >
-              {levelStarted === true && seconds !== "Game Over" ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
+              {levelStarted === true || seconds !== "Game Over" ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
             </Button> : null}
           {/* {levelStarted === false ?
               <Button variant="primary" onClick={restartfromFirstLevel}>
