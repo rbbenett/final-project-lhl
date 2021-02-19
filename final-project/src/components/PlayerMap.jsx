@@ -49,6 +49,8 @@ function Map() {
         name: user.username,
         city: user.city,
         country: user.country,
+        wordsPerMin: user.words_per_min,
+        level: user.highest_level_cleared,
         location: res,
       }
       result.push(newUser)
@@ -98,6 +100,8 @@ function Map() {
                 <img src="./images/user.png" alt="User Icon"></img>
                 <p style={{ margin: "0" }}>@{selected.name}</p>
                 <p style={{ margin: "0" }}>{selected.city}, {selected.country}</p>
+                <p style={{ margin: "0" }}>Level: {selected.level}</p>
+                <p style={{ margin: "0" }}>WPM: {selected.wordsPerMin}</p>
               </div>
             </InfoWindow>
           )
