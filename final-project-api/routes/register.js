@@ -33,12 +33,7 @@ module.exports = (db) => {
     `, [username, first_name, last_name, email, password, city, country, avatar])
       .then(response => {
         console.log("YO", response);
-        // let userName = response.rows[0].name;
-        // let userID = response.rows[0].id;
-        // req.session["userName"] = userName;
-        // req.session["userID"] = userID;
-        // res.redirect("/postings");
-        // return response.rows[0] ? response.rows[0] : null;
+        // res.redirect("/login");
       })
       .catch(e => {
         response.send(e);
