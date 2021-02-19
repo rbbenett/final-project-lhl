@@ -21,6 +21,7 @@ function Map() {
 
   Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
+  // Get geocode based on a city and country
   async function getLocation(city, country) {
     try {
       let response = await Geocode.fromAddress(`${city}, ${country}`);
@@ -37,6 +38,7 @@ function Map() {
     return null;
   }
   
+  // get geocode of each user in the database 
   async function getLocations(users) {
     let result = [];
     for (let user of users) {
