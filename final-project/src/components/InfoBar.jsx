@@ -6,7 +6,7 @@ const InfoBar = () => (
   <div className="infoBar">
     <div className="leftInnerContainer">
       <img className="onlineIcon" src="images/onlineIcon.png" alt="online icon" />
-      <p>Typecraft Live Chat</p>
+      <p className="title">Typecraft Live Chat</p>
     </div>
     <div className="rightInnerContainer">
       <a href="/">
