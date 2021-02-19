@@ -2,12 +2,13 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
+import Chat from './Chat';
 import "./GameConsole.css"
 import useApplicationData from "../hooks/useApplicationData";
 
 function GameConsole(props) {
 
-  const { attempts, setAttempts } = useApplicationData()
+  const { attempts, setAttempts, levels, setLevels } = useApplicationData()
 
   const [seconds, setSeconds] = useState(30);
   const [typingIn, setTypingIn] = useState("");
@@ -29,7 +30,6 @@ function GameConsole(props) {
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
     return totalWords / totalTime
   }
-
 
   //Highlights the words that are right
   const highlightWords = (event) => {
@@ -56,6 +56,35 @@ function GameConsole(props) {
     }
   }
 
+  // use randomtext api to get random sentences
+  const giveMeRandomText = (level_id) => {
+    if (level_id === 0) return "Incorrect level_id entered."
+    if (levels[level_id - 1] === undefined) return "Error occured"
+    let nOfWords = levels[level_id - 1].number_of_words;
+    console.log("Your requested number of words =>", nOfWords, `p-1/${nOfWords}-${nOfWords}`);
+    axios.get(`https://www.randomtext.me/api/gibberish/p-1/${nOfWords}-${nOfWords}`)
+    .then(res => {
+      let taggedText = res.data.text_out;
+      // console.log("we get back>>", taggedText)
+      let cleanText = taggedText.replace(/<\/?[^>]+(>|$)/g, "");
+      postContentToDB(cleanText, level_id);
+    })
+  }
+
+  // giveMeRandomText(7);
+  // post random content from api to our server
+  const postContentToDB = (cleanText, level_id) => {
+    axios.post('/contents', {
+      cleanText: cleanText,
+      level_id: level_id,
+      theme_id: 1
+    })
+    .then(res => {
+      console.log("Then block of posting content to DB from front end", res)
+    })
+    .catch(err => console.log("Catch block of posting content to DB from front end", err))
+  }
+
   //Starts the timer and the sets the level up
   const startGame = function () {
     setLevelStarted(true);
@@ -64,6 +93,13 @@ function GameConsole(props) {
     Timer(30)
     setLevelContent(props.contents[currentLevel]?.content)
     if (currentLevel === 0) {
+<<<<<<< HEAD
+=======
+      setTypingIn("");
+      console.log("blaaaa", props.contents)
+      setLevelContent(props.contents[currentLevel]?.content)
+      clearInterval(intervalId)
+>>>>>>> master
       setCurrentLevel(0);
     } 
   }
@@ -176,7 +212,7 @@ function GameConsole(props) {
 
   return (
     <div className="gameconsole">
-      <Jumbotron>
+      <Jumbotron className="game-area" style={{marginBottom: 0}}>
         <h1>TypeCraft</h1>
         <>
           <Spinner animation="border" variant="primary" />
@@ -253,6 +289,7 @@ function GameConsole(props) {
             </Button> : null} */}
         </p>
       </Jumbotron>
+      <Chat />
     </div>
   )
 }

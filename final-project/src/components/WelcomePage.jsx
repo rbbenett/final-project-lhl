@@ -9,40 +9,27 @@ import useApplicationData from '../hooks/useApplicationData';
 
 function Welcomepage() {
 
-  const { checkLoggedIn } = useApplicationData();
-
   const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
-  const playTypeSoundURL = "./sounds/type.mp3";
 
   const [playGameSound] = useSound(playGameSoundUrl);
-  const [playTypeSound] = useSound(playTypeSoundURL)
-
-  const [index, setIndex] = useState(0);
 
   return (
     <div className="welcome-container">
-      <Jumbotron fluid>
-        <Container>
-          <Image src="images/keyboard.png" className="typing-icon" />
-          <h1>
+      <Jumbotron fluid className="container-of-bg" style={{marginBottom: 0}}>
+        <Container className="welcome-text-box">
+          <h1 className="welcome-to-typecraft">
             <Typing speed={60}>
-              Welcome to TypeCraft!
+              Welcome to TypeCraft
             </Typing>
           </h1>
           <h2>
-          <Typing startDelay={2000} speed={60}>
-              10 Levels!!!
-            </Typing>
+           🔥 10 Levels 🔥
           </h2>
           <h2>
-          <Typing startDelay={3000} speed={60}>
-              30 Seconds!!!
-            </Typing>
+            🔥 30 Seconds Each 🔥
           </h2>
           <h2>
-          <Typing startDelay={4000} speed={60}>
-              Do you have what it takes???
-            </Typing>
+            Do you have what it takes?
           </h2>
           <DelayLink delay={3000} to="/play" clickAction={playGameSound} replace={false}>
             <Button className="startGameButton" variant="primary" size="lg">Play Game</Button>
