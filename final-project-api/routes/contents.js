@@ -30,9 +30,10 @@ module.exports = (db) => {
       .then(response => {
         console.log("Data inserted into contents table successfully", response);
       })
-      .catch(e => {
-        response.send(e);
-        console.log("Error inserting data into contents.")
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
     });
   
