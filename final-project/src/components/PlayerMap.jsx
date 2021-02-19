@@ -28,11 +28,6 @@ Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 // And according to the below google docs in description, ROOFTOP param returns the most accurate result.
 Geocode.setLocationType("ROOFTOP");
 
-
-
-
-
-
 function Map() {
 
   const [ selected, setSelected ] = useState({});
