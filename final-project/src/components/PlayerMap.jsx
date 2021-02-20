@@ -15,7 +15,7 @@ const containerStyle = {
   height: '600px',
 };
 
-function Map() {
+export default React.memo(function Map() {
 
   const [selected, setSelected] = useState({});
   const { users, setUsers } = useApplicationData();
@@ -110,6 +110,4 @@ function Map() {
       </GoogleMap>
     </LoadScript >
   )
-}
-
-export default React.memo(Map)
+})

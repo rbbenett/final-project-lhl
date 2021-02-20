@@ -7,7 +7,7 @@ import DelayLink from 'react-delay-link';
 import { useHistory } from 'react-router-dom';
 import "./Attempts.css";
 
-function Attempts() {
+export default function Attempts() {
 
   const soundUrl = "./sounds/SuperMarioBros.mp3";
 
@@ -159,5 +159,3 @@ function Attempts() {
     )
   }
 }
-
-export default Attempts
