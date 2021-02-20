@@ -48,6 +48,7 @@ function Welcomepage() {
           <h2>
             Do you have what it takes?
           </h2>
+          {checkLoggedIn() ?
           <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
             <Button 
               variant="danger" 
@@ -57,6 +58,9 @@ function Welcomepage() {
             Play Now
             </Button>
           </DelayLink>
+          :
+          <Button className="startGameButton" variant="danger" onClick={handleShowLogin} size="lg">Login to Play</Button>
+          }
         </Container>
       </Jumbotron>
 
