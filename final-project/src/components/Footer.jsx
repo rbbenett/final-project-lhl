@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button, Image } from "react-bootstrap";
 import "./Footer.css";
 
-function Footer() {
+export default function Footer() {
   return (
     <div className="footer" >
       <Card text={'white'} className="text-center mb-2" style={{backgroundImage: `url("./images/wood.png")`}}>
@@ -28,4 +28,3 @@ function Footer() {
   )
 }
 
-export default Footer

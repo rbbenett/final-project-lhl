@@ -4,7 +4,7 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 
-function Login(props) {
+export default function Login(props) {
 
   const [loginFormInput, setLoginFormInput] = useState({
     username: "",
@@ -19,45 +19,45 @@ function Login(props) {
       username: loginFormInput.username,
       password: loginFormInput.password
     })
-    .then(res => {
-      console.log(res);
-      if (Array.isArray(res.data)) {
-        localStorage.setItem('user_details', JSON.stringify(res.data[0]))
-        props.handleCloseLogin();
-        history.push("/play");
-        history.go(0)
-      } else {
-        console.log("Incorrect username/password")
-      }
-    })
+      .then(res => {
+        console.log(res);
+        if (Array.isArray(res.data)) {
+          localStorage.setItem('user_details', JSON.stringify(res.data[0]))
+          props.handleCloseLogin();
+          history.push("/play");
+          history.go(0)
+        } else {
+          console.log("Incorrect username/password")
+        }
+      })
   }
 
   return (
     <div className="login">
       <Form>
         <Form.Group controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>@</InputGroup.Text>
-              </InputGroup.Prepend>
-          <Form.Control 
-            type="username" placeholder="Enter username"
-            value={loginFormInput.username}
-            onChange={e => {
-              setLoginFormInput({
-                ...loginFormInput,
-                username: e.target.value
-              })
-            }}
+          <Form.Label>Username</Form.Label>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>@</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              type="username" placeholder="Enter username"
+              value={loginFormInput.username}
+              onChange={e => {
+                setLoginFormInput({
+                  ...loginFormInput,
+                  username: e.target.value
+                })
+              }}
             />
-            </InputGroup>
+          </InputGroup>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control 
-            type="password" placeholder="Password" 
+          <Form.Control
+            type="password" placeholder="Password"
             value={loginFormInput.password}
             onChange={e => {
               setLoginFormInput({
@@ -65,11 +65,11 @@ function Login(props) {
                 password: e.target.value
               })
             }}
-            />
+          />
         </Form.Group>
         <Button
           className="formSubmitButton"
-          variant="outline-info" 
+          variant="outline-info"
           type="submit"
           onClick={e => loginUser(e)}
         >
@@ -79,5 +79,3 @@ function Login(props) {
     </div>
   )
 }
-
-export default Login
