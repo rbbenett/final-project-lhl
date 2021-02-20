@@ -55,6 +55,8 @@ const Chat = () => {
   //   socket.emit("send", message);
   //   setMessage("");
   // };
+  // window.location.reload();
+
 
   const sendMessage = (event) => {
     event.preventDefault();
