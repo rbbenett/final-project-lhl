@@ -130,7 +130,7 @@ function Register(props) {
           </Form.Group>
         </Form.Row>
 
-        <Form.Row>
+        <Form.Row >
           <Form.Group as={Col} controlId="formBasicCity">
             <Form.Label>City</Form.Label>
             <Form.Control
@@ -160,15 +160,16 @@ function Register(props) {
           </Form.Group>
         </Form.Row>
 
-        <fieldset>
+        <fieldset style={{marginTop: "1rem", marginBottom: "1rem"}}>
           <Form.Group as={Row}>
             <Form.Label as="legend" column sm={2}>
               Avatar
             </Form.Label>
-            <Col sm={10}>
+            <Row sm={10}>
               <Form.Check
+                className="avatarCheckButton"
                 type="radio"
-                label="Dinosaur"
+                label={<img variant="top" src="images/dinosaur.png" className="registerAvatar" />}
                 name="formHorizontalAvatars"
                 id="Dinosaur"
                 onChange={e => {
@@ -179,8 +180,9 @@ function Register(props) {
                 }}
               />
               <Form.Check
+                className="avatarCheckButton"
                 type="radio"
-                label="Ghost"
+                label={<img variant="top" src="images/ghost.png" className="registerAvatar" />}
                 name="formHorizontalAvatars"
                 id="Ghost"
                 onChange={e => {
@@ -191,8 +193,9 @@ function Register(props) {
                 }}
               />
               <Form.Check
+                className="avatarCheckButton"
                 type="radio"
-                label="Monster"
+                label={<img variant="top" src="images/monster.png" className="registerAvatar" />}
                 name="formHorizontalAvatars"
                 id="Monster"
                 onChange={e => {
@@ -203,8 +206,9 @@ function Register(props) {
                 }}
               />
               <Form.Check
+                className="avatarCheckButton"
                 type="radio"
-                label="Unicorn"
+                label={<img variant="top" src="images/unicorn.png" className="registerAvatar" />}
                 name="formHorizontalAvatars"
                 id="Unicorn"
                 onChange={e => {
@@ -214,7 +218,20 @@ function Register(props) {
                   })
                 }}
               />
-            </Col>
+              <Form.Check
+                className="avatarCheckButton"
+                type="radio"
+                label={<img variant="top" src="images/fox.png" className="registerAvatar" />}
+                name="formHorizontalAvatars"
+                id="Fox"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
+                  })
+                }}
+              />
+            </Row>
           </Form.Group>
         </fieldset>
 
