@@ -31,18 +31,11 @@ function Register(props) {
       city: newUserDetails.city,
       country: newUserDetails.country
     })
-    .then(res => {
-      console.log(res);
-      props.handleCloseRegister();
-      console.log("REACHED HEREEEEE")
-      if (Array.isArray(res.data)) {
-        localStorage.setItem('user_details', JSON.stringify(res.data[0]))
-        props.handleCloseLogin();
-        // history.push("/play");
-      } else {
-        console.log("Incorrect username/password")
-      }
-    })
+      .then(res => {
+        console.log('as well as here')
+        console.log(res);
+        props.handleCloseRegister();
+      })
   }
 
   return (
