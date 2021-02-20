@@ -20,9 +20,9 @@ function NavbarTC() {
   return (
     <div className="navbar-tc">
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Link to="/">
-          <Image src="images/keyboard.png" className="typecraft-logo" />
-        </Link>
+        <Navbar.Brand style={{marginBottom: "9px", marginRight: "0"}} href="/">
+          <Image href="/" src="images/keyboard.png" className="typecraft-logo" />
+        </Navbar.Brand>
         <Navbar.Brand href="/">TypeCraft</Navbar.Brand>
         <Nav className="mr-auto">
         </Nav>
