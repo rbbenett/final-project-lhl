@@ -25,6 +25,7 @@ function App() {
   } = useApplicationData();
 
   console.log("checking sometjing");
+  console.log("again test")
   
   return (
     <Router>
