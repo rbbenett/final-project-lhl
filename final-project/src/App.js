@@ -24,6 +24,8 @@ function App() {
     setUserInput
   } = useApplicationData();
 
+  console.log("checking sometjing");
+  
   return (
     <Router>
       <div className="app">
