@@ -76,12 +76,19 @@ function Profile() {
                           <br />
                           <strong className="progressTitle">Seasoned</strong>
                         </Card.Text>
-                        :
+                        : userGameStatus > 1 ?
                         <Card.Text className="medalCard">
                           <br />
                           <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
                           <br />
                           <strong className="progressTitle">Rookie</strong>
+                        </Card.Text>
+                        : 
+                        <Card.Text className="medalCard">
+                          <br />
+                          <Card.Img className="medal-icon" variant="top" src="images/new.png" className="medal-icon" />
+                          <br />
+                          <strong className="progressTitle">Newbie</strong>
                         </Card.Text>
                 }
                 <Card.Text>Highest Level Completed {highest + "/12"}</Card.Text>

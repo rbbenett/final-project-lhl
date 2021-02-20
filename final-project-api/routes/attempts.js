@@ -31,9 +31,10 @@ module.exports = (db) => {
       RETURNING *;
     `, [user_id, level_id, words_completed, time_taken, passed])
       .then(response => {
+        console.log(current_highest_level_passed)
         let dbquery = ""
         let dbparams = ""
-        if (current_highest_level_passed < level_id + 1) {
+        if ((current_highest_level_passed) <= level_id) {
           dbquery = `
           UPDATE users
           SET highest_level_cleared = $1, words_per_min = $2
@@ -51,7 +52,7 @@ module.exports = (db) => {
         }
         db.query(dbquery, dbparams)
       }).then(response => {
-        console.log(response)
+
       })
       .catch(err => {
         console.log(err)
