@@ -136,7 +136,7 @@ function Attempts() {
         <hr />
         <p className="mb-0">
           <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
-            <Button variant="primary" size="lg">Play Game</Button>
+            <Button variant="primary" size="lg" style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>Play Game</Button>
           </DelayLink>
         </p>
       </Alert>
@@ -153,7 +153,7 @@ function Attempts() {
         <hr />
         <p className="mb-0">
           <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
-            <Button variant="primary" size="lg">Play Game</Button>
+            <Button style={{backgroundColor: '#91684a', borderColor: '#91684a'}} size="lg">Play Game</Button>
           </DelayLink>
         </p>
       </Alert>

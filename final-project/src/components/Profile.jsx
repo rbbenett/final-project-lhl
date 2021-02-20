@@ -107,7 +107,12 @@ function Profile() {
                 }
                 <Card.Text>Highest Level Completed {highest + "/12"}</Card.Text>
                 <Card.Text>Average WPM: {wpm}</Card.Text>
-                <Button className="leaderboardButton" variant="primary" href="/leaderboard">Global Leaderboard</Button>
+                <Button 
+                  className="leaderboardButton" 
+                  variant="primary" 
+                  href="/leaderboard"
+                  style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
+                  >Global Leaderboard</Button>
               </Card.Body>
             </Card>
           </Col>

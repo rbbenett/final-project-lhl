@@ -239,6 +239,7 @@ function Register(props) {
           variant="primary"
           type="submit"
           onClick={(e) => registerUser(e)}
+          style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
         >
           Submit
         </Button>
