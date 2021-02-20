@@ -27,8 +27,6 @@ function Attempts() {
     attempt.words_per_min=((attempt.words_completed * 60) / attempt.time_taken)
   }
 
-  const [sortType, setSortType] = useState('words_per_min');
-
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
   const sortedUsersId = () => {

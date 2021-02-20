@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
+
 import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function Register(props) {
+export default function Register(props) {
 
   const [newUserDetails, setNewUserDetails] = useState({
     username: "",
@@ -160,7 +161,7 @@ function Register(props) {
           </Form.Group>
         </Form.Row>
 
-        <fieldset style={{marginTop: "1rem", marginBottom: "1rem"}}>
+        <fieldset style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <Form.Group as={Row}>
             <Form.Label as="legend" column sm={2}>
               Avatar
@@ -247,5 +248,3 @@ function Register(props) {
     </div>
   )
 }
-
-export default Register
