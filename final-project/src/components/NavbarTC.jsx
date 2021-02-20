@@ -22,7 +22,7 @@ function NavbarTC() {
 
   return (
     <div className="navbar-tc">
-      <Navbar sticky="top" collapseOnSelect expand="lg" variant="dark" >
+      <Navbar style={{backgroundImage: `url("./images/wood.png")`}} sticky="top" collapseOnSelect expand="lg" variant="dark" >
         <Navbar.Brand style={{marginBottom: "9px", marginRight: "0"}} href="/">
           <Image href="/" src="images/keyboard.png" className="typecraft-logo" />
         </Navbar.Brand>
@@ -35,7 +35,7 @@ function NavbarTC() {
           {!checkLoggedIn() && <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>}
           {checkLoggedIn() && 
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic" style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>
+              <Dropdown.Toggle id="dropdown-basic" style={{backgroundColor: '#91684a', borderColor: '#91684a', borderRadius: "75%", height: "50px", width: "50px", paddingLeft: "10px"}}>
               {userAvatar === "Dinosaur" ?
               <Image variant="top" src="images/dinosaur.png" className="navbar-avatar" />
               : userAvatar === "Ghost" ?

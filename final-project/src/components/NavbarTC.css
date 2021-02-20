@@ -1,6 +1,12 @@
-.navbar-tc {
-  background-color: #91684a;
+img.navbar-avatar {
+padding-right: 2px;
+margin-left: -5px
 }
+
+button#dropdown-basic.dropdown-toggle.btn.btn-primary::after{
+  margin: 0
+}
+
 
 .typecraft-navbar-name {
   font-family: 'Abril Fatface', cursive;
