@@ -3,6 +3,7 @@
 }
 
 div.container-of-bg {
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -33,15 +34,16 @@ h2, h3 {
 }
 
 button.startGameButton {
-  color: #91684a;
+  background-color: #91684a;
+  color: white;
   border-color: #91684a;
   margin: 1rem;
   margin-left: 0;
 }
 
 button.startGameButton:hover {
-  background-color: #91684a;
-  border-color: #91684a;
+  background-color: #5f4431;
+  border-color: #5f4431;
   margin: 1rem;
   margin-left: 0;
 }
