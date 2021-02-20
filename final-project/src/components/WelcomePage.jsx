@@ -3,6 +3,7 @@ import { Container, Jumbotron, Modal, Button } from 'react-bootstrap';
 import Typing from "react-typing-animation";
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
+import { useHistory } from 'react-router-dom';
 import "./WelcomePage.css";
 import useApplicationData from '../hooks/useApplicationData';
 import Register from './Register';
@@ -12,7 +13,6 @@ import Login from './Login';
 function Welcomepage() {
 
   const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
-
   const [playGameSound] = useSound(playGameSoundUrl);
 
   const { checkLoggedIn } = useApplicationData();

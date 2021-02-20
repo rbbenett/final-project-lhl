@@ -25,6 +25,7 @@ function Login(props) {
         localStorage.setItem('user_details', JSON.stringify(res.data[0]))
         props.handleCloseLogin();
         history.push("/play");
+        history.go(0)
       } else {
         console.log("Incorrect username/password")
       }
