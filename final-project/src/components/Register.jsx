@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Col, InputGroup } from 'react-bootstrap';
+import { Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
 import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -157,9 +157,51 @@ function Register(props) {
           </Form.Group>
         </Form.Row>
 
-        <Form.Group>
-          <Form.File id="exampleFormControlFile1" label="Avatar" />
-        </Form.Group>
+        <fieldset>
+          <Form.Group as={Row}>
+            <Form.Label as="legend" column sm={2}>
+              Avatar
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Check
+                type="radio"
+                label="car"
+                name="formHorizontalAvatars"
+                id="formHorizontalAvatars1"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.value
+                  })
+                }}
+              />
+              <Form.Check
+                type="radio"
+                label="boat"
+                name="formHorizontalAvatars"
+                id="formHorizontalAvatars2"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.value
+                  })
+                }}
+              />
+              <Form.Check
+                type="radio"
+                label="plane"
+                name="formHorizontalAvatars"
+                id="formHorizontalAvatars3"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.value
+                  })
+                }}
+              />
+            </Col>
+          </Form.Group>
+        </fieldset>
 
         <Button
           variant="primary"
