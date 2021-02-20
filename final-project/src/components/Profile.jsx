@@ -27,13 +27,25 @@ function Profile() {
 
   const userGameStatus = (((localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).highest_level_cleared) / 12) * 100)
 
+  const userAvatar = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).avatar)
+
   return (
     <div className="profile">
       <Container>
         <Row>
           <Col>
             <Card border="secondary" style={{ width: '18rem' }}>
+              {userAvatar === "Dinosaur" ?
+              <Card.Img variant="top" src="images/dinosaur.png" className="avatar" />
+              : userAvatar === "Ghost" ?
+              <Card.Img variant="top" src="images/ghost.png" className="avatar" />
+              : userAvatar === "Monster" ?
+              <Card.Img variant="top" src="images/monster.png" className="avatar" />
+              : userAvatar === "Unicorn" ?
+              <Card.Img variant="top" src="images/unicorn.png" className="avatar" />
+              :
               <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
+              }
               <Card.Body>
                 <Card.Title className="profileName">{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name} {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name}</Card.Title>
                 <Card.Subtitle className="profileUserName text-muted">@{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).username}</Card.Subtitle>
