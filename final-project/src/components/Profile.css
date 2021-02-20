@@ -56,3 +56,14 @@ img.card-img-top.avatar{
   margin: auto;
   margin-top: 1rem;
 }
+
+a.leaderboardButton {
+  background-color: #91684a;
+  color: white;
+  border-color: #91684a;
+}
+
+a.leaderboardButton:hover{
+  background-color: #5f4431;
+  border-color: #5f4431;
+}

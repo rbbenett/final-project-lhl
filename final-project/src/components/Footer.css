@@ -10,3 +10,7 @@
 .card-link {
   color: white;
 }
+
+.card-link:hover{
+  color: black
+}
