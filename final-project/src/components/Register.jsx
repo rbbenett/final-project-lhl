@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Col, InputGroup } from 'react-bootstrap';
+import { Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
 import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -130,7 +130,7 @@ function Register(props) {
           </Form.Group>
         </Form.Row>
 
-        <Form.Row>
+        <Form.Row >
           <Form.Group as={Col} controlId="formBasicCity">
             <Form.Label>City</Form.Label>
             <Form.Control
@@ -160,9 +160,80 @@ function Register(props) {
           </Form.Group>
         </Form.Row>
 
-        <Form.Group>
-          <Form.File id="exampleFormControlFile1" label="Avatar" />
-        </Form.Group>
+        <fieldset style={{marginTop: "1rem", marginBottom: "1rem"}}>
+          <Form.Group as={Row}>
+            <Form.Label as="legend" column sm={2}>
+              Avatar
+            </Form.Label>
+            <Row sm={10}>
+              <Form.Check
+                className="avatarCheckButton"
+                type="radio"
+                label={<img variant="top" src="images/dinosaur.png" className="registerAvatar" />}
+                name="formHorizontalAvatars"
+                id="Dinosaur"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
+                  })
+                }}
+              />
+              <Form.Check
+                className="avatarCheckButton"
+                type="radio"
+                label={<img variant="top" src="images/ghost.png" className="registerAvatar" />}
+                name="formHorizontalAvatars"
+                id="Ghost"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
+                  })
+                }}
+              />
+              <Form.Check
+                className="avatarCheckButton"
+                type="radio"
+                label={<img variant="top" src="images/monster.png" className="registerAvatar" />}
+                name="formHorizontalAvatars"
+                id="Monster"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
+                  })
+                }}
+              />
+              <Form.Check
+                className="avatarCheckButton"
+                type="radio"
+                label={<img variant="top" src="images/unicorn.png" className="registerAvatar" />}
+                name="formHorizontalAvatars"
+                id="Unicorn"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
+                  })
+                }}
+              />
+              <Form.Check
+                className="avatarCheckButton"
+                type="radio"
+                label={<img variant="top" src="images/fox.png" className="registerAvatar" />}
+                name="formHorizontalAvatars"
+                id="Fox"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
+                  })
+                }}
+              />
+            </Row>
+          </Form.Group>
+        </fieldset>
 
         <Button
           variant="primary"

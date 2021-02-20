@@ -17,6 +17,8 @@ function NavbarTC() {
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
 
+  const userAvatar = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).avatar)
+
   return (
     <div className="navbar-tc">
       <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -33,7 +35,19 @@ function NavbarTC() {
           {checkLoggedIn() && 
             <Dropdown>
               <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
-                <Image src="images/fox.jpg" className="navbar-avatar" />
+              {userAvatar === "Dinosaur" ?
+              <Image variant="top" src="images/dinosaur.png" className="navbar-avatar" />
+              : userAvatar === "Ghost" ?
+              <Image variant="top" src="images/ghost.png" className="navbar-avatar" />
+              : userAvatar === "Monster" ?
+              <Image variant="top" src="images/monster.png" className="navbar-avatar" />
+              : userAvatar === "Unicorn" ?
+              <Image variant="top" src="images/unicorn.png" className="navbar-avatar" />
+              : userAvatar === "Fox" ?
+              <Image variant="top" src="images/fox.png" className="navbar-avatar" />
+              :
+              <Image variant="top" src="images/sample-avatar.jpg" className="navbar-avatar" />
+              }
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-container">
                 <Dropdown.Item href="/profile">View Profile</Dropdown.Item>

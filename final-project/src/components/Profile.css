@@ -49,3 +49,10 @@ div.profileUserName {
 div.profileName {
   margin: 1rem
 }
+
+img.card-img-top.avatar{
+  height : 10rem;
+  width: 10rem;
+  margin: auto;
+  margin-top: 1rem;
+}
