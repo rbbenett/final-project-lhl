@@ -282,7 +282,7 @@ function GameConsole(props) {
             <Button className="startGame" variant="primary" onClick={restartfromFirstLevel}>
               Start from the begining
             </Button> : null}
-          {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel ?
+          {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel && currentLevel === 0?
             <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} >
               Start from level {highestLevel + 1}
             </Button> : null}
