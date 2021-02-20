@@ -166,37 +166,49 @@ function Register(props) {
             <Col sm={10}>
               <Form.Check
                 type="radio"
-                label="car"
+                label="Dinosaur"
                 name="formHorizontalAvatars"
-                id="formHorizontalAvatars1"
+                id="Dinosaur"
                 onChange={e => {
                   setNewUserDetails({
                     ...newUserDetails,
-                    avatar: e.target.value
+                    avatar: e.target.id
                   })
                 }}
               />
               <Form.Check
                 type="radio"
-                label="boat"
+                label="Ghost"
                 name="formHorizontalAvatars"
-                id="formHorizontalAvatars2"
+                id="Ghost"
                 onChange={e => {
                   setNewUserDetails({
                     ...newUserDetails,
-                    avatar: e.target.value
+                    avatar: e.target.id
                   })
                 }}
               />
               <Form.Check
                 type="radio"
-                label="plane"
+                label="Monster"
                 name="formHorizontalAvatars"
-                id="formHorizontalAvatars3"
+                id="Monster"
                 onChange={e => {
                   setNewUserDetails({
                     ...newUserDetails,
-                    avatar: e.target.value
+                    avatar: e.target.id
+                  })
+                }}
+              />
+              <Form.Check
+                type="radio"
+                label="Unicorn"
+                name="formHorizontalAvatars"
+                id="Unicorn"
+                onChange={e => {
+                  setNewUserDetails({
+                    ...newUserDetails,
+                    avatar: e.target.id
                   })
                 }}
               />
