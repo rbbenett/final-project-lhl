@@ -19,8 +19,6 @@ function Map() {
   const { users, setUsers } = useApplicationData();
   const [points, setPoints] = useState();
 
-  console.log(selected)
-
   Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
   // Get geocode based on a city and country

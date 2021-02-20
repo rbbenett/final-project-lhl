@@ -4,21 +4,22 @@
   justify-content: space-between;
   background: #2979FF;
   border-radius: 4px 4px 0 0;
-  height: 60px;
+  height: 50px;
   width: 100%;
 }
 
 .leftInnerContainer {
-  flex: 0.5;
+  flex: 0.7;
   display: flex;
   align-items: center;
   margin-left: 5%;
   color: white;
+  height: 50px;
 }
 
 .rightInnerContainer {
   display: flex;
-  flex: 0.5;
+  flex: 0.3;
   justify-content: flex-end;
   margin-right: 5%;
 }
@@ -27,6 +28,6 @@
   margin-right: 5%;
 }
 
-p {
+.title{
   margin-bottom: 0;
 }
