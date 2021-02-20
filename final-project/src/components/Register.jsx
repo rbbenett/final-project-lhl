@@ -30,6 +30,7 @@ function Register(props) {
       country: newUserDetails.country
     })
       .then(res => {
+        console.log('as well as here')
         console.log(res);
         props.handleCloseRegister();
       })
