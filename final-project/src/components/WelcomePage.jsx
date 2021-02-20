@@ -3,6 +3,7 @@ import { Container, Jumbotron, Image, Button, Fade } from 'react-bootstrap';
 import Typing from "react-typing-animation";
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
+import { useHistory } from 'react-router-dom';
 import "./WelcomePage.css";
 import useApplicationData from '../hooks/useApplicationData';
 
@@ -10,8 +11,13 @@ import useApplicationData from '../hooks/useApplicationData';
 function Welcomepage() {
 
   const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
-
   const [playGameSound] = useSound(playGameSoundUrl);
+
+  const history = useHistory();
+  const navigateToPlay = () => {
+    history.push("/play");
+    history.go(0)
+  }
 
   return (
     <div className="welcome-container">
@@ -31,7 +37,7 @@ function Welcomepage() {
           <h2>
             Do you have what it takes?
           </h2>
-          <DelayLink delay={3000} to="/play" clickAction={playGameSound} replace={false}>
+          <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
             <Button className="startGameButton" variant="primary" size="lg">Play Game</Button>
           </DelayLink>
         </Container>
