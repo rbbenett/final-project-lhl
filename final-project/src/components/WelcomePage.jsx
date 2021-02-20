@@ -59,7 +59,7 @@ function Welcomepage() {
             </Button>
           </DelayLink>
           :
-          <Button className="startGameButton" variant="outline-info" onClick={handleShowLogin} size="lg">Login to Play</Button>
+          <Button className="startGameButton" variant="outline-info" onClick={handleShowLogin} size="lg">Play Now</Button>
           }
         </Container>
       </Jumbotron>

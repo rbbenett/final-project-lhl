@@ -109,9 +109,8 @@ function Profile() {
                 <Card.Text>Average WPM: {wpm}</Card.Text>
                 <Button 
                   className="leaderboardButton" 
-                  variant="primary" 
+                  variant="outline-info" 
                   href="/leaderboard"
-                  style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
                   >Global Leaderboard</Button>
               </Card.Body>
             </Card>
