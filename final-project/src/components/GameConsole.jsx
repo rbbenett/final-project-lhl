@@ -38,7 +38,7 @@ function GameConsole(props) {
     })
       .then(res => {
         for (let user of res.data['users']) {
-          if (user.id === JSON.parse(localStorage.getItem("user_details")).id) {
+          if (user.id === JSON.parse(localStorage.getItem("user_details"))?.id) {
             setHighestLevel(user.highest_level_cleared)
           }
         }
@@ -102,6 +102,7 @@ function GameConsole(props) {
 
   //Starts the timer and the sets the level up
   const startGame = function () {
+    console.log(currentLevel)
     setLevelStarted(true);
     setTypingIn("");
     clearInterval(intervalId)
@@ -148,7 +149,7 @@ function GameConsole(props) {
   const resumeFromLastClearedLevel = function () {
     setLevelStarted(true)
     setCurrentLevel(highestLevel);
-    setLevelContent(giveMeRandomText(currentLevel + 1))
+    setLevelContent(giveMeRandomText(highestLevel + 1))
     setSeconds(30)
     Timer(30)
     clearInterval(intervalId)
@@ -283,7 +284,7 @@ function GameConsole(props) {
             </Button> : null}
           {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel ?
             <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} >
-              Start from level {highestLevel}
+              Start from level {highestLevel + 1}
             </Button> : null}
           {levelStarted === true ?
             <Button className="restartGame" variant="primary" onClick={resetLevel}>
@@ -295,7 +296,7 @@ function GameConsole(props) {
               variant="primary"
               onClick={startGame}
             >
-              {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel}!`}
+              {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
             </Button> : null}
           {/* {levelStarted === false ?
               <Button variant="primary" onClick={restartfromFirstLevel}>
