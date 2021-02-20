@@ -40,7 +40,16 @@ h2, h3 {
   margin: auto;
 }
 
-.startGameButton {
+button.startGameButton {
+  color: #91684a;
+  border-color: #91684a;
+  margin: 1rem;
+  margin-left: 0;
+}
+
+button.startGameButton:hover {
+  background-color: #91684a;
+  border-color: #91684a;
   margin: 1rem;
   margin-left: 0;
 }

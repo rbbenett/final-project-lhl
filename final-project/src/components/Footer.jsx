@@ -7,7 +7,7 @@ function Footer() {
     <div className="footer" >
       <Card text={'white'} className="text-center mb-2" style={{backgroundImage: `url("./images/wood.png")`}}>
         <Card.Body>
-          <Image src="images/keyboard.png" className="typecraft-logo-footer" />
+          <Image src="images/typecraft-logo.png" className="typecraft-logo-footer" />
           <Card.Title style={{fontSize: '1.5rem'}}>TypeCraft</Card.Title>
           <Card.Text>
             <Card.Link href="https://www.cirquedusoleil.com/casting/disciplines/clowns-physical-actors/clowns">Careers</Card.Link>

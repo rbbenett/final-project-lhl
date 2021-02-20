@@ -51,15 +51,15 @@ function Welcomepage() {
           {checkLoggedIn() ?
           <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
             <Button 
-              variant="danger" 
+              variant="outline-info" 
               size="lg" 
               className="startGameButton" 
-              style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>
+             >
             Play Now
             </Button>
           </DelayLink>
           :
-          <Button className="startGameButton" variant="danger" onClick={handleShowLogin} size="lg">Login to Play</Button>
+          <Button className="startGameButton" variant="outline-info" onClick={handleShowLogin} size="lg">Login to Play</Button>
           }
         </Container>
       </Jumbotron>
