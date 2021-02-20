@@ -43,6 +43,8 @@ function Profile() {
               <Card.Img variant="top" src="images/monster.png" className="avatar" />
               : userAvatar === "Unicorn" ?
               <Card.Img variant="top" src="images/unicorn.png" className="avatar" />
+              : userAvatar === "Fox" ?
+              <Card.Img variant="top" src="images/fox.png" className="avatar" />
               :
               <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
               }
