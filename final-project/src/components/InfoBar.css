@@ -9,7 +9,7 @@
 }
 
 .leftInnerContainer {
-  flex: 0.5;
+  flex: 0.7;
   display: flex;
   align-items: center;
   margin-left: 5%;
@@ -18,7 +18,7 @@
 
 .rightInnerContainer {
   display: flex;
-  flex: 0.5;
+  flex: 0.3;
   justify-content: flex-end;
   margin-right: 5%;
 }
@@ -27,6 +27,6 @@
   margin-right: 5%;
 }
 
-p {
+.title{
   margin-bottom: 0;
 }
