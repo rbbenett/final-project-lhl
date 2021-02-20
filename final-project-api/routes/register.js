@@ -26,13 +26,14 @@ module.exports = (db) => {
     let city = req.body.city;
     let country = req.body.country;
 
-    db.query(`
+    return db.query(`
       INSERT INTO users (username, first_name, last_name, email, password, city, country, avatar)
       VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *;
     `, [username, first_name, last_name, email, password, city, country, avatar])
       .then(response => {
-        console.log("YO", response);
+        console.log("YO");
+        res.send(response)
         // res.redirect("/login");
       })
       .catch(e => {
