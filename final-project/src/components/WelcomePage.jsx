@@ -32,30 +32,31 @@ function Welcomepage() {
 
   return (
     <div className="welcome-container">
-      <Jumbotron fluid className="container-of-bg" style={{ marginBottom: 0 }}>
-        <Container className="welcome-text-box">
+      <Jumbotron fluid className="container-of-bg" style={{marginBottom: 0}}>
+        <Container className="welcome-text-box" style={{marginLeft: '6rem'}}>
           <h1 className="welcome-to-typecraft">
             <Typing speed={60}>
-              Welcome to TypeCraft
+              TypeCraft
             </Typing>
           </h1>
           <h2>
-            🔥 10 Levels 🔥
+           12 Levels 🏆
           </h2>
           <h2>
-            🔥 30 Seconds Each 🔥
+            30 Seconds Each ⏳
           </h2>
           <h2>
             Do you have what it takes?
           </h2>
-          {checkLoggedIn() ?
-            <DelayLink delay={3000} to="/play" clickAction={navigateToPlay} replace={false}>
-              <Button className="startGameButton" variant="primary" size="lg">Play Game</Button>
-            </DelayLink>
-            :
-            <Button className="startGameButton" variant="danger" onClick={handleShowLogin} size="lg">Login to Play</Button>
-          }
-
+          <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
+            <Button 
+              variant="danger" 
+              size="lg" 
+              className="startGameButton" 
+              style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>
+            Play Now
+            </Button>
+          </DelayLink>
         </Container>
       </Jumbotron>
 

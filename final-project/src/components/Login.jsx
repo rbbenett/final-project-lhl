@@ -67,8 +67,11 @@ function Login(props) {
             }}
             />
         </Form.Group>
-        <Button variant="primary" type="submit"
-        onClick={e => loginUser(e)}
+        <Button 
+          variant="primary" 
+          type="submit"
+          style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
+          onClick={e => loginUser(e)}
         >
           Submit
         </Button>
