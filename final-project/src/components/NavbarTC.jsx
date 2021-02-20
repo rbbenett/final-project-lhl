@@ -75,13 +75,12 @@ function NavbarTC() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button 
+          <Nav.Link 
           variant="primary" 
-          style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
           onClick={() => {handleCloseLogin(); handleShowRegister()}}
           >
             New User? Click Here To Register!
-          </Button>
+          </Nav.Link>
         </Modal.Footer>
       </Modal>
       }
@@ -98,13 +97,12 @@ function NavbarTC() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button 
+          <Nav.Link 
             variant="primary" 
-            style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
             onClick={() => {handleCloseRegister(); handleShowLogin()}}
             >
             Already Registered? Click Here To Login!
-          </Button>
+          </Nav.Link>
         </Modal.Footer>
       </Modal>     
     </div>

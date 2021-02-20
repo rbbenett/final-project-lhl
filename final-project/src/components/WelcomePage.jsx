@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Jumbotron, Modal, Button } from 'react-bootstrap';
+import { Container, Jumbotron, Modal, Button, Nav } from 'react-bootstrap';
 import Typing from "react-typing-animation";
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
@@ -76,9 +76,9 @@ function Welcomepage() {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
+            <Nav.Link variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
               New User? Click Here To Register!
-        </Button>
+            </Nav.Link>
           </Modal.Footer>
         </Modal>
       }
@@ -94,9 +94,9 @@ function Welcomepage() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
+          <Nav.Link variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
             Already Registered? Click Here To Login!
-          </Button>
+          </Nav.Link>
         </Modal.Footer>
       </Modal>
     </div>
