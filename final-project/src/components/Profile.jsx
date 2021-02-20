@@ -11,16 +11,16 @@ function Profile() {
   const [highest, setHighest] = useState(0);
 
   useEffect(() => {
-    axios.get("http://localhost:3004/api/users", {   
+    axios.get("http://localhost:3004/api/users", {
     })
-    .then(res => {
-      for (let user of res.data['users']){
-        if (user.id === JSON.parse(localStorage.getItem("user_details")).id){
-          setWpm(user.words_per_min)
-          setHighest(user.highest_level_cleared)
+      .then(res => {
+        for (let user of res.data['users']) {
+          if (user.id === JSON.parse(localStorage.getItem("user_details")).id) {
+            setWpm(user.words_per_min)
+            setHighest(user.highest_level_cleared)
+          }
         }
-      }
-    })
+      })
   }, [])
 
   const roundTo = require('round-to');
@@ -103,7 +103,7 @@ function Profile() {
                           <strong className="progressTitle">Newbie</strong>
                         </Card.Text>
                 }
-                <Card.Text>Highest Level Completed: {highest + "/12"}</Card.Text>
+                <Card.Text>Highest Level Completed {highest + "/12"}</Card.Text>
                 <Card.Text>Average WPM: {wpm}</Card.Text>
                 <Button className="leaderboardButton" variant="primary" href="/leaderboard">Global Leaderboard</Button>
               </Card.Body>
@@ -113,7 +113,7 @@ function Profile() {
             <Row>
               <Card style={{ width: '45rem' }} >
                 <Card.Header as="h5">🔥Your Top Typing Speeds🔥</Card.Header>
-                <Card.Body>
+                <Card.Body style={{ paddingBottom: '13px', paddingTop: '13px' }}>
                   <Attempts />
                 </Card.Body>
               </Card>
