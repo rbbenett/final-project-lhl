@@ -12,10 +12,16 @@ import Login from './Login';
 
 function Welcomepage() {
 
+  const { checkLoggedIn } = useApplicationData();
+
+  const history = useHistory();
+  const navigateToPlay = () => {
+    history.push("/play");
+    history.go(0)
+  }
+
   const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
   const [playGameSound] = useSound(playGameSoundUrl);
-
-  const { checkLoggedIn } = useApplicationData();
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -43,7 +49,7 @@ function Welcomepage() {
             Do you have what it takes?
           </h2>
           {checkLoggedIn() ?
-            <DelayLink delay={3000} to="/play" clickAction={playGameSound} replace={false}>
+            <DelayLink delay={3000} to="/play" clickAction={navigateToPlay} replace={false}>
               <Button className="startGameButton" variant="primary" size="lg">Play Game</Button>
             </DelayLink>
             :
