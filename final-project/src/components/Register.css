@@ -16,3 +16,19 @@ div.form-group {
 div.form-row {
   margin: -20px
 }
+
+img.registerAvatar {
+  height:2rem;
+  width: 2rem;
+  margin-right: 1rem
+}
+
+div.avatarCheckButton {
+  display: flex;
+  align-items: center;
+  margin-left: .5rem;
+}
+
+fieldset {
+  margin: 1rem
+}
