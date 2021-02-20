@@ -5,7 +5,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="footer" >
-      <Card text={'white'} className="text-center mb-2" style={{backgroundColor: '#91684a'}}>
+      <Card text={'white'} className="text-center mb-2" style={{backgroundImage: `url("./images/wood.png")`}}>
         <Card.Body>
           <Image src="images/keyboard.png" className="typecraft-logo-footer" />
           <Card.Title style={{fontSize: '1.5rem'}}>TypeCraft</Card.Title>
