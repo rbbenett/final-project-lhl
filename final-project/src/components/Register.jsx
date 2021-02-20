@@ -236,10 +236,10 @@ function Register(props) {
         </fieldset>
 
         <Button
-          variant="primary"
+          className="formSubmitButton"
+          variant="outline-info"
           type="submit"
           onClick={(e) => registerUser(e)}
-          style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
         >
           Submit
         </Button>

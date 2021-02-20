@@ -24,7 +24,7 @@ function NavbarTC() {
     <div className="navbar-tc">
       <Navbar style={{backgroundImage: `url("./images/wood.png")`}} sticky="top" collapseOnSelect expand="lg" variant="dark" >
         <Navbar.Brand style={{marginBottom: "9px", marginRight: "0"}} href="/">
-          <Image href="/" src="images/keyboard.png" className="typecraft-logo" />
+          <Image href="/" src="images/typecraft-logo.png" className="typecraft-logo" />
         </Navbar.Brand>
         <Navbar.Brand href="/" className="typecraft-navbar-name">TypeCraft</Navbar.Brand>
         <Nav className="mr-auto">
@@ -35,7 +35,7 @@ function NavbarTC() {
           {!checkLoggedIn() && <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>}
           {checkLoggedIn() && 
             <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic" style={{backgroundColor: '#91684a', borderColor: '#91684a', borderRadius: "75%", height: "50px", width: "50px", paddingLeft: "10px"}}>
+              <Dropdown.Toggle id="dropdown-basic">
               {userAvatar === "Dinosaur" ?
               <Image variant="top" src="images/dinosaur.png" className="navbar-avatar" />
               : userAvatar === "Ghost" ?
@@ -75,7 +75,8 @@ function NavbarTC() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Nav.Link 
+          <Nav.Link
+          className="navLink"
           variant="primary" 
           onClick={() => {handleCloseLogin(); handleShowRegister()}}
           >
@@ -97,7 +98,8 @@ function NavbarTC() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Nav.Link 
+          <Nav.Link
+            className="navLink"
             variant="primary" 
             onClick={() => {handleCloseRegister(); handleShowLogin()}}
             >
