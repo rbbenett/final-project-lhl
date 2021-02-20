@@ -4,11 +4,8 @@
 
 div.container-of-bg {
   background-repeat: no-repeat;
-<<<<<<< HEAD
-  background-attachment: fixed;
-=======
->>>>>>> 86e23c336ca62673f3772fe6743620e9b43277f7
   background-size: cover;
+  background-attachment: fixed;
   margin-bottom: 0;
 }
 
