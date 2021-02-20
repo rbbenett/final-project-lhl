@@ -18,7 +18,9 @@ function Register(props) {
     country: ""
   });
 
-  const registerUser = () => {
+  const registerUser = (e) => {
+    e.preventDefault();
+    console.log("hi")
     axios.post('/register', {
       username: newUserDetails.username,
       first_name: newUserDetails.first_name,
@@ -219,7 +221,7 @@ function Register(props) {
         <Button
           variant="primary"
           type="submit"
-          onClick={registerUser}
+          onClick={(e) => registerUser(e)}
         >
           Submit
         </Button>
