@@ -4,6 +4,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import Moment from 'react-moment';
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
+import { useHistory } from 'react-router-dom';
 
 function Attempts() {
 
@@ -11,6 +12,12 @@ function Attempts() {
 
   const [play] = useSound(soundUrl);
 
+  const history = useHistory();
+  const navigateToPlay = () => {
+    history.push("/play");
+    history.go(0)
+  }
+  
   const roundTo = require('round-to');
 
   const { attempts, setAttempts } = useApplicationData()
@@ -128,7 +135,7 @@ function Attempts() {
         </p>
         <hr />
         <p className="mb-0">
-          <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
+          <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
             <Button variant="primary" size="lg">Play Game</Button>
           </DelayLink>
         </p>
