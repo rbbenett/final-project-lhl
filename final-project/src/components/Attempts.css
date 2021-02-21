@@ -1,0 +1,15 @@
+div.alertContainer {
+  border-color: #92684a;
+}
+
+button.alertButton {
+  background-color: #91684a;
+  color: white;
+  border-color: #91684a;
+}
+
+button.alertButton:hover{
+  background-color: #5f4431;
+  color: white;
+  border-color: #5f4431;
+}

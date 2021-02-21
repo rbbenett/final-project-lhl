@@ -13,33 +13,48 @@ import NavbarTC from "./components/NavbarTC.jsx";
 // Import stylesheets
 import './App.css';
 
-function App() {
+export default function App() {
+
+  const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
   const {
     contents,
-    setContents,
-    gameConsole,
-    updateGameConsole,
-    userInput,
-    setUserInput
   } = useApplicationData();
-
+  
   return (
     <Router>
       <div className="app">
         <NavbarTC />
         <Switch>
+          {currentUser?
           <Route path="/leaderboard">
             <Leaderboard />
           </Route>
+          :
+          <Route path="/">
+            <Welcomepage />
+          </Route>
+          }
+          {currentUser?
           <Route path="/profile">
             <Profile />
           </Route>
+          :
+          <Route path="/">
+            <Welcomepage />
+          </Route>
+          }
+          {currentUser? 
           <Route path="/play">
             <GameConsole
               contents={contents}
             />
           </Route>
+          :
+          <Route path="/">
+            <Welcomepage />
+          </Route>
+          }
           <Route path="/">
             <Welcomepage />
           </Route>
@@ -49,5 +64,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

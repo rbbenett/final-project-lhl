@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'react-bootstrap';
 import './GameCompleteMsg.css';
 
-function GameCompleteMsg() {
+export default function GameCompleteMsg() {
   return (
     <div className="game-complete-msg">
       <Image src="images/game-complete-icon.png" className="game-complete-icon" />
@@ -11,5 +11,3 @@ function GameCompleteMsg() {
     </div>
   )
 }
-
-export default GameCompleteMsg

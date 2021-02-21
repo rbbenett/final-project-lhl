@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Container, Jumbotron, Modal, Button } from 'react-bootstrap';
+import { Container, Jumbotron, Modal, Button, Nav } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import Typing from "react-typing-animation";
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
-import { useHistory } from 'react-router-dom';
-import "./WelcomePage.css";
 import useApplicationData from '../hooks/useApplicationData';
 import Register from './Register';
 import Login from './Login';
 
+import "./WelcomePage.css";
 
-function Welcomepage() {
+export default function Welcomepage() {
 
   const { checkLoggedIn } = useApplicationData();
 
@@ -32,30 +32,35 @@ function Welcomepage() {
 
   return (
     <div className="welcome-container">
-      <Jumbotron fluid className="container-of-bg" style={{ marginBottom: 0 }}>
-        <Container className="welcome-text-box">
+      <Jumbotron fluid className="container-of-bg" style={{ backgroundImage: "url(/images/whitekeyboard.jpg)" }}>
+        <Container className="welcome-text-box" style={{ marginLeft: '6rem' }}>
           <h1 className="welcome-to-typecraft">
             <Typing speed={60}>
-              Welcome to TypeCraft
+              TypeCraft
             </Typing>
           </h1>
           <h2>
-            🔥 10 Levels 🔥
+            12 Levels 🏆
           </h2>
           <h2>
-            🔥 30 Seconds Each 🔥
+            30 Seconds Each ⏳
           </h2>
           <h2>
             Do you have what it takes?
           </h2>
           {checkLoggedIn() ?
-            <DelayLink delay={3000} to="/play" clickAction={navigateToPlay} replace={false}>
-              <Button className="startGameButton" variant="primary" size="lg">Play Game</Button>
+            <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
+              <Button
+                variant="outline"
+                size="lg"
+                className="startGameButton"
+              >
+                Play Now
+            </Button>
             </DelayLink>
             :
-            <Button className="startGameButton" variant="danger" onClick={handleShowLogin} size="lg">Login to Play</Button>
+            <Button className="startGameButton" variant="outline" onClick={handleShowLogin} size="lg">Play Now</Button>
           }
-
         </Container>
       </Jumbotron>
 
@@ -71,9 +76,9 @@ function Welcomepage() {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
+            <Nav.Link className="navLink" variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
               New User? Click Here To Register!
-        </Button>
+            </Nav.Link>
           </Modal.Footer>
         </Modal>
       }
@@ -89,14 +94,12 @@ function Welcomepage() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
+          <Nav.Link className="navLink" variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
             Already Registered? Click Here To Login!
-          </Button>
+          </Nav.Link>
         </Modal.Footer>
       </Modal>
     </div>
   )
 }
-
-export default Welcomepage
 

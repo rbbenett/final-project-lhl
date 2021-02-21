@@ -2,13 +2,13 @@ import React from 'react';
 import { Card, Button, Image } from "react-bootstrap";
 import "./Footer.css";
 
-function Footer() {
+export default function Footer() {
   return (
     <div className="footer" >
-      <Card bg={'dark'} text={'white'} className="text-center mb-2">
+      <Card text={'white'} className="text-center mb-2" style={{backgroundImage: `url("./images/wood.png")`}}>
         <Card.Body>
-          <Image src="images/keyboard.png" className="typecraft-logo-footer" />
-          <Card.Title>TypeCraft Inc.</Card.Title>
+          <Image src="images/typecraft-logo.png" className="typecraft-logo-footer" />
+          <Card.Title style={{fontSize: '1.5rem'}}>TypeCraft</Card.Title>
           <Card.Text>
             <Card.Link href="https://www.cirquedusoleil.com/casting/disciplines/clowns-physical-actors/clowns">Careers</Card.Link>
           </Card.Text>
@@ -22,10 +22,9 @@ function Footer() {
           <Button variant="info"><i className="fab fa-twitter fa-lg"></i></Button>
           <Button variant="danger"><i className="fab fa-tiktok fa-lg"></i></Button>
         </Card.Body>
-        <Card.Footer className="text-muted">© 2021 Copyright. TypeCraft. All rights reserved.</Card.Footer>
+        <Card.Footer>© 2021 Copyright. TypeCraft. All rights reserved.</Card.Footer>
       </Card>
     </div>
   )
 }
 
-export default Footer

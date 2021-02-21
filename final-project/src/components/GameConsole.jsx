@@ -1,12 +1,13 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
+import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card, Nav } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
 import Chat from './Chat';
-import "./GameConsole.css"
 import useApplicationData from "../hooks/useApplicationData";
 
-function GameConsole(props) {
+import "./GameConsole.css"
+
+export default function GameConsole(props) {
 
   const { attempts, setAttempts, levels, setLevels } = useApplicationData()
 
@@ -248,10 +249,22 @@ function GameConsole(props) {
           <Spinner animation="grow" variant="dark" />
         </>
         <br /><br /><br />
-        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={props.contents[currentLevel] ? (typingIn.length / props.contents[currentLevel].content.length) * 100 : 0} variant="success" />
+        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={text ? (typingIn.length / text.length) * 100 : 0} variant="success" />
         <br />
         <Card>
-          <Card.Header>{seconds}</Card.Header>
+          <Card.Header>
+          <Nav className="gamePlayNav" variant="pills">
+            <Nav.Item>
+            Current Level: {currentLevel + 1}
+            </Nav.Item>
+            <Nav.Item>
+            Time Left: {seconds} seconds
+            </Nav.Item>
+            <Nav.Item>
+              Highest Level Cleared: {highestLevel}
+            </Nav.Item>
+          </Nav>
+          </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div id="console-text">
@@ -266,14 +279,10 @@ function GameConsole(props) {
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl as="textarea"
-            // onChange={(event) => setTypingIn(event.target.value)}
             onChange={(event) => highlightWords(event)}
             value={typingIn}
             id="textarea"
             aria-label="With textarea"
-          // onCut={handleChange}
-          // onCopy={handleChange}
-          // onPaste={handleChange}
           />
         </InputGroup>
         <br />
@@ -282,8 +291,8 @@ function GameConsole(props) {
             <Button className="startGame" variant="primary" onClick={restartfromFirstLevel}>
               Start from the begining
             </Button> : null}
-          {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel && currentLevel === 0?
-            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} >
+          {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel ?
+            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel}>
               Start from level {highestLevel + 1}
             </Button> : null}
           {levelStarted === true ?
@@ -298,15 +307,9 @@ function GameConsole(props) {
             >
               {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
             </Button> : null}
-          {/* {levelStarted === false ?
-              <Button variant="primary" onClick={restartfromFirstLevel}>
-              Go back to Level 1
-            </Button> : null} */}
         </p>
       </Jumbotron>
       <Chat />
     </div>
   )
 }
-
-export default GameConsole

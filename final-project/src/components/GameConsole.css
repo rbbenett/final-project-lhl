@@ -15,11 +15,35 @@ strong {
   font-weight: inherit;
 }
 
-Button.startGame{
+button.startGame{
+  background-color: #91684a;
+  color: white;
+  border-color: #91684a;
   margin: 1rem
 }
 
-Button.restartGame {
+button.startGame:hover {
+  background-color: #5f4431;
+  color: white;
+  border-color: #5f4431
+}
+
+button.restartGame {
+  background-color: #91684a;
+  color: white;
+  border-color: #91684a;
   margin: 1rem
+}
+
+button.restartGame:hover {
+  background-color: #5f4431;
+  color: white;
+  border-color: #5f4431
+}
+
+div.gamePlayNav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 

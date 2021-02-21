@@ -1,18 +1,12 @@
+import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-
-import "bootstrap/dist/css/bootstrap.css";
-import "./Chat.css";
-import React from "react";
-import ReactDOM from "react-dom";
-import { useEffect, useState } from "react";
-import moment from "moment";
-
 import TextContainer from './TextContainer';
 import Messages from './Messages';
 import InfoBar from './InfoBar';
 import Input from './Input';
 
-import './Chat.css';
+import "bootstrap/dist/css/bootstrap.css";
+import "./Chat.css";
 
 const username = JSON.parse(localStorage.getItem("user_details"))?.username
 
@@ -20,7 +14,7 @@ const socket = io("http://localhost:8000", {
   transports: ["websocket", "polling"]
 });
 
-const Chat = () => {
+export default function Chat () {
 
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
@@ -50,14 +44,6 @@ const Chat = () => {
     });
   }, []);
 
-  // const submit = event => {
-  //   event.preventDefault();
-  //   socket.emit("send", message);
-  //   setMessage("");
-  // };
-  // window.location.reload();
-
-
   const sendMessage = (event) => {
     event.preventDefault();
     setMessage('');
@@ -78,4 +64,3 @@ const Chat = () => {
   );
 
 }
-export default Chat

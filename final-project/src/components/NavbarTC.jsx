@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Navbar, Image, Nav, Dropdown, Modal, Button } from 'react-bootstrap';
-import { BrowserRouter as Link } from "react-router-dom";
+import { Navbar, Image, Nav, Dropdown, Modal } from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData";
 import Register from './Register';
 import Login from './Login';
+import './NavbarTC.css'
 
-function NavbarTC() {
+export default function NavbarTC() {
 
   const { checkLoggedIn } = useApplicationData();
 
@@ -21,41 +21,41 @@ function NavbarTC() {
 
   return (
     <div className="navbar-tc">
-      <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand style={{marginBottom: "9px", marginRight: "0"}} href="/">
-          <Image href="/" src="images/keyboard.png" className="typecraft-logo" />
+      <Navbar style={{ backgroundImage: `url("./images/wood.png")` }} sticky="top" collapseOnSelect expand="lg" variant="dark" >
+        <Navbar.Brand className="navBrand" href="/">
+          <Image href="/" src="images/typecraft-logo.png" className="typecraft-logo" />
         </Navbar.Brand>
-        <Navbar.Brand href="/">TypeCraft</Navbar.Brand>
+        <Navbar.Brand href="/" className="typecraft-navbar-name">TypeCraft</Navbar.Brand>
         <Nav className="mr-auto">
         </Nav>
         <Nav>
           <Navbar.Brand> {checkLoggedIn() && 'Welcome back, ' + JSON.parse(localStorage.getItem("user_details")).username}</Navbar.Brand>
-          {!checkLoggedIn() && <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>}
-          {!checkLoggedIn() && <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>}
-          {checkLoggedIn() && 
+          {!checkLoggedIn() && <Nav.Link className="navLink" onClick={handleShowLogin}>Login</Nav.Link>}
+          {!checkLoggedIn() && <Nav.Link className="navLink" onClick={handleShowRegister}>Register</Nav.Link>}
+          {checkLoggedIn() &&
             <Dropdown>
-              <Dropdown.Toggle variant={'dark'} id="dropdown-basic">
-              {userAvatar === "Dinosaur" ?
-              <Image variant="top" src="images/dinosaur.png" className="navbar-avatar" />
-              : userAvatar === "Ghost" ?
-              <Image variant="top" src="images/ghost.png" className="navbar-avatar" />
-              : userAvatar === "Monster" ?
-              <Image variant="top" src="images/monster.png" className="navbar-avatar" />
-              : userAvatar === "Unicorn" ?
-              <Image variant="top" src="images/unicorn.png" className="navbar-avatar" />
-              : userAvatar === "Fox" ?
-              <Image variant="top" src="images/fox.png" className="navbar-avatar" />
-              :
-              <Image variant="top" src="images/sample-avatar.jpg" className="navbar-avatar" />
-              }
+              <Dropdown.Toggle id="dropdown-basic">
+                {userAvatar === "Dinosaur" ?
+                  <Image variant="top" src="images/dinosaur.png" className="navbar-avatar" />
+                  : userAvatar === "Ghost" ?
+                    <Image variant="top" src="images/ghost.png" className="navbar-avatar" />
+                    : userAvatar === "Monster" ?
+                      <Image variant="top" src="images/monster.png" className="navbar-avatar" />
+                      : userAvatar === "Unicorn" ?
+                        <Image variant="top" src="images/unicorn.png" className="navbar-avatar" />
+                        : userAvatar === "Fox" ?
+                          <Image variant="top" src="images/fox.png" className="navbar-avatar" />
+                          :
+                          <Image variant="top" src="images/sample-avatar.jpg" className="navbar-avatar" />
+                }
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-container">
                 <Dropdown.Item href="/profile">View Profile</Dropdown.Item>
                 <Dropdown.Item href="/leaderboard">View Leaderboard</Dropdown.Item>
-                <Dropdown.Item 
+                <Dropdown.Item
                   href="/"
                   onClick={() => localStorage.clear()}
-                  >Logout</Dropdown.Item>
+                >Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           }
@@ -65,20 +65,24 @@ function NavbarTC() {
       {/* Modal for Login Form */}
       {!checkLoggedIn() &&
         <Modal show={showLogin} onHide={handleCloseLogin}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Login 
-            handleCloseLogin={handleCloseLogin}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => {handleCloseLogin(); handleShowRegister()}}>
-            New User? Click Here To Register!
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Login</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Login
+              handleCloseLogin={handleCloseLogin}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Nav.Link
+              className="navLink"
+              variant="primary"
+              onClick={() => { handleCloseLogin(); handleShowRegister() }}
+            >
+              New User? Click Here To Register!
+          </Nav.Link>
+          </Modal.Footer>
+        </Modal>
       }
 
 
@@ -88,18 +92,20 @@ function NavbarTC() {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Register 
+          <Register
             handleCloseRegister={handleCloseRegister}
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => {handleCloseRegister(); handleShowLogin()}}>
+          <Nav.Link
+            className="navLink"
+            variant="primary"
+            onClick={() => { handleCloseRegister(); handleShowLogin() }}
+          >
             Already Registered? Click Here To Login!
-          </Button>
+          </Nav.Link>
         </Modal.Footer>
-      </Modal>     
+      </Modal>
     </div>
   )
 }
-
-export default NavbarTC
