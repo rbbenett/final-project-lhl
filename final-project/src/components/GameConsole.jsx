@@ -32,6 +32,7 @@ export default function GameConsole(props) {
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
     return totalWords / totalTime
   }
+  
   //Get users so we can check the highest level cleared
   useEffect(() => {
     axios.get("http://localhost:3004/api/users", {
