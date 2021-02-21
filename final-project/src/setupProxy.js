@@ -14,16 +14,3 @@ module.exports = function (app) {
     createProxyMiddleware("/contents", { target: "http://localhost:3004/" })
   );
 };
-
-// "proxy": {
-//   "/login": {
-//     "target": "http://localhost:3004/"
-//   },
-//   "/register": {
-//     "target": "http://localhost:3004/"
-//   },
-//   "/.*": {
-//     "target": "http://localhost:8000/",
-//     "changeOrigin": true
-//   }
-// }
