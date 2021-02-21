@@ -238,7 +238,7 @@ export default function Register(props) {
 
         <Button
           className="formSubmitButton"
-          variant="outline-info"
+          variant="outline"
           type="submit"
           onClick={(e) => registerUser(e)}
         >

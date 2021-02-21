@@ -108,7 +108,7 @@ export default function Profile() {
                 <Card.Text>Average WPM: {wpm}</Card.Text>
                 <Button 
                   className="leaderboardButton" 
-                  variant="outline-info" 
+                  variant="outline" 
                   href="/leaderboard"
                   >Global Leaderboard</Button>
               </Card.Body>

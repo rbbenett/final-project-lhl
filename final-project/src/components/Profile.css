@@ -65,5 +65,6 @@ a.leaderboardButton {
 
 a.leaderboardButton:hover{
   background-color: #5f4431;
+  color:white;
   border-color: #5f4431;
 }
