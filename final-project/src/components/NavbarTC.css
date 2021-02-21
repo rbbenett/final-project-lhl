@@ -13,7 +13,8 @@ button#dropdown-basic.dropdown-toggle.btn.btn-primary{
   border-radius: 75%;
   height: 50px;
   width: 50px;
-  padding-left: 10px
+  padding-left: 10px;
+  box-shadow: none;
 }
 
 
@@ -34,3 +35,4 @@ a.navBrand{
   margin-bottom: 9px;
   margin-right: 0 
 }
+
