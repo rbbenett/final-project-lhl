@@ -8,10 +8,8 @@ import './NavbarTC.css'
 export default function NavbarTC() {
 
   const { checkLoggedIn } = useApplicationData();
-
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
   const handleCloseRegister = () => setShowRegister(false);

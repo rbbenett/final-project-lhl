@@ -32,13 +32,10 @@ module.exports = (db) => {
       RETURNING *;
     `, [username, first_name, last_name, email, password, city, country, avatar])
       .then(response => {
-        console.log("YO");
         res.send(response)
-        // res.redirect("/login");
       })
       .catch(e => {
         response.send(e);
-        console.log("CATCH BLOCK OF QUERY")
       });
   });
 

@@ -4,12 +4,11 @@ import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card,
 import GameCompleteMsg from './GameCompleteMsg';
 import Chat from './Chat';
 import useApplicationData from "../hooks/useApplicationData";
-
 import "./GameConsole.css"
 
 export default function GameConsole(props) {
 
-  const { attempts, setAttempts, levels, setLevels } = useApplicationData()
+  const { attempts, levels } = useApplicationData()
 
   const [seconds, setSeconds] = useState(30);
   const [typingIn, setTypingIn] = useState("");
@@ -76,11 +75,9 @@ export default function GameConsole(props) {
     if (level_id === 0) return "Incorrect level_id entered."
     if (levels[level_id - 1] === undefined) return "Error occured"
     let nOfWords = levels[level_id - 1].number_of_words;
-    // console.log("Your requested number of words =>", nOfWords, `p-1/${nOfWords}-${nOfWords}`);
     axios.get(`https://www.randomtext.me/api/gibberish/p-1/${nOfWords}-${nOfWords}`)
       .then(res => {
         let taggedText = res.data.text_out;
-        // console.log("we get back>>", taggedText)
         let cleanText = taggedText.replace(/<\/?[^>]+(>|$)/g, "");
         postContentToDB(cleanText, level_id);
         setLevelContent(cleanText)
@@ -88,7 +85,6 @@ export default function GameConsole(props) {
       })
   }
 
-  // giveMeRandomText(7);
   // post random content from api to our server
   const postContentToDB = (cleanText, level_id) => {
     axios.post('/contents', {
@@ -98,7 +94,7 @@ export default function GameConsole(props) {
     })
       .then(res => {
       })
-      .catch(err => console.log("Catch block of posting content to DB from front end", err))
+      .catch(err => console.log("Catch block of posting content to DB from front end error", err))
   }
 
   //Starts the timer and the sets the level up
@@ -188,7 +184,7 @@ export default function GameConsole(props) {
         wpm: wpm
       })
         .then(res => {
-          console.log(res)
+
         })
         .catch(err => console.log(err))
     }
@@ -253,17 +249,17 @@ export default function GameConsole(props) {
         <br />
         <Card>
           <Card.Header>
-          <Nav className="gamePlayNav" variant="pills">
-            <Nav.Item>
-            Current Level: {currentLevel + 1}
+            <Nav className="gamePlayNav" variant="pills">
+              <Nav.Item>
+                Current Level: {currentLevel + 1}
+              </Nav.Item>
+              <Nav.Item>
+                Time Left: {seconds} seconds
             </Nav.Item>
-            <Nav.Item>
-            Time Left: {seconds} seconds
-            </Nav.Item>
-            <Nav.Item>
-              Highest Level Cleared: {highestLevel}
-            </Nav.Item>
-          </Nav>
+              <Nav.Item>
+                Highest Level Cleared: {highestLevel}
+              </Nav.Item>
+            </Nav>
           </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
