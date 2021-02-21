@@ -39,7 +39,6 @@ export default React.memo(function Map() {
     }
     return null;
   }
-
   // get geocode of each user in the database 
   async function getLocations(users) {
     let result = [];

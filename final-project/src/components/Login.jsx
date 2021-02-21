@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-
 export default function Login(props) {
 
   const [loginFormInput, setLoginFormInput] = useState({
@@ -20,7 +19,6 @@ export default function Login(props) {
       password: loginFormInput.password
     })
       .then(res => {
-        console.log(res);
         if (Array.isArray(res.data)) {
           localStorage.setItem('user_details', JSON.stringify(res.data[0]))
           props.handleCloseLogin();
@@ -69,7 +67,7 @@ export default function Login(props) {
         </Form.Group>
         <Button
           className="formSubmitButton"
-          variant="outline-info"
+          variant="outline"
           type="submit"
           onClick={e => loginUser(e)}
         >

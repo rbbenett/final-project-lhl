@@ -28,7 +28,6 @@ module.exports = (db) => {
       RETURNING *;
     `, [level_id, theme_id, cleanText])
       .then(response => {
-        console.log("Data inserted into contents table successfully", response);
       })
       .catch(err => {
         res

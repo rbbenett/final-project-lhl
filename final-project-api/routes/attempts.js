@@ -31,7 +31,6 @@ module.exports = (db) => {
       RETURNING *;
     `, [user_id, level_id, words_completed, time_taken, passed])
       .then(response => {
-        console.log(current_highest_level_passed)
         let dbquery = ""
         let dbparams = ""
         if ((current_highest_level_passed) <= level_id) {
@@ -59,7 +58,6 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
-        // console.log("CATCH BLOCK OF QUERY")
       });
   });
   return router;

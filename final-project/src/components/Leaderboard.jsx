@@ -2,13 +2,11 @@ import React, { useState, useMemo } from 'react'
 import { Container, Table } from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData"
 import Map from "./PlayerMap";
-
 import "./Leaderboard.css"
 
 export default function Leaderboard() {
 
   const { users, setUsers } = useApplicationData()
-
   const [sortType, setSortType] = useState('levels');
 
   const sortedUsers = useMemo(() => {
@@ -31,8 +29,6 @@ export default function Leaderboard() {
     };
     return sortArray(sortType)
   }, [users, sortType])
-
-
 
   return (
     <div className="leaderboard">
@@ -118,4 +114,4 @@ export default function Leaderboard() {
       </Container>
     </div>
   )
-}
+};

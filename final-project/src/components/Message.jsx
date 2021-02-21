@@ -28,5 +28,5 @@ export default function Message(props) {
           <p className="sentText pl-10 ">{props.name.name}</p>
         </div>
       )
-  );
+  )
 }

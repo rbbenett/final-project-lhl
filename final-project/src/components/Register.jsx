@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 export default function Register(props) {
 
   const history = useHistory();
@@ -21,9 +20,33 @@ export default function Register(props) {
     country: ""
   });
 
+  //Register with validation for empty fields
   const registerUser = (e) => {
     e.preventDefault();
-    console.log("hi")
+    if (newUserDetails.username === "") {
+      alert("Username cannot be left blank")
+      return
+    } else if (newUserDetails.first_name === "") {
+      alert("First name cannot be left blank")
+      return
+    } else if (newUserDetails.last_name === "") {
+      alert("Last name cannot be left blank")
+      return
+    } else if (newUserDetails.email === "" || newUserDetails.email.includes("@") !== true) {
+      alert("Email not valid. Please enter a alid e-mail address")
+      return
+    } else if (newUserDetails.password === "") {
+      alert("Password cannot be left blank")
+      return
+    } else if (newUserDetails.password.length < 8) {
+      alert("Password too short")
+      return
+    } else if (newUserDetails.password > 20) {
+      alert("Password too long")
+      return
+    } else if (newUserDetails.avatar === "") {
+      alert("Please select an avatar from the selection below")
+    }
     axios.post('/register', {
       username: newUserDetails.username,
       first_name: newUserDetails.first_name,
@@ -39,13 +62,12 @@ export default function Register(props) {
           username: newUserDetails.username,
           password: newUserDetails.password
         })
-        .then(res => {
-        console.log('as well as here')
-        localStorage.setItem('user_details', JSON.stringify(res.data[0]))
-        history.push("/play");
-        history.go(0)
-        props.handleCloseRegister();
-        })
+          .then(res => {
+            localStorage.setItem('user_details', JSON.stringify(res.data[0]))
+            history.push("/play");
+            history.go(0)
+            props.handleCloseRegister();
+          })
       })
   }
 
@@ -248,7 +270,7 @@ export default function Register(props) {
 
         <Button
           className="formSubmitButton"
-          variant="outline-info"
+          variant="outline"
           type="submit"
           onClick={(e) => registerUser(e)}
         >

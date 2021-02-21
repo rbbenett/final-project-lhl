@@ -8,10 +8,8 @@ import './NavbarTC.css'
 export default function NavbarTC() {
 
   const { checkLoggedIn } = useApplicationData();
-
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
   const handleCloseRegister = () => setShowRegister(false);
@@ -22,7 +20,7 @@ export default function NavbarTC() {
   return (
     <div className="navbar-tc">
       <Navbar style={{ backgroundImage: `url("./images/wood.png")` }} sticky="top" collapseOnSelect expand="lg" variant="dark" >
-        <Navbar.Brand style={{ marginBottom: "9px", marginRight: "0" }} href="/">
+        <Navbar.Brand className="navBrand" href="/">
           <Image href="/" src="images/typecraft-logo.png" className="typecraft-logo" />
         </Navbar.Brand>
         <Navbar.Brand href="/" className="typecraft-navbar-name">TypeCraft</Navbar.Brand>
@@ -30,8 +28,8 @@ export default function NavbarTC() {
         </Nav>
         <Nav>
           <Navbar.Brand> {checkLoggedIn() && 'Welcome back, ' + JSON.parse(localStorage.getItem("user_details")).username}</Navbar.Brand>
-          {!checkLoggedIn() && <Nav.Link onClick={handleShowLogin}>Login</Nav.Link>}
-          {!checkLoggedIn() && <Nav.Link onClick={handleShowRegister}>Register</Nav.Link>}
+          {!checkLoggedIn() && <Nav.Link className="navLink" onClick={handleShowLogin}>Login</Nav.Link>}
+          {!checkLoggedIn() && <Nav.Link className="navLink" onClick={handleShowRegister}>Register</Nav.Link>}
           {checkLoggedIn() &&
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic">

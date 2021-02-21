@@ -5,13 +5,17 @@ Form.register-form {
 }
 
 button.formSubmitButton {
-  color: #91684a;
+  background-color: #91684a;
+  color: white;
   border-color: #91684a;
+  box-shadow: none;
 }
 
 button.formSubmitButton:hover{
-  background-color: #91684a;
-  border-color: #91684a
+  background-color: #5f4431;
+  color: white;
+  border-color: #5f4431;
+  box-shadow: none;
 }
 
 h3 {

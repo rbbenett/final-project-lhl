@@ -7,7 +7,6 @@ import DelayLink from 'react-delay-link';
 import useApplicationData from '../hooks/useApplicationData';
 import Register from './Register';
 import Login from './Login';
-
 import "./WelcomePage.css";
 
 export default function Welcomepage() {
@@ -51,7 +50,7 @@ export default function Welcomepage() {
           {checkLoggedIn() ?
             <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
               <Button
-                variant="outline-info"
+                variant="outline"
                 size="lg"
                 className="startGameButton"
               >
@@ -59,7 +58,7 @@ export default function Welcomepage() {
             </Button>
             </DelayLink>
             :
-            <Button className="startGameButton" variant="outline-info" onClick={handleShowLogin} size="lg">Play Now</Button>
+            <Button className="startGameButton" variant="outline" onClick={handleShowLogin} size="lg">Play Now</Button>
           }
         </Container>
       </Jumbotron>
@@ -76,7 +75,7 @@ export default function Welcomepage() {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Nav.Link variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
+            <Nav.Link className="navLink" variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
               New User? Click Here To Register!
             </Nav.Link>
           </Modal.Footer>
@@ -94,7 +93,7 @@ export default function Welcomepage() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Nav.Link variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
+          <Nav.Link className="navLink" variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
             Already Registered? Click Here To Login!
           </Nav.Link>
         </Modal.Footer>
@@ -102,4 +101,3 @@ export default function Welcomepage() {
     </div>
   )
 }
-
