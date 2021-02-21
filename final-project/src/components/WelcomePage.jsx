@@ -76,7 +76,7 @@ export default function Welcomepage() {
             />
           </Modal.Body>
           <Modal.Footer>
-            <Nav.Link variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
+            <Nav.Link className="navLink" variant="primary" onClick={() => { handleCloseLogin(); handleShowRegister() }}>
               New User? Click Here To Register!
             </Nav.Link>
           </Modal.Footer>
@@ -94,7 +94,7 @@ export default function Welcomepage() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Nav.Link variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
+          <Nav.Link className="navLink" variant="primary" onClick={() => { handleCloseRegister(); handleShowLogin() }}>
             Already Registered? Click Here To Login!
           </Nav.Link>
         </Modal.Footer>
