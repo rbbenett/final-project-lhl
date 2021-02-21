@@ -32,7 +32,7 @@ export default function GameConsole(props) {
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
     return totalWords / totalTime
   }
-  
+
   //Get users so we can check the highest level cleared
   useEffect(() => {
     axios.get("http://localhost:3004/api/users", {
@@ -227,25 +227,7 @@ export default function GameConsole(props) {
     <div className="gameconsole">
       <Jumbotron className="game-area" style={{ marginBottom: 0 }}>
         <h1>TypeCraft</h1>
-        <>
-          <Spinner animation="border" variant="primary" />
-          <Spinner animation="border" variant="secondary" />
-          <Spinner animation="border" variant="success" />
-          <Spinner animation="border" variant="danger" />
-          <Spinner animation="border" variant="warning" />
-          <Spinner animation="border" variant="info" />
-          <Spinner animation="border" variant="light" />
-          <Spinner animation="border" variant="dark" />
-          <Spinner animation="grow" variant="primary" />
-          <Spinner animation="grow" variant="secondary" />
-          <Spinner animation="grow" variant="success" />
-          <Spinner animation="grow" variant="danger" />
-          <Spinner animation="grow" variant="warning" />
-          <Spinner animation="grow" variant="info" />
-          <Spinner animation="grow" variant="light" />
-          <Spinner animation="grow" variant="dark" />
-        </>
-        <br /><br /><br />
+        <br />
         <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={text ? (typingIn.length / text.length) * 100 : 0} variant="success" />
         <br />
         <Card>
@@ -280,6 +262,7 @@ export default function GameConsole(props) {
             value={typingIn}
             id="textarea"
             aria-label="With textarea"
+            onPaste={handleChange}
           />
         </InputGroup>
         <br />
