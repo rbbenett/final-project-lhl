@@ -288,22 +288,21 @@ export default function GameConsole(props) {
         <br />
         <p>
           {levelStarted === false && currentLevel !== 0 ?
-            <Button className="startGame" variant="primary" onClick={restartfromFirstLevel} style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}>
+            <Button className="startGame" variant="primary" onClick={restartfromFirstLevel}>
               Start from the begining
             </Button> : null}
           {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel ?
-            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}>
+            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel}>
               Start from level {highestLevel + 1}
             </Button> : null}
           {levelStarted === true ?
-            <Button className="restartGame" variant="primary" onClick={resetLevel} style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}>
+            <Button className="restartGame" variant="primary" onClick={resetLevel}>
               Restart Level
             </Button> : null}
           {levelStarted === false ?
             <Button
               className="startGame"
               variant="primary"
-              style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}
               onClick={startGame}
             >
               {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
