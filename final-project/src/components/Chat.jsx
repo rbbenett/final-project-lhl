@@ -4,7 +4,6 @@ import TextContainer from './TextContainer';
 import Messages from './Messages';
 import InfoBar from './InfoBar';
 import Input from './Input';
-
 import "bootstrap/dist/css/bootstrap.css";
 import "./Chat.css";
 
@@ -14,7 +13,7 @@ const socket = io("http://localhost:8000", {
   transports: ["websocket", "polling"]
 });
 
-export default function Chat () {
+export default function Chat() {
 
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
@@ -47,18 +46,18 @@ export default function Chat () {
   const sendMessage = (event) => {
     event.preventDefault();
     setMessage('');
-    if(message) {
+    if (message) {
       socket.emit('send', message, () => setMessage(''));
     }
   }
 
   return (
     <div className="outerContainer">
-      <TextContainer users={users}/>
+      <TextContainer users={users} />
       <div className="chat-container">
-          <InfoBar />
-          <Messages messages={messages} name={username} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        <InfoBar />
+        <Messages messages={messages} name={username} />
+        <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
     </div>
   );

@@ -35,17 +35,17 @@ export default function Profile() {
           <Col>
             <Card border="secondary" style={{ width: '18rem' }}>
               {userAvatar === "Dinosaur" ?
-              <Card.Img variant="top" src="images/dinosaur.png" className="avatar" />
-              : userAvatar === "Ghost" ?
-              <Card.Img variant="top" src="images/ghost.png" className="avatar" />
-              : userAvatar === "Monster" ?
-              <Card.Img variant="top" src="images/monster.png" className="avatar" />
-              : userAvatar === "Unicorn" ?
-              <Card.Img variant="top" src="images/unicorn.png" className="avatar" />
-              : userAvatar === "Fox" ?
-              <Card.Img variant="top" src="images/fox.png" className="avatar" />
-              :
-              <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
+                <Card.Img variant="top" src="images/dinosaur.png" className="avatar" />
+                : userAvatar === "Ghost" ?
+                  <Card.Img variant="top" src="images/ghost.png" className="avatar" />
+                  : userAvatar === "Monster" ?
+                    <Card.Img variant="top" src="images/monster.png" className="avatar" />
+                    : userAvatar === "Unicorn" ?
+                      <Card.Img variant="top" src="images/unicorn.png" className="avatar" />
+                      : userAvatar === "Fox" ?
+                        <Card.Img variant="top" src="images/fox.png" className="avatar" />
+                        :
+                        <Card.Img variant="top" src="images/sample-avatar.jpg" className="avatar" />
               }
               <Card.Body>
                 <Card.Title className="profileName">{localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).first_name} {localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).last_name}</Card.Title>
@@ -90,27 +90,27 @@ export default function Profile() {
                           <strong className="progressTitle">Seasoned</strong>
                         </Card.Text>
                         : userGameStatus > 1 ?
-                        <Card.Text className="medalCard">
-                          <br />
-                          <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
-                          <br />
-                          <strong className="progressTitle">Rookie</strong>
-                        </Card.Text>
-                        : 
-                        <Card.Text className="medalCard">
-                          <br />
-                          <Card.Img className="medal-icon" variant="top" src="images/new.png" className="medal-icon" />
-                          <br />
-                          <strong className="progressTitle">Newbie</strong>
-                        </Card.Text>
+                          <Card.Text className="medalCard">
+                            <br />
+                            <Card.Img className="medal-icon" variant="top" src="images/rookiemedal.png" className="medal-icon" />
+                            <br />
+                            <strong className="progressTitle">Rookie</strong>
+                          </Card.Text>
+                          :
+                          <Card.Text className="medalCard">
+                            <br />
+                            <Card.Img className="medal-icon" variant="top" src="images/new.png" className="medal-icon" />
+                            <br />
+                            <strong className="progressTitle">Newbie</strong>
+                          </Card.Text>
                 }
                 <Card.Text>Highest Level Completed {highest + "/12"}</Card.Text>
                 <Card.Text>Average WPM: {wpm}</Card.Text>
-                <Button 
-                  className="leaderboardButton" 
-                  variant="outline" 
+                <Button
+                  className="leaderboardButton"
+                  variant="outline"
                   href="/leaderboard"
-                  >Global Leaderboard</Button>
+                >Global Leaderboard</Button>
               </Card.Body>
             </Card>
           </Col>

@@ -7,7 +7,6 @@ import DelayLink from 'react-delay-link';
 import useApplicationData from '../hooks/useApplicationData';
 import Register from './Register';
 import Login from './Login';
-
 import "./WelcomePage.css";
 
 export default function Welcomepage() {
@@ -102,4 +101,3 @@ export default function Welcomepage() {
     </div>
   )
 }
-
