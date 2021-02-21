@@ -21,7 +21,7 @@ function Profile() {
           }
         }
       })
-  }, [])
+  })
 
   const roundTo = require('round-to');
 

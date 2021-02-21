@@ -248,7 +248,7 @@ function GameConsole(props) {
           <Spinner animation="grow" variant="dark" />
         </>
         <br /><br /><br />
-        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={props.contents[currentLevel] ? (typingIn.length / props.contents[currentLevel].content.length) * 100 : 0} variant="success" />
+        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={text ? (typingIn.length / text.length) * 100 : 0} variant="success" />
         <br />
         <Card>
           <Card.Header>{seconds}</Card.Header>
