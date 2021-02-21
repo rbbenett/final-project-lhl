@@ -42,6 +42,7 @@ button.startGameButton {
 
 button.startGameButton:hover {
   background-color: #5f4431;
+  color: white;
   border-color: #5f4431;
   margin: 1rem;
   margin-left: 0;

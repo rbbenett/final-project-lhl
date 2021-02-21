@@ -23,9 +23,14 @@ button#dropdown-basic.dropdown-toggle.btn.btn-primary{
 }
 
 a.navLink{
-  color: #91684a
+  color: white
 }
 
 a.navLink:hover{
   color:#5f4431
+}
+
+a.navBrand{
+  margin-bottom: 9px;
+  margin-right: 0 
 }

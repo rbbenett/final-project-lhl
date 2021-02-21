@@ -69,7 +69,7 @@ export default function Login(props) {
         </Form.Group>
         <Button
           className="formSubmitButton"
-          variant="outline-info"
+          variant="outline"
           type="submit"
           onClick={e => loginUser(e)}
         >

@@ -51,7 +51,7 @@ export default function Welcomepage() {
           {checkLoggedIn() ?
             <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
               <Button
-                variant="outline-info"
+                variant="outline"
                 size="lg"
                 className="startGameButton"
               >
@@ -59,7 +59,7 @@ export default function Welcomepage() {
             </Button>
             </DelayLink>
             :
-            <Button className="startGameButton" variant="outline-info" onClick={handleShowLogin} size="lg">Play Now</Button>
+            <Button className="startGameButton" variant="outline" onClick={handleShowLogin} size="lg">Play Now</Button>
           }
         </Container>
       </Jumbotron>

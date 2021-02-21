@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
+import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card, Nav } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
 import Chat from './Chat';
 import useApplicationData from "../hooks/useApplicationData";
@@ -252,7 +252,20 @@ export default function GameConsole(props) {
         <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={props.contents[currentLevel] ? (typingIn.length / props.contents[currentLevel].content.length) * 100 : 0} variant="success" />
         <br />
         <Card>
-          <Card.Header>{seconds}</Card.Header>
+          {/* <Card.Header> --------------------- </Card.Header> */}
+          <Card.Header>
+          <Nav className="gamePlayNav" variant="pills">
+            <Nav.Item>
+            Current Level: {currentLevel + 1}
+            </Nav.Item>
+            <Nav.Item>
+            Time Left: {seconds} seconds
+            </Nav.Item>
+            <Nav.Item>
+              Highest Level Cleared: {highestLevel}
+            </Nav.Item>
+          </Nav>
+          </Card.Header>
           <Card.Body>
             <blockquote className="blockquote mb-0">
               <div id="console-text">
@@ -276,22 +289,22 @@ export default function GameConsole(props) {
         <br />
         <p>
           {levelStarted === false && currentLevel !== 0 ?
-            <Button className="startGame" variant="primary" onClick={restartfromFirstLevel} style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>
+            <Button className="startGame" variant="primary" onClick={restartfromFirstLevel} style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}>
               Start from the begining
             </Button> : null}
           {levelStarted === false && highestLevel >= 1 && highestLevel !== currentLevel ?
-            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>
+            <Button className="startGame" variant="primary" onClick={resumeFromLastClearedLevel} style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}>
               Start from level {highestLevel + 1}
             </Button> : null}
           {levelStarted === true ?
-            <Button className="restartGame" variant="primary" onClick={resetLevel} style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>
+            <Button className="restartGame" variant="primary" onClick={resetLevel} style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}>
               Restart Level
             </Button> : null}
           {levelStarted === false ?
             <Button
               className="startGame"
               variant="primary"
-              style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
+              style={{ backgroundColor: '#91684a', borderColor: '#91684a' }}
               onClick={startGame}
             >
               {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel + 1}!`}

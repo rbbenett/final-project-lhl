@@ -135,7 +135,7 @@ export default function Attempts() {
         <hr />
         <p className="mb-0">
           <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
-            <Button className="alertButton" variant="outline-info" size="lg">Play Game</Button>
+            <Button className="alertButton" variant="outline" size="lg">Play Game</Button>
           </DelayLink>
         </p>
       </Alert>
@@ -152,7 +152,7 @@ export default function Attempts() {
         <hr />
         <p className="mb-0">
           <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
-            <Button className="alertButton" variant="outline-info" size="lg">Play Game</Button>
+            <Button className="alertButton" variant="outline" size="lg">Play Game</Button>
           </DelayLink>
         </p>
       </Alert>

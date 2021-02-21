@@ -10,5 +10,6 @@ button.alertButton {
 
 button.alertButton:hover{
   background-color: #5f4431;
+  color: white;
   border-color: #5f4431;
 }
