@@ -172,7 +172,7 @@ export default function GameConsole(props) {
       let currentLevelWords = props.contents[currentLevel].content.split(' ')
       let totalOfCorrectWords = totalWordsCorrect(typingIn, currentLevelWords)
       let wpm = totalAvgWpm()
-      setLevelContent("GameOver")
+      setLevelContent("Game Over")
       clearInterval(intervalId)
       axios.post('/attempts', {
         user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
@@ -253,11 +253,17 @@ export default function GameConsole(props) {
               <Nav.Item>
                 Current Level: {currentLevel + 1}
               </Nav.Item>
+              { seconds > 0? 
               <Nav.Item>
                 Time Left: {seconds} seconds
-            </Nav.Item>
+              </Nav.Item>
+              :
+              <Nav.Item style={{color: "Red"}}>
+                Time's Up!!!
+              </Nav.Item>
+              }
               <Nav.Item>
-                Highest Level Cleared: {highestLevel}
+                Highest Level: {highestLevel}
               </Nav.Item>
             </Nav>
           </Card.Header>
