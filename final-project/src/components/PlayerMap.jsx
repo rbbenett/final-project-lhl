@@ -3,17 +3,19 @@ import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/ap
 import Geocode from "react-geocode";
 import useApplicationData from "../hooks/useApplicationData"
 
+// Default center of map on load
 let center = {
   lat: 43.644357428479296,
   lng: -79.40218810875912
 };
 
+// Map cotainer size
 const containerStyle = {
-  width: '600px',
+  width: '1110px',
   height: '600px',
 };
 
-function Map() {
+export default React.memo(function Map() {
 
   const [selected, setSelected] = useState({});
   const { users, setUsers } = useApplicationData();
@@ -32,12 +34,12 @@ function Map() {
         }
       )
     }
-    catch(err) {
+    catch (err) {
       console.log("Error fetching geodata:", err);
     }
     return null;
   }
-  
+
   // get geocode of each user in the database 
   async function getLocations(users) {
     let result = [];
@@ -55,10 +57,10 @@ function Map() {
     }
     return result;
   }
-  
+
   useEffect(() => {
     (async () => {
-      const stuff = await getLocations(users).then((res) => {return res})
+      const stuff = await getLocations(users).then((res) => { return res })
       setPoints(stuff);
     })()
   }, [users]);
@@ -108,6 +110,4 @@ function Map() {
       </GoogleMap>
     </LoadScript >
   )
-}
-
-export default React.memo(Map)
+})

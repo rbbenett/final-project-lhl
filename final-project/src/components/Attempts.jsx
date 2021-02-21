@@ -5,8 +5,9 @@ import Moment from 'react-moment';
 import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
 import { useHistory } from 'react-router-dom';
+import "./Attempts.css";
 
-function Attempts() {
+export default function Attempts() {
 
   const soundUrl = "./sounds/SuperMarioBros.mp3";
 
@@ -25,8 +26,6 @@ function Attempts() {
   for (const attempt of attempts) {
     attempt.words_per_min=((attempt.words_completed * 60) / attempt.time_taken)
   }
-
-  const [sortType, setSortType] = useState('words_per_min');
 
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
@@ -128,7 +127,7 @@ function Attempts() {
 
             </tbody>
           </Table>
-          <Alert variant="success">
+          <Alert className="alertContainer" >
         <Alert.Heading>Hey, nice to see you again!</Alert.Heading>
         <p>
           Congrats on the rad scores! Looks like you're doing quite well but don't let that stop you. Click on the button below to try and reach even better scores!
@@ -136,7 +135,7 @@ function Attempts() {
         <hr />
         <p className="mb-0">
           <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
-            <Button variant="primary" size="lg" style={{backgroundColor: '#91684a', borderColor: '#91684a'}}>Play Game</Button>
+            <Button className="alertButton" variant="outline-info" size="lg">Play Game</Button>
           </DelayLink>
         </p>
       </Alert>
@@ -145,7 +144,7 @@ function Attempts() {
     )
   } else {
     return (
-      <Alert variant="danger">
+      <Alert className="alertContainer">
         <Alert.Heading>Hey, you must be new here!</Alert.Heading>
         <p>
           Aww yeah, so it looks like you haven't actually played yet. No worries! Simply click on the button below to play this super awesome game and build up your typing chops!
@@ -153,12 +152,10 @@ function Attempts() {
         <hr />
         <p className="mb-0">
           <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
-            <Button style={{backgroundColor: '#91684a', borderColor: '#91684a'}} size="lg">Play Game</Button>
+            <Button className="alertButton" variant="outline-info" size="lg">Play Game</Button>
           </DelayLink>
         </p>
       </Alert>
     )
   }
 }
-
-export default Attempts

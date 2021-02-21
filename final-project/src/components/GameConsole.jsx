@@ -3,10 +3,11 @@ import axios from "axios";
 import { Jumbotron, Button, ProgressBar, Spinner, InputGroup, FormControl, Card } from 'react-bootstrap';
 import GameCompleteMsg from './GameCompleteMsg';
 import Chat from './Chat';
-import "./GameConsole.css"
 import useApplicationData from "../hooks/useApplicationData";
 
-function GameConsole(props) {
+import "./GameConsole.css"
+
+export default function GameConsole(props) {
 
   const { attempts, setAttempts, levels, setLevels } = useApplicationData()
 
@@ -266,14 +267,10 @@ function GameConsole(props) {
             <InputGroup.Text id="textarea">TYPE HERE:</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl as="textarea"
-            // onChange={(event) => setTypingIn(event.target.value)}
             onChange={(event) => highlightWords(event)}
             value={typingIn}
             id="textarea"
             aria-label="With textarea"
-          // onCut={handleChange}
-          // onCopy={handleChange}
-          // onPaste={handleChange}
           />
         </InputGroup>
         <br />
@@ -299,15 +296,9 @@ function GameConsole(props) {
             >
               {(levelStarted === false || seconds !== "Game Over") && currentLevel === 0 ? `Start Game ` : `Start Level ${currentLevel + 1}!`}
             </Button> : null}
-          {/* {levelStarted === false ?
-              <Button variant="primary" onClick={restartfromFirstLevel}>
-              Go back to Level 1
-            </Button> : null} */}
         </p>
       </Jumbotron>
       <Chat />
     </div>
   )
 }
-
-export default GameConsole

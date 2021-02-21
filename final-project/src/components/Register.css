@@ -3,12 +3,21 @@ Form.register-form {
   border: solid black;
   border-radius: 25px;
 }
-button {
-  padding-left: 15rem
+
+button.formSubmitButton {
+  color: #91684a;
+  border-color: #91684a;
 }
+
+button.formSubmitButton:hover{
+  background-color: #91684a;
+  border-color: #91684a
+}
+
 h3 {
   text-align: center;
 }
+
 div.form-group {
   margin-top: 1rem
 }

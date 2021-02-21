@@ -1,11 +1,10 @@
-import React from 'react';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, ProgressBar } from 'react-bootstrap';
 import Attempts from "./Attempts";
 import "./Profile.css";
 import axios from "axios";
 
-function Profile() {
+export default function Profile() {
 
   const [wpm, setWpm] = useState(0);
   const [highest, setHighest] = useState(0);
@@ -109,9 +108,8 @@ function Profile() {
                 <Card.Text>Average WPM: {wpm}</Card.Text>
                 <Button 
                   className="leaderboardButton" 
-                  variant="primary" 
+                  variant="outline-info" 
                   href="/leaderboard"
-                  style={{backgroundColor: '#91684a', borderColor: '#91684a'}}
                   >Global Leaderboard</Button>
               </Card.Body>
             </Card>
@@ -133,5 +131,3 @@ function Profile() {
     </div>
   )
 }
-
-export default Profile

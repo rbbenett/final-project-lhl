@@ -1,35 +1,27 @@
 .welcome-container {
-  /* text-align: center; */
   height: 100%;
 }
 
-.container-of-bg {
-  /* background-image: url("./keyboard-white.jpg"); */
-  background-image: url("./whitekeyboard.jpg");
+div.container-of-bg {
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  /* background-attachment: fixed; */
   background-size: cover;
   margin-bottom: 0;
 }
 
 .welcome-text-box {
-  /* margin-top: 12rem; */
   margin-top: 2rem;
   margin-bottom: 12rem;
 }
 
 .welcome-to-typecraft {
-  /* font-family: 'Quicksand', sans-serif; */
   font-family: 'Abril Fatface', cursive;
-  /* font-weight: 800; */
   font-size: 6rem;
   margin-bottom: 2rem;
 }
 
 h2, h3 {
-  /* font-family: 'Quicksand', sans-serif; */
   font-family: 'Poppins', sans-serif;
-  /* font-weight: 300; */
   font-size: 5rem;
 }
 
@@ -40,7 +32,17 @@ h2, h3 {
   margin: auto;
 }
 
-.startGameButton {
+button.startGameButton {
+  background-color: #91684a;
+  color: white;
+  border-color: #91684a;
+  margin: 1rem;
+  margin-left: 0;
+}
+
+button.startGameButton:hover {
+  background-color: #5f4431;
+  border-color: #5f4431;
   margin: 1rem;
   margin-left: 0;
 }
