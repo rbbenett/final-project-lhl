@@ -20,40 +20,40 @@ export default function App() {
   const {
     contents,
   } = useApplicationData();
-  
+
   return (
     <Router>
       <div className="app">
         <NavbarTC />
         <Switch>
-          {currentUser?
-          <Route path="/leaderboard">
-            <Leaderboard />
-          </Route>
-          :
-          <Route path="/">
-            <Welcomepage />
-          </Route>
+          {currentUser ?
+            <Route path="/leaderboard">
+              <Leaderboard />
+            </Route>
+            :
+            <Route path="/">
+              <Welcomepage />
+            </Route>
           }
-          {currentUser?
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          :
-          <Route path="/">
-            <Welcomepage />
-          </Route>
+          {currentUser ?
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            :
+            <Route path="/">
+              <Welcomepage />
+            </Route>
           }
-          {currentUser? 
-          <Route path="/play">
-            <GameConsole
-              contents={contents}
-            />
-          </Route>
-          :
-          <Route path="/">
-            <Welcomepage />
-          </Route>
+          {currentUser ?
+            <Route path="/play">
+              <GameConsole
+                contents={contents}
+              />
+            </Route>
+            :
+            <Route path="/">
+              <Welcomepage />
+            </Route>
           }
           <Route path="/">
             <Welcomepage />

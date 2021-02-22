@@ -15,6 +15,8 @@ export default function NavbarTC() {
   const handleCloseRegister = () => setShowRegister(false);
   const handleShowRegister = () => setShowRegister(true);
 
+
+
   const userAvatar = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details")).avatar)
 
   return (
