@@ -16,4 +16,8 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/users", { target: "http://localhost:3004/" })
   );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 2a8b7861a564e77e303e52581b78a25d91f3d094

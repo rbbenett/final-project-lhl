@@ -250,20 +250,20 @@ export default function GameConsole(props) {
         <br />
         <Card>
           <Card.Header>
-            <Nav className="gamePlayNav" variant="pills">
+            <Nav className="gamePlayNav">
               <Nav.Item>
                 Current Level: {currentLevel + 1}
               </Nav.Item>
               { seconds > 0? 
-              <Nav.Item>
-                Time Left: {seconds} seconds
+              <Nav.Item className="gameTimer">
+                Time: {seconds} seconds
               </Nav.Item>
               :
-              <Nav.Item style={{color: "Red"}}>
+              <Nav.Item className="gameTimerOver">
                 Time's Up!!!
               </Nav.Item>
               }
-              <Nav.Item>
+              <Nav.Item className="gamePlayNav">
                 Highest Level: {highestLevel}
               </Nav.Item>
             </Nav>
