@@ -219,10 +219,10 @@ export default function Register(props) {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formBasicCountry">
-            <Form.Label>Country</Form.Label>
+            <Form.Label>Province</Form.Label>
             <Form.Control
               type="Country"
-              placeholder="Enter Country"
+              placeholder="Enter Province"
               onChange={e => {
                 setNewUserDetails({
                   ...newUserDetails,
