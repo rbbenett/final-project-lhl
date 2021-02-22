@@ -99,6 +99,7 @@ app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/attempts", attemptsRoutes(db));
 app.use("/contents", contentsRoutes(db));
+app.use("/users", usersRoutes(db));
 
 app.listen(PORT, () => {
   console.log(`typecraft listening on port ${PORT}`);
