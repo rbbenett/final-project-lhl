@@ -28,8 +28,8 @@ export default function NavbarTC() {
         </Nav>
         <Nav>
           <Navbar.Brand> {checkLoggedIn() && 'Welcome back, ' + JSON.parse(localStorage.getItem("user_details")).username}</Navbar.Brand>
-          {!checkLoggedIn() && <Nav.Link className="navLink" onClick={handleShowLogin}>Login</Nav.Link>}
-          {!checkLoggedIn() && <Nav.Link className="navLink" onClick={handleShowRegister}>Register</Nav.Link>}
+          {!checkLoggedIn() && <Nav.Link className="navLink navlink-login" onClick={handleShowLogin}>Login</Nav.Link>}
+          {!checkLoggedIn() && <Nav.Link className="navLink navlink-register" onClick={handleShowRegister}>Register</Nav.Link>}
           {checkLoggedIn() &&
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic">
