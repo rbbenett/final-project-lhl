@@ -207,7 +207,7 @@ export default function GameConsole(props) {
         words_completed: correctWords,
         time_taken: secondsLeft,
         passed: true,
-        current_highest_level_passed: currentLevel,
+        current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared,
         wpm: wpm
       })
         .then(res => {
