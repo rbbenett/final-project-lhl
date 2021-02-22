@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import useApplicationData from "../hooks/useApplicationData";
 import axios from 'axios';
-import { Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
+import { Form, Button, Col, Row, InputGroup, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import "./Register.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Register(props) {
 
+  const { users } = useApplicationData();
+
   const history = useHistory();
+
+  const [usernameIsAvailable, setUsernameIsAvailable] = useState(true);
 
   const [newUserDetails, setNewUserDetails] = useState({
     username: "",
@@ -20,32 +25,50 @@ export default function Register(props) {
     country: ""
   });
 
+  const checkUniqueUsername = (e) => {
+    let desiredUsername = e.target.value;
+    if (desiredUsername.length >= 1) {
+      setUsernameIsAvailable(true);
+    }
+    setNewUserDetails({
+      ...newUserDetails,
+      username: e.target.value
+    })
+    for (let i = 0; i < users.length; i++) {
+      console.log(users)
+      if (users[i].username === desiredUsername) {
+        setUsernameIsAvailable(false);
+        break;
+      }
+    }
+  }
+
   //Register with validation for empty fields
   const registerUser = (e) => {
     e.preventDefault();
     if (newUserDetails.username === "") {
-      alert("Username cannot be left blank")
+      alert("Username cannot be left blank.")
       return
     } else if (newUserDetails.first_name === "") {
-      alert("First name cannot be left blank")
+      alert("First name cannot be left blank.")
       return
     } else if (newUserDetails.last_name === "") {
-      alert("Last name cannot be left blank")
+      alert("Last name cannot be left blank.")
       return
     } else if (newUserDetails.email === "" || newUserDetails.email.includes("@") !== true) {
-      alert("Email not valid. Please enter a alid e-mail address")
+      alert("Email not valid. Please enter a valid e-mail address.")
       return
     } else if (newUserDetails.password === "") {
-      alert("Password cannot be left blank")
+      alert("Password cannot be left blank.")
       return
     } else if (newUserDetails.password.length < 8) {
-      alert("Password too short")
+      alert("Password too short.")
       return
     } else if (newUserDetails.password > 20) {
-      alert("Password too long")
+      alert("Password too long.")
       return
     } else if (newUserDetails.avatar === "") {
-      alert("Please select an avatar from the selection below")
+      alert("Please select an avatar.")
     }
     axios.post('/register', {
       username: newUserDetails.username,
@@ -107,21 +130,30 @@ export default function Register(props) {
         <Form.Row>
           <Form.Group as={Col} controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
-            <InputGroup>
-              <InputGroup.Prepend>
-                <InputGroup.Text>@</InputGroup.Text>
-              </InputGroup.Prepend>
-              <Form.Control
-                type="Username"
-                placeholder="Enter Username"
-                onChange={e => {
-                  setNewUserDetails({
-                    ...newUserDetails,
-                    username: e.target.value
-                  })
-                }}
-              />
-            </InputGroup>
+            <OverlayTrigger
+              trigger = 'focus'
+              placement={'top'}
+              overlay={
+                newUserDetails.username.length > 0 ?
+                <Tooltip id={`tooltip-top`} style={{color: 'red'}}>
+                  {newUserDetails.username.length > 0 && (usernameIsAvailable ? "Username is available" : "Username already taken")}
+                </Tooltip> :
+                <Tooltip id={`tooltip-top`} style={{display: 'none'}}>
+                </Tooltip> 
+              }
+            >
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>@</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  type="Username"
+                  placeholder="Enter Username"
+                  value={newUserDetails.username}
+                  onChange={(e) => checkUniqueUsername(e)}
+                />
+              </InputGroup>
+            </OverlayTrigger>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formBasicEmail">
@@ -154,7 +186,7 @@ export default function Register(props) {
             />
             <Form.Text id="passwordHelpBlock" muted>
               Your password must be 8-20 characters long.
-          </Form.Text>
+            </Form.Text>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formBasicConfirmPassword">
