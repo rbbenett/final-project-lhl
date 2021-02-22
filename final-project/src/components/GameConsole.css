@@ -45,4 +45,18 @@ div.gamePlayNav {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  font-size: medium;
+}
+
+div.gameTimer {
+  font-size: xx-large;
+}
+
+div.gameTimerOver {
+  color: red;
+  font-size: xx-large;
+}
+
+h1 {
+  font-family: 'Abril Fatface', cursive;
 }
