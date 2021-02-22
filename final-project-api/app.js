@@ -39,9 +39,6 @@ io.on("connection", client => {
   });
 });
 
-// const bodyParser = require("body-parser");
-// const sass       = require("node-sass-middleware");
-
 const morgan     = require('morgan');
 const cors = require("cors");
 // const cookieSession = require('cookie-session');
@@ -85,7 +82,7 @@ app.use("/contents", contentsRoutes(db));
 app.use("/users", usersRoutes(db));
 
 app.listen(PORT, () => {
-  console.log(`typecraft listening on port ${PORT}`);
+  console.log(`TypeCraft listening on port ${PORT}`);
 });
 
 // socket.io
