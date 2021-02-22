@@ -199,7 +199,7 @@ export default function GameConsole(props) {
     }
   }, [seconds, intervalId]);
 
-  //Post request to attempts if both the text areas are the same
+  //Post request to attempts if they pass the level
   useEffect(() => {
     if (typingIn === text.trim() && typingIn !== "") {
       setLevelContent(giveMeRandomText(currentLevel))

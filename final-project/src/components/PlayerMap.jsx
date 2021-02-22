@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/api';
 import Geocode from "react-geocode";
-import useApplicationData from "../hooks/useApplicationData"
+import useApplicationData from "../hooks/useApplicationData";
+
+import "./PlayerMap.css"
 
 // Default center of map on load
 let center = {
@@ -50,6 +52,7 @@ export default React.memo(function Map() {
         country: user.country,
         wordsPerMin: user.words_per_min,
         level: user.highest_level_cleared,
+        avatar: user.avatar,
         location: res,
       }
       result.push(newUser)
@@ -96,7 +99,19 @@ export default React.memo(function Map() {
               onCloseClick={() => setSelected({})}
             >
               <div>
-                <img src="./images/user.png" alt="User Icon"></img>
+                {selected.avatar === "Dinosaur" ?
+                  <img src="images/dinosaur.png" className="map-avatar" />
+                  : selected.avatar === "Ghost" ?
+                    <img src="images/ghost.png" className="map-avatar" />
+                    : selected.avatar === "Monster" ?
+                      <img src="images/monster.png" className="map-avatar" />
+                      : selected.avatar === "Unicorn" ?
+                        <img src="images/unicorn.png" className="map-avatar" />
+                        : selected.avatar === "Fox" ?
+                          <img src="images/fox.png" className="map-avatar" />
+                          :
+                          <img src="images/sample-avatar.jpg" className="map-avatar" />
+                }
                 <p style={{ margin: "0" }}>@{selected.name}</p>
                 <p style={{ margin: "0" }}>{selected.city}, {selected.country}</p>
                 <p style={{ margin: "0" }}>Level: {selected.level}</p>
