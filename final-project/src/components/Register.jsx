@@ -20,6 +20,7 @@ export default function Register(props) {
     last_name: "",
     email: "",
     password: "",
+    comfirmpassword: "",
     avatar: "",
     city: "",
     country: ""
@@ -191,7 +192,14 @@ export default function Register(props) {
 
           <Form.Group as={Col} controlId="formBasicConfirmPassword">
             <Form.Label>Confirm Password</Form.Label>
-            <Form.Control type="password" placeholder="Confirm Password" />
+            <Form.Control type="password"
+              placeholder="Confirm Password"
+              onChange={e => {
+                setNewUserDetails({
+                  ...newUserDetails,
+                  comfirmpassword: e.target.value
+                })
+              }} />
           </Form.Group>
         </Form.Row>
 
