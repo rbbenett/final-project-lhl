@@ -13,10 +13,10 @@ export default function Footer() {
             <Card.Link href="https://www.cirquedusoleil.com/casting/disciplines/clowns-physical-actors/clowns">Careers</Card.Link>
           </Card.Text>
           <Card.Text>
-            <Card.Link href="#">Terms of Use</Card.Link>
+            <Card.Link href="https://www.termsfeed.com/live/69ee8f54-7e96-4b93-bc11-46ac04716140">Terms of Use</Card.Link>
           </Card.Text>
           <Card.Text>
-            <Card.Link href="#">Privacy Policy</Card.Link>
+            <Card.Link href="https://www.termsfeed.com/live/a302bc97-5768-4866-8e9c-a16ad4a7f843">Privacy Policy</Card.Link>
           </Card.Text>
           <Button variant="primary"><i className="fab fa-facebook fa-lg"></i></Button>
           <Button variant="info"><i className="fab fa-twitter fa-lg"></i></Button>
