@@ -18,6 +18,7 @@ export default function GameConsole(props) {
   const [levelStarted, setLevelStarted] = useState(false)
   const [text, setText] = useState("");
   const [highestLevel, setHighestLevel] = useState(0);
+  const [progressBarGame, setProgressBarGame] = useState(0);
 
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
 
@@ -56,8 +57,10 @@ export default function GameConsole(props) {
     if (idx >= 0) {
       let newText = [txt.substring(0, idx), <strong>{txt.substring(idx, idx + value.length)}</strong>, txt.substring(idx + value.length)];
       setLevelContent(newText);
+      setProgressBarGame(((text.length - newText[2]?.length) / text.length) * 100);
     } else {
       setLevelContent(levelContent);
+      setProgressBarGame(((text.length - levelContent[2]?.length) / text.length) * 100);
     }
   }
 
@@ -184,6 +187,7 @@ export default function GameConsole(props) {
       let wpm = totalAvgWpm()
       setLevelContent("Game Over")
       clearInterval(intervalId)
+      setTypingIn("");
       axios.post('/attempts', {
         user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
         level_id: currentLevel + 1,
@@ -242,7 +246,7 @@ export default function GameConsole(props) {
       <Jumbotron className="game-area" style={{ marginBottom: 0 }}>
         <h1>TypeCraft</h1>
         <br />
-        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={text ? (typingIn.length / text.length) * 100 : 0} variant="success" />
+        <ProgressBar aria-valuemin="0" aria-valuemax="100" animated now={typingIn ? progressBarGame : 0} variant="success" />
         <br />
         <Card>
           <Card.Header>

@@ -2,16 +2,11 @@ import React, { useMemo } from 'react';
 import { Container, Table, Alert, Button } from 'react-bootstrap';
 import useApplicationData from "../hooks/useApplicationData";
 import Moment from 'react-moment';
-import useSound from 'use-sound';
 import DelayLink from 'react-delay-link';
 import { useHistory } from 'react-router-dom';
 import "./Attempts.css";
 
 export default function Attempts() {
-
-  const soundUrl = "./sounds/SuperMarioBros.mp3";
-
-  const [play] = useSound(soundUrl);
 
   const history = useHistory();
   const navigateToPlay = () => {
@@ -151,7 +146,7 @@ export default function Attempts() {
         </p>
         <hr />
         <p className="mb-0">
-          <DelayLink delay={3000} to="/play" clickAction={play} replace={false}>
+          <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
             <Button className="alertButton" variant="outline" size="lg">Play Game</Button>
           </DelayLink>
         </p>
