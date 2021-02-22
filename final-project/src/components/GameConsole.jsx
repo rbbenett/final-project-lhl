@@ -190,7 +190,7 @@ export default function GameConsole(props) {
     }
   }, [seconds, intervalId]);
 
-  //Post request to attempts if both the text areas are the same
+  //Post request to attempts if they pass the level
   useEffect(() => {
     if (typingIn === text.trim() && typingIn !== "") {
       setLevelContent(giveMeRandomText(currentLevel))
@@ -207,7 +207,7 @@ export default function GameConsole(props) {
         words_completed: correctWords,
         time_taken: secondsLeft,
         passed: true,
-        current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared,
+        current_highest_level_passed: currentLevel,
         wpm: wpm
       })
         .then(res => {
