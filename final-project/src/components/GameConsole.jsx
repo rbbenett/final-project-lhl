@@ -24,10 +24,11 @@ export default function GameConsole(props) {
   // calculate wpm of the user
   const totalAvgWpm = function () {
     let result = []
-    for (let attempt of attempts)
+    for (let attempt of attempts) {
       if (attempt.user_id === currentUser) {
         result.push(attempt)
       }
+    }
     let totalWords = (result.reduce((a, b) => a + (parseInt(b.words_completed) || 0), 0))
     let totalTime = result.reduce((a, b) => a + (parseInt(b.time_taken) || 0), 0) / 60
     return totalWords / totalTime
@@ -207,7 +208,6 @@ export default function GameConsole(props) {
       let secondsLeft = 30 - seconds;
       clearInterval(intervalId);
       console.log((currentLevel + 1), JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared)
-      let wpm = totalAvgWpm()
       setCurrentLevel(currentLevel + 1)
       setSeconds(30)
       setTypingIn("");
@@ -218,13 +218,13 @@ export default function GameConsole(props) {
         time_taken: secondsLeft,
         passed: true,
         current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared,
-        wpm: wpm
+        wpm: totalAvgWpm()
       })
         .then(res => {
           axios.post("/users", {
             user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
             level_id: currentLevel + 1,
-            wpm: wpm,
+            wpm: totalAvgWpm(),
             current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared
           })
         })
