@@ -54,9 +54,9 @@ export default function Attempts() {
     return (
       <div className="leaderboard">
         <Container className="leadercontainer">
-          <Table striped bordered hover variant="dark">
+          <Table bordered >
             <thead>
-              <tr>
+              <tr className="firstrow">
                 <th>Date</th>
                 <th>Level</th>
                 <th>Time Completed</th>
@@ -65,7 +65,7 @@ export default function Attempts() {
             </thead>
             <tbody>
               {sortUserAttempts[0] ? (
-                <tr>
+                <tr className="secondrow">
                   <td>
                     <Moment format='MMMM Do, YYYY'>
                       {sortUserAttempts[0] && sortUserAttempts[0].attempted_at}
@@ -77,7 +77,7 @@ export default function Attempts() {
                 </tr>) : null
               }
               {sortUserAttempts[1] ? (
-                <tr>
+                <tr className="firstrow">
                   <td>
                     <Moment format="MMMM Do, YYYY">
                       {sortUserAttempts[1] && sortUserAttempts[1].attempted_at}
@@ -89,7 +89,7 @@ export default function Attempts() {
                 </tr>) : null
               }
               {sortUserAttempts[2] ? (
-                <tr>
+                <tr className="secondrow"> 
                   <td>
                     <Moment format="MMMM Do, YYYY">
                       {sortUserAttempts[2] && sortUserAttempts[2].attempted_at}
@@ -101,7 +101,7 @@ export default function Attempts() {
                 </tr>) : null
               }
               {sortUserAttempts[3] ? (
-                <tr>
+                <tr className="firstrow">
                   <td>
                     <Moment format="MMMM Do, YYYY">
                       {sortUserAttempts[3] && sortUserAttempts[3].attempted_at}
@@ -113,7 +113,7 @@ export default function Attempts() {
                 </tr>) : null
               }
               {sortUserAttempts[4] ? (
-                <tr>
+                <tr className="secondrow"className="secondrow">
                   <td>
                     <Moment format="MMMM Do, YYYY">
                       {sortUserAttempts[4] && sortUserAttempts[4].attempted_at}

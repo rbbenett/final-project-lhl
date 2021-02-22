@@ -11,3 +11,11 @@ div.googleMap {
   margin-top: 2rem;
   
 }
+
+tr.firstrow {
+  background: #e9e6db;
+}
+
+tr.secondrow {
+  background: #c4b7a6;
+}
