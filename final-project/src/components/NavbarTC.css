@@ -36,3 +36,7 @@ a.navBrand{
   margin-right: 0 
 }
 
+.navlink-login, .navlink-register {
+  font-size: 1.2rem;
+}
+

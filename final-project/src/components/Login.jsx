@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Button, Form, InputGroup, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import './Login.css';
 
 export default function Login(props) {
 
@@ -9,6 +10,8 @@ export default function Login(props) {
     username: "",
     password: ""
   })
+
+  const [incorrectLogin, setIncorrectLogin] = useState(false);
 
   const history = useHistory();
 
@@ -22,10 +25,12 @@ export default function Login(props) {
         if (Array.isArray(res.data)) {
           localStorage.setItem('user_details', JSON.stringify(res.data[0]))
           props.handleCloseLogin();
+          setIncorrectLogin(false);
           history.push("/play");
           history.go(0)
         } else {
-          console.log("Incorrect username/password")
+          console.log("Incorrect username/password");
+          setIncorrectLogin(true);
         }
       })
   }
@@ -73,6 +78,11 @@ export default function Login(props) {
         >
           Submit
         </Button>
+        {incorrectLogin && 
+          <Alert variant="danger">
+            Incorrect username or password. Please try again.
+          </Alert>
+        }
       </Form>
     </div>
   )
