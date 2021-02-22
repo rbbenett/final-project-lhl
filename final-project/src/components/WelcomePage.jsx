@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Container, Jumbotron, Modal, Button, Nav } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Typing from "react-typing-animation";
-import useSound from 'use-sound';
-import DelayLink from 'react-delay-link';
 import useApplicationData from '../hooks/useApplicationData';
 import Register from './Register';
 import Login from './Login';
@@ -19,8 +17,6 @@ export default function Welcomepage() {
     history.go(0)
   }
 
-  const playGameSoundUrl = "./sounds/SuperMarioBros.mp3";
-  const [playGameSound] = useSound(playGameSoundUrl);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -34,7 +30,7 @@ export default function Welcomepage() {
       <Jumbotron fluid className="container-of-bg" style={{ backgroundImage: "url(/images/whitekeyboard.jpg)" }}>
         <Container className="welcome-text-box" style={{ marginLeft: '6rem' }}>
           <h1 className="welcome-to-typecraft">
-            <Typing speed={60}>
+            <Typing speed={100}>
               TypeCraft
             </Typing>
           </h1>
@@ -48,15 +44,14 @@ export default function Welcomepage() {
             Do you have what it takes?
           </h2>
           {checkLoggedIn() ?
-            <DelayLink delay={1000} to="/play" clickAction={navigateToPlay} replace={false}>
               <Button
                 variant="outline"
                 size="lg"
                 className="startGameButton"
+                onClick={navigateToPlay}
               >
                 Play Now
             </Button>
-            </DelayLink>
             :
             <Button className="startGameButton" variant="outline" onClick={handleShowLogin} size="lg">Play Now</Button>
           }
