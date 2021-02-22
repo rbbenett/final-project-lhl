@@ -72,6 +72,8 @@ export default function GameConsole(props) {
     }
   }
 
+  console.log(levels)
+
   // use randomtext api to get random sentences
   const giveMeRandomText = (level_id) => {
     if (level_id === 0) return "Incorrect level_id entered."
@@ -142,14 +144,6 @@ export default function GameConsole(props) {
         matchingwords.push(typedIn[i])
     }
     return matchingwords.length
-  }
-
-  const transition = function() {
-    setLevelStarted(false)
-    setLevelContent()
-    setSeconds(3)
-    Timer(3)
-    clearInterval(intervalId)
   }
 
   //Resuming from the last cleared level button
