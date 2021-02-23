@@ -17,7 +17,7 @@ export default function GameConsole(props) {
   const [levelContent, setLevelContent] = useState("Are You Ready To Start?")
   const [levelStarted, setLevelStarted] = useState(false)
   const [text, setText] = useState("");
-  const [highestLevel, setHighestLevel] = useState(0);
+  const [highestLevel, setHighestLevel] = useState(JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared);
   const [progressBarGame, setProgressBarGame] = useState(0);
 
   const currentUser = (localStorage.getItem("user_details") && JSON.parse(localStorage.getItem("user_details"))?.id)
@@ -227,9 +227,10 @@ export default function GameConsole(props) {
             user_id: JSON.parse(localStorage.getItem("user_details"))?.id,
             level_id: currentLevel + 1,
             wpm: totalAvgWpm(correctWords, secondsLeft),
-            current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared
+            current_highest_level_passed: highestLevel
           })
           .then(res => {
+            console.log(currentLevel, highestLevel)
             if (currentLevel > highestLevel) {
               setHighestLevel(currentLevel)
             }
