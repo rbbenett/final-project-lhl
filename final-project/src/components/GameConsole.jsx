@@ -61,10 +61,14 @@ export default function GameConsole(props) {
     if (idx >= 0) {
       let newText = [txt.substring(0, idx), <strong>{txt.substring(idx, idx + value.length)}</strong>, txt.substring(idx + value.length)];
       setLevelContent(newText);
-      setProgressBarGame(((text.length - newText[2]?.length) / text.length) * 100);
+      if (newText !== undefined) {
+        setProgressBarGame(((text.length - newText[2]?.length) / text.length) * 100);
+      }
     } else {
       setLevelContent(levelContent);
-      setProgressBarGame(((text.length - levelContent[2]?.length) / text.length) * 100);
+      if (levelContent !== undefined) {
+        setProgressBarGame(((text.length - levelContent[2]?.length) / text.length) * 100);
+      }
     }
   }
 
