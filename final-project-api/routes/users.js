@@ -30,14 +30,14 @@ module.exports = (db) => {
           WHERE id = $3
           RETURNING *;
           `
-      dbparams = [level_id, wpm.toFixed(0), user_id]
+      dbparams = [level_id, Math.round(wpm), user_id]
     } else {
       dbquery = `
           UPDATE users
           SET words_per_min = $1
           WHERE id = $2
           RETURNING *;`
-      dbparams = [wpm.toFixed(0), user_id]
+      dbparams = [Math.round(wpm), user_id]
     }
     db.query(dbquery, dbparams)
       .then(response => {
