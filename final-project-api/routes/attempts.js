@@ -29,7 +29,7 @@ module.exports = (db) => {
       RETURNING *;
     `, [user_id, level_id, words_completed, time_taken, passed])
       .then(response => {
-        res.send(response)
+        res.send(response.rows)
       })
       .catch(err => {
         console.log(err)
