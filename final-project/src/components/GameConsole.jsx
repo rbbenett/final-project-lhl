@@ -57,10 +57,14 @@ export default function GameConsole(props) {
     if (idx >= 0) {
       let newText = [txt.substring(0, idx), <strong>{txt.substring(idx, idx + value.length)}</strong>, txt.substring(idx + value.length)];
       setLevelContent(newText);
-      setProgressBarGame(((text.length - newText[2]?.length) / text.length) * 100);
+      if (newText !== undefined) {
+        setProgressBarGame(((text.length - newText[2]?.length) / text.length) * 100);
+      }
     } else {
       setLevelContent(levelContent);
-      setProgressBarGame(((text.length - levelContent[2]?.length) / text.length) * 100);
+      if (levelContent !== undefined) {
+        setProgressBarGame(((text.length - levelContent[2]?.length) / text.length) * 100);
+      }
     }
   }
 
@@ -216,7 +220,6 @@ export default function GameConsole(props) {
         time_taken: secondsLeft,
         passed: true,
         current_highest_level_passed: JSON.parse(localStorage.getItem("user_details"))?.highest_level_cleared,
-        wpm: totalAvgWpm()
       })
         .then(res => {
           axios.post("/users", {
