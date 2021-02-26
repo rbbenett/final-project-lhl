@@ -14,28 +14,28 @@ Typecraft is a game to help you practice you're typing speed. Once you register 
 
 ## Dependencies 
 
-Markup : * react-google-maps/api
-axios
-bootstrap
-geocoding
-http-proxy-middleware
-moment
-node-sass
-normalize.css
-prop-types
-react
-react-bootstrap
-react-delay-link
-react-dom
-react-emoji
-react-geocode
-react-moment
-react-router-dom
-react-scripts
-react-scroll-to-bottom
-react-string-replace
-react-test-renderer
-react-typing-animation
-round-to
-socket.io-client
-web-vitals
+-react-google-maps/api
+-axios
+-bootstrap
+-geocoding
+-http-proxy-middleware
+-moment
+-node-sass
+-normalize.css
+-prop-types
+-react
+-react-bootstrap
+-react-delay-link
+-react-dom
+-react-emoji
+-react-geocode
+-react-moment
+-react-router-dom
+-react-scripts
+-react-scroll-to-bottom
+-react-string-replace
+-react-test-renderer
+-react-typing-animation
+-round-to
+-socket.io-client
+-web-vitals
