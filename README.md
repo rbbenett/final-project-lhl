@@ -14,7 +14,7 @@ Typecraft is a game to help you practice you're typing speed. Once you register 
 
 ## Dependencies 
 
-react-google-maps/api
+*react-google-maps/api
 axios
 bootstrap
 geocoding
